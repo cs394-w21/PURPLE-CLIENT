@@ -1,16 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Story from './components/story'
+import Story from './components/Story';
+import Success from './components/Success';
 export default function App() {
   const story = {
     title: 'testtest',
     image: '../test1.jpg'
   }
   return (
-    <View style={styles.container}>
+    <View>
       <StatusBar style="auto" />
-      <Story story={story} />
+      {/*<Story story={story} />*/}
+      <Success></Success>
     </View>
   );
 }

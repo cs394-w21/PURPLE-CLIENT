@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   banner: {
     flexDirection: "column",
-    flexWrap: "no-wrap",
+    flexWrap: "nowrap",
     justifyContent: "center",
     alignItems: "center",
     color: "white",

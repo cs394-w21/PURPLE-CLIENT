@@ -28,7 +28,7 @@ export default function App() {
           <Stack.Screen 
           name="PlayScreen" 
           component={PlayScreen}
-          options={{title: 'Now Playing: Story'}}
+          options={{headerShown: false, title: ''}}
           />
         </Stack.Navigator>
       </NavigationContainer>

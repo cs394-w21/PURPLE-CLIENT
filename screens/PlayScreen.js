@@ -2,26 +2,28 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Button } from '@material-ui/core';
+import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 
 const PlayScreen = () => {
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={require('../purpleheart.jpeg')}>
-            </Image>
-            <View style={styles.player}>
-                <View style={styles.scrub}></View>
+            <Image style={styles.image} source={require('../purpleheart.jpeg')}/>
+            {/* <View style={styles.player}> */}
+                {/* <View style={styles.scrub}></View> */}
                 <Text style={styles.caption}> War Medals </Text>
-                <Button color="primary" variant="contained" >
+                <Button color="primary" variant="contained" onClick={() => {}} >
                     <Icon
                         type='font-awesome'
                         name='pause'
                         color='#517fa4'
                     />
                 </Button>
-            </View>
+            {/* </View> */}
         </View>
     )
 }
+
+
 
 const styles= StyleSheet.create({
     container: {
@@ -30,30 +32,30 @@ const styles= StyleSheet.create({
         alignItems: 'center',
     },
     image: {
-        width: '50vw',
-        height: '50vh'
+        width: vw(100),
+        height: vh(50),
     },
     player: {
-        height: '50vh',
+        height: vh(100),
         borderWidth: 1,
-        width: '50vw',
-        alignItems: 'center'
+        width: vw(100),
+        alignItems: 'center',
     },
     scrub: {
-        height: '5vh',
+        height: vh(5),
         width: '80%',
         borderWidth: 1,
         borderRadius: 10,
-        marginTop: '5vh'
+        marginTop: vh(5),
     },
     caption: {
-        marginTop: '2vh',
-        fontSize: '3vh'
+        marginTop: vh(2),
+        fontSize: 10,
     },
     pause: {
-        width: '50vw',
-        height: '50vh',
-        fontSize: 30
+        width: vw(50),
+        height: vh(50),
+        fontSize: 30,
     }
 })
 

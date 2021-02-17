@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { Button } from "@material-ui/core";
+
 import { Icon } from "react-native-elements";
 import * as purpleHeart from "../purpleheart.jpeg";
 import { LinearGradient } from "expo-linear-gradient";
@@ -8,7 +8,7 @@ import { LinearGradient } from "expo-linear-gradient";
 const Success = () => {
   return (
     <LinearGradient
-      // Button Linear Gradient
+      // TouchableOpacity Linear Gradient
       // Diagonal :0
       start={{x: 1, y: 0}}
     end={{x: 0, y: 1}}
@@ -80,10 +80,10 @@ const Success = () => {
               </Text>
             </View>
           </View>
-          <Button style={{ marginTop: 20, backgroundColor: "white", color: "#841787", fontWeight: "bold"}} variant="contained"> Play this story </Button>
+          <TouchableOpacity style={{ marginTop: 20, backgroundColor: "white", color: "#841787", fontWeight: "bold"}} variant="contained"> Play this story </TouchableOpacity>
           <View  style={{ marginTop: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Button style={{ width: '45%', backgroundColor: "#841787", color: "white", fontWeight: "bold"}} variant="contained"> Edit </Button>
-            <Button style={{ width: '45%', backgroundColor: "#F6CC60", color: "#841787", fontWeight: "bold"}} variant="contained"> Share </Button>
+            <TouchableOpacity style={{ width: '45%', backgroundColor: "#841787", color: "white", fontWeight: "bold"}} variant="contained"> Edit </TouchableOpacity>
+            <TouchableOpacity style={{ width: '45%', backgroundColor: "#F6CC60", color: "#841787", fontWeight: "bold"}} variant="contained"> Share </TouchableOpacity>
           </View>
         </View>
       </View>

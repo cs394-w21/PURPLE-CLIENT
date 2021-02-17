@@ -1,25 +1,30 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { Button } from '@material-ui/core';
+
+
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 
 const PlayScreen = () => {
     return (
-        <View style={styles.container}>
-            <Image style={styles.image} source={require('../purpleheart.jpeg')}/>
-            {/* <View style={styles.player}> */}
-                {/* <View style={styles.scrub}></View> */}
+        
+
+         <View> 
+             <Image style={styles.image} source={require('../purpleheart.jpeg')}/> 
+             <View style={styles.player}> 
+                 <View style={styles.scrub}></View> 
                 <Text style={styles.caption}> War Medals </Text>
-                <Button color="primary" variant="contained" onClick={() => {}} >
+                 <TouchableOpacity color="primary" variant="contained" onClick={() => {}} >
                     <Icon
                         type='font-awesome'
                         name='pause'
                         color='#517fa4'
                     />
-                </Button>
-            {/* </View> */}
-        </View>
+                </TouchableOpacity> 
+                
+             </View> 
+         </View> 
+        
     )
 }
 

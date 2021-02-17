@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Image, Text, View, TouchableOpacity } from "react-native"
 import { Icon } from 'react-native-elements'
 import { Audio } from 'expo-av';
-import { Button } from '@material-ui/core';
 import * as testImage from '../test1.jpg';
 import { setStatusBarHidden } from 'expo-status-bar';
 
@@ -51,13 +50,13 @@ const Story = ({story}) => {
             <Image style={{width: 200, height:200}} source={testImage}/>
 
             <Text>{story.title}</Text> 
-            <Button color="primary" variant="contained" onClick={async () => await playPauseSound()}>
+            <TouchableOpacity color="primary" variant="contained" onClick={async () => await playPauseSound()}>
                 <Icon
                 type='font-awesome'
                 name={ isPlaying ? 'pause' : 'play'}
                 color='#517fa4'
                 />
-            </Button>
+            </TouchableOpacity>
         </View>
     )
 }

@@ -44,7 +44,6 @@ const Success = ({ navigation }) => {
               <Text style={{ fontSize: 50, color: "white" }}> Success </Text>
             </View>
             <Text style={{ color: "white", paddingLeft: 25 }}>
-              {" "}
               Your story has been captured and is now safe forever.
             </Text>
           </View>
@@ -69,8 +68,7 @@ const Success = ({ navigation }) => {
               }}
             >
               <Text style={{ textAlign: "center", color: "white" }}>
-                {" "}
-                World War II Medals{" "}
+                World War II Medals
               </Text>
             </View>
           </LinearGradient>
@@ -87,14 +85,12 @@ const Success = ({ navigation }) => {
               source={purpleHeart}
             />
             <Text style={{ marginBottom: 20 }}>
-              {" "}
               Your grandfather earned two medals of honor when he was in WWII,
-              this is the story of what he did...{" "}
+              this is the story of what he did...
             </Text>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Icon type="font-awesome" name="info-circle" color="#517fa4" />
               <Text style={{ fontWeight: "bold" }}>
-                {" "}
                 This story has a 7 minute audio file, 4 images and 2 documents
                 attached to it.
               </Text>

@@ -9,7 +9,9 @@ import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
 const PlayScreen = () => {
   const [sound, setSound] = useState(null);
+  const [time, setTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [length, setLength] = useState(0);
 
   async function playPauseSound() {
     //initial play
@@ -35,6 +37,30 @@ const PlayScreen = () => {
       console.log("Playing Sound");
       await sound.playAsync();
     }
+  }
+
+  async function scrubSound(seconds) {
+    //initial play
+      
+      console.log(seconds);
+      console.log(sound._key.duration);
+      let curTime = seconds * sound._key.duration * 1000
+      setLength(sound._key.duration)
+      //await sound.playAsync();
+      await sound.setPositionAsync(curTime)
+      await sound.playAsync();
+
+
+    
+  }
+
+  function secondsToMs(d) {
+    d = Number(d);
+  
+    var min = Math.floor(d / 60);
+    var sec = Math.floor(d % 60);
+  
+    return `0${min}`.slice(-1) + ":" + `00${sec}`.slice(-2);
   }
 
   useEffect(() => {
@@ -71,8 +97,9 @@ const PlayScreen = () => {
               maximumValue={1}
               minimumTrackTintColor="#AAAAAA"
               maximumTrackTintColor="#FFFFFF"
+              onValueChange={value => scrubSound(value)}
             />
-            <Text style={{ color: "white", fontSize: vh(2) }}>6:48</Text>
+            <Text style={{ color: "white", fontSize: vh(2) }}> {length ? secondsToMs(length) : '00:00'} </Text>
           </View>
           <Text style={styles.caption}> War Medals </Text>
           <TouchableOpacity

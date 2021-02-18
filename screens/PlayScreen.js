@@ -99,7 +99,7 @@ const PlayScreen = () => {
               maximumTrackTintColor="#FFFFFF"
               onValueChange={value => scrubSound(value)}
             />
-            <Text style={{ color: "white", fontSize: vh(2) }}> {length ? secondsToMs(length) : '00:00'} </Text>
+            <Text style={{ color: "white", fontSize: vh(2) }}> {length ? secondsToMs(length) : '00:27'} </Text>
           </View>
           <Text style={styles.caption}> War Medals </Text>
           <TouchableOpacity

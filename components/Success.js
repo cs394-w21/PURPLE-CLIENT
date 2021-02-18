@@ -5,6 +5,7 @@ import { Icon } from "react-native-elements";
 import * as purpleHeart from "../purpleheart.jpeg";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-paper";
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
 const Success = ({ navigation }) => {
   return (
@@ -82,7 +83,7 @@ const Success = ({ navigation }) => {
           >
             <Image
               style={{ width: 200, height: 200, marginVertical: 10 }}
-              source={purpleHeart}
+              source={require("../purpleheart.jpeg")} /* need to fix import */
             />
             <Text style={{ marginBottom: 20 }}>
               Your grandfather earned two medals of honor when he was in WWII,
@@ -151,6 +152,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "white",
+    height: vh(100),
   },
   storycaption: {
     color: "white",
@@ -167,6 +169,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     //alignItems: "center",
     color: "white",
+    top: -60,
   },
 });
 

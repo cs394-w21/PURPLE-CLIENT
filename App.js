@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Story from './components/Story';
+//import Story from './components/Story';
 import Success from './components/Success';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Provider as PaperProvider } from 'react-native-paper';
 import PlayScreen from './screens/PlayScreen';
 
 
@@ -23,15 +24,22 @@ export default function App() {
   //      {/*<Story story={story} />*/}
 
   return (
+    <PaperProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen 
+        <Stack.Screen 
+          name="Success" 
+          component={Success}
+          options={{headerShown: false, title: ''}}
+          />
+        <Stack.Screen 
           name="PlayScreen" 
           component={PlayScreen}
           options={{headerShown: false, title: ''}}
           />
         </Stack.Navigator>
       </NavigationContainer>
+    </PaperProvider>
   )
 }
 

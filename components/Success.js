@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import { Icon } from "react-native-elements";
 import * as purpleHeart from "../purpleheart.jpeg";
 import { LinearGradient } from "expo-linear-gradient";
+import { Button } from 'react-native-paper';
 
-const Success = () => {
+const Success = ({navigation}) => {
   return (
     <LinearGradient
       // TouchableOpacity Linear Gradient
       // Diagonal :0
       start={{x: 1, y: 0}}
-    end={{x: 0, y: 1}}
+      end={{x: 0, y: 1}}
       colors={["#841787", "#F6CC60"]}
     >
       <View style={styles.bigContainer}>
@@ -80,10 +81,16 @@ const Success = () => {
               </Text>
             </View>
           </View>
-          <TouchableOpacity style={{ marginTop: 20, backgroundColor: "white", color: "#841787", fontWeight: "bold"}} variant="contained"> Play this story </TouchableOpacity>
+          <Button style={{ marginTop: 20, backgroundColor: "white", fontWeight: "bold"}}  mode="contained" onPress={() => navigation.navigate('PlayScreen')}>
+              <Text style={{ color: "#841787"}}>Play this story</Text>
+          </Button>
           <View  style={{ marginTop: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
-            <TouchableOpacity style={{ width: '45%', backgroundColor: "#841787", color: "white", fontWeight: "bold"}} variant="contained"> Edit </TouchableOpacity>
-            <TouchableOpacity style={{ width: '45%', backgroundColor: "#F6CC60", color: "#841787", fontWeight: "bold"}} variant="contained"> Share </TouchableOpacity>
+            <Button style={{ width: '45%', backgroundColor: "#841787", color: "white", fontWeight: "bold"}}  color="#841787" mode="contained" onPress={() => console.log('Pressed')}>
+              <Text>Edit</Text>
+            </Button>
+            <Button style={{ width: '45%', backgroundColor: "#F6CC60", color: "#841787", fontWeight: "bold"}}  mode="contained" onPress={() => console.log('Pressed')}>
+              <Text>Share</Text>
+            </Button>
           </View>
         </View>
       </View>

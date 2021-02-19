@@ -37,7 +37,7 @@ const Success = ({ navigation }) => {
                   borderRadius: "50%",
                 }}
                 iconStyle={{ color: "#F1A9ED" }}
-                type="font-awesome"
+                type="font-awesome-5"
                 name={"check"}
                 color="#517fa4"
               />
@@ -89,7 +89,7 @@ const Success = ({ navigation }) => {
               this is the story of what he did...
             </Text>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Icon type="font-awesome" name="info-circle" color="#517fa4" />
+              <Icon type="font-awesome-5" name="info-circle" color="#517fa4" />
               <Text style={{ fontWeight: "bold" }}>
                 This story has a 7 minute audio file, 4 images and 2 documents
                 attached to it.
@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     color: "white",
     height: vh(100),
+    paddingBottom: 40,
   },
   storycaption: {
     color: "white",
@@ -160,7 +161,6 @@ const styles = StyleSheet.create({
   container: {
     fontSize: 50,
     color: "white",
-    marginBottom: 40,
   },
   banner: {
     flexDirection: "column",
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     //alignItems: "center",
     color: "white",
-    top: -60,
+    padding: 20,
   },
 });
 

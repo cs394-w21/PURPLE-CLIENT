@@ -22,6 +22,7 @@ const PlayScreen = () => {
         require("../assets/sound/example.mp3")
       );
       setSound(sound);
+      //setLength(sound._key.duration)
       setIsPlaying(true);
       console.log("Playing Sound");
       await sound.playAsync();
@@ -42,6 +43,7 @@ const PlayScreen = () => {
 
   async function scrubSound(seconds) {
     //initial play
+    if (sound) {
       console.log(seconds);
       console.log(sound._key.duration);
       console.log("Current Time:", sound._key.currentTime);
@@ -50,7 +52,10 @@ const PlayScreen = () => {
       setLength(sound._key.duration)
       //await sound.playAsync();
       await sound.setPositionAsync(curTime)
-      await sound.playAsync();
+      if (isPlaying) {
+        await sound.playAsync();
+      }
+    }
   }
 
   function secondsToMs(d) {
@@ -79,7 +84,7 @@ const PlayScreen = () => {
         }
        }
     }, 1000); 
-  },[sound, isPlaying, time])
+  },[sound, isPlaying, time, length])
 
   
   return (
@@ -91,14 +96,10 @@ const PlayScreen = () => {
         start={{ x: 1, y: 0 }}
         end={{ x: 0, y: 1 }}
         colors={["#AD31FF", "#2E75E9"]}
-        style={{
-          width: "100%",
-          height: "40%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+        style={styles.playerWrapper}
       >
         <View style={styles.player}>
+          <View style={styles.playerTop}>
           <View style={styles.scrub}>
             <Text style={{ color: "white", fontSize: vh(2) }}>{secondsToMs(time)}</Text>
             <Slider
@@ -109,27 +110,30 @@ const PlayScreen = () => {
               maximumTrackTintColor="#FFFFFF"
               onValueChange={async (value) => await scrubSound(value)}
             />
-            <Text style={{ color: "white", fontSize: vh(2) }}> {length ? secondsToMs(length) : '00:27'} </Text>
+            <Text style={{ color: "white", fontSize: vh(2) }}> {sound ? ( !isNaN(sound._key.duration) ? secondsToMs(sound._key.duration) : '00:00' ) : '00:00'} </Text>
           </View>
-          <Text style={styles.caption}> War Medals </Text>
-          <TouchableOpacity
-            color="primary"
-            variant="contained"
-            onPress={async () => await playPauseSound()}
-          >
-            <Icon
-              type="font-awesome"
-              name={isPlaying ? "pause" : "play"}
-              color="white"
-              iconStyle={{ fontSize: vh(3.5) }}
-            />
-          </TouchableOpacity>
+            <Text style={styles.caption}> War Medals </Text>
+            <TouchableOpacity
+              color="primary"
+              variant="contained"
+              onPress={async () => await playPauseSound()}
+            >
+              <Icon
+                type="font-awesome-5"
+                name={isPlaying ? "pause" : "play"}
+                color="white"
+                iconStyle={{ fontSize: 35 }}
+              />
+            </TouchableOpacity>
+          </View>
+        
+          <View style={styles.playerBottom}>
           <View style={styles.scrub}>
             <Icon
-              type="font-awesome"
+              type="font-awesome-5"
               name='volume-off'
               color="white"
-              iconStyle={{ fontSize: vh(3.5) }}
+              iconStyle={{ fontSize: 20 }}
             />
             <Slider
               style={{ width: "80%", height: 5, marginHorizontal: 15 }}
@@ -139,49 +143,47 @@ const PlayScreen = () => {
               maximumTrackTintColor="#FFFFFF"
             />
             <Icon
-              type="font-awesome"
+              type="font-awesome-5"
               name='volume-up'
               color="white"
-              iconStyle={{ fontSize: vh(3.5) }}
+              iconStyle={{ fontSize: 20 }}
             />
           </View>
           <View
-            style={{
-              flexDirection: "row",
-              width: "100%",
-              justifyContent: "space-between",
-            }}
+            style={styles.actionRow}
           >
-            <TouchableOpacity>
+            <TouchableOpacity style={{ width: 100, justifyContent: "center", alignItems: "center" }}>
               <Icon
-                type="font-awesome"
+                type="font-awesome-5"
                 name="book"
                 color="white"
-                iconStyle={{ fontSize: vh(3.5) }}
+                iconStyle={{ fontSize: 20 }}
               />
-              <Text style={{ color: "white", fontSize: vh(2) }}>
+              <Text style={{ marginTop: 5, color: "white", fontSize: 12 }}>
                 Read Story
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity style={{ width: 100, justifyContent: "center", alignItems: "center"  }}>
               <Icon
-                type="font-awesome"
+                type="font-awesome-5"
                 name="share-square"
                 color="white"
-                iconStyle={{ fontSize: vh(3.5) }}
+                iconStyle={{ fontSize: 20 }}
               />
-              <Text style={{ color: "white", fontSize: vh(2) }}>Share</Text>
+              <Text style={{ marginTop: 5, color: "white", fontSize: 12 }}>Share</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity style={{ width: 100, justifyContent: "center", alignItems: "center"  }}>
               <Icon
-                type="font-awesome"
+                type="font-awesome-5"
                 name="list"
                 color="white"
-                iconStyle={{ fontSize: vh(3.5) }}
+                iconStyle={{ fontSize: 20 }}
               />
-              <Text style={{ color: "white", fontSize: vh(2) }}>History</Text>
+              <Text style={{ marginTop: 5, color: "white", fontSize: 12 }}>History</Text>
             </TouchableOpacity>
           </View>
+          </View>
+          
         </View>
       </LinearGradient>
     </View>
@@ -198,14 +200,33 @@ const styles = StyleSheet.create({
   },
   image: {
     width: vw(100), //vw(100),
-    height: vh(60), //vh(60),
+    height: '60%', //vh(60),
   },
+  playerWrapper: 
+    {
+      width: "100%",
+      height: "40%",
+      justifyContent: "center",
+      alignItems: "center",
+    },
   player: {
     width: "100%", //vw(100),
     height: "100%", //vh(40),
+    alignItems: "center",
+    paddingHorizontal: vh(3),
+  },
+  playerTop: {
+    width: "100%",
+    height: "45%", 
     justifyContent: "space-between",
     alignItems: "center",
-    padding: vh(3),
+    paddingTop: vh(3),
+  },
+  playerBottom: {
+    width: "100%", 
+    height: "55%", 
+    justifyContent: "space-evenly",
+    alignItems: "center",
   },
   scrub: {
     flexDirection: "row",
@@ -225,6 +246,13 @@ const styles = StyleSheet.create({
     height: vh(50),
     fontSize: 30,
   },
+  actionRow: 
+    {
+      flexDirection: "row",
+      width: "100%",
+      justifyContent: "space-between",
+    }
+  
 });
 
 export default PlayScreen;

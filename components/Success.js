@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-
 import { Icon } from "react-native-elements";
 import * as purpleHeart from "../purpleheart.jpeg";
 import { LinearGradient } from "expo-linear-gradient";

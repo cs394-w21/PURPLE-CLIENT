@@ -43,7 +43,9 @@ const PlayScreen = () => {
     //initial play
       
       console.log(seconds);
-      console.log(sound._key.duration);
+      //console.log(sound._key.duration);
+      console.log(sound.durationMillis)
+      console.log(sound)
       let curTime = seconds * sound._key.duration * 1000
       setLength(sound._key.duration)
       //await sound.playAsync();
@@ -92,7 +94,7 @@ const PlayScreen = () => {
           <View style={styles.scrub}>
             <Text style={{ color: "white", fontSize: vh(2) }}>0:00</Text>
             <Slider
-              style={{ width: "100%", height: 5, marginHorizontal: 15 }}
+              style={{width: '80%', height: 5, marginHorizontal: 10 }}
               minimumValue={0}
               maximumValue={1}
               minimumTrackTintColor="#AAAAAA"
@@ -111,7 +113,7 @@ const PlayScreen = () => {
               type="font-awesome"
               name={isPlaying ? "pause" : "play"}
               color="white"
-              iconStyle={{ fontSize: vh(5) }}
+              iconStyle={{ fontSize: vh(3.5) }}
             />
           </TouchableOpacity>
           <View style={styles.scrub}>
@@ -119,10 +121,10 @@ const PlayScreen = () => {
               type="font-awesome"
               name='volume-off'
               color="white"
-              iconStyle={{ fontSize: vh(3) }}
+              iconStyle={{ fontSize: vh(3.5) }}
             />
             <Slider
-              style={{ width: "100%", height: 5, marginHorizontal: 15 }}
+              style={{ width: "80%", height: 5, marginHorizontal: 15 }}
               minimumValue={0}
               maximumValue={1}
               minimumTrackTintColor="#AAAAAA"
@@ -132,7 +134,7 @@ const PlayScreen = () => {
               type="font-awesome"
               name='volume-up'
               color="white"
-              iconStyle={{ fontSize: vh(3) }}
+              iconStyle={{ fontSize: vh(3.5) }}
             />
           </View>
           <View
@@ -147,7 +149,7 @@ const PlayScreen = () => {
                 type="font-awesome"
                 name="book"
                 color="white"
-                iconStyle={{ fontSize: vh(5) }}
+                iconStyle={{ fontSize: vh(3.5) }}
               />
               <Text style={{ color: "white", fontSize: vh(2) }}>
                 Read Story
@@ -158,7 +160,7 @@ const PlayScreen = () => {
                 type="font-awesome"
                 name="share-square"
                 color="white"
-                iconStyle={{ fontSize: vh(5) }}
+                iconStyle={{ fontSize: vh(3.5) }}
               />
               <Text style={{ color: "white", fontSize: vh(2) }}>Share</Text>
             </TouchableOpacity>
@@ -167,7 +169,7 @@ const PlayScreen = () => {
                 type="font-awesome"
                 name="list"
                 color="white"
-                iconStyle={{ fontSize: vh(5) }}
+                iconStyle={{ fontSize: vh(3.5) }}
               />
               <Text style={{ color: "white", fontSize: vh(2) }}>History</Text>
             </TouchableOpacity>
@@ -187,8 +189,8 @@ const styles = StyleSheet.create({
     height: vh(100),
   },
   image: {
-    width: "100%", //vw(100),
-    height: "60%", //vh(60),
+    width: vw(100), //vw(100),
+    height: vh(60), //vh(60),
   },
   player: {
     width: "100%", //vw(100),
@@ -201,7 +203,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     color: "white",
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   caption: {
     marginVertical: vh(0.25),

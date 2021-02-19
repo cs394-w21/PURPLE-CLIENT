@@ -12,6 +12,7 @@ const PlayScreen = () => {
   const [time, setTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [length, setLength] = useState(0);
+  
 
   async function playPauseSound() {
     //initial play
@@ -41,19 +42,15 @@ const PlayScreen = () => {
 
   async function scrubSound(seconds) {
     //initial play
-      
       console.log(seconds);
-      //console.log(sound._key.duration);
-      console.log(sound.durationMillis)
+      console.log(sound._key.duration);
+      console.log("Current Time:", sound._key.currentTime);
       console.log(sound)
       let curTime = seconds * sound._key.duration * 1000
       setLength(sound._key.duration)
       //await sound.playAsync();
       await sound.setPositionAsync(curTime)
       await sound.playAsync();
-
-
-    
   }
 
   function secondsToMs(d) {
@@ -74,6 +71,17 @@ const PlayScreen = () => {
       : undefined;
   }, [sound]);
 
+  useEffect(()=> {
+     setTimeout(() => {
+       if (sound) {
+        if (time != sound._key.currentTime) {
+          setTime(sound._key.currentTime);
+        }
+       }
+    }, 1000); 
+  },[sound, isPlaying, time])
+
+  
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require("../purpleheart.jpeg")} />
@@ -92,14 +100,14 @@ const PlayScreen = () => {
       >
         <View style={styles.player}>
           <View style={styles.scrub}>
-            <Text style={{ color: "white", fontSize: vh(2) }}>0:00</Text>
+            <Text style={{ color: "white", fontSize: vh(2) }}>{secondsToMs(time)}</Text>
             <Slider
               style={{width: '80%', height: 5, marginHorizontal: 10 }}
               minimumValue={0}
               maximumValue={1}
               minimumTrackTintColor="#AAAAAA"
               maximumTrackTintColor="#FFFFFF"
-              onValueChange={value => scrubSound(value)}
+              onValueChange={async (value) => await scrubSound(value)}
             />
             <Text style={{ color: "white", fontSize: vh(2) }}> {length ? secondsToMs(length) : '00:27'} </Text>
           </View>

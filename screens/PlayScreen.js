@@ -19,12 +19,16 @@ const PlayScreen = () => {
     if (!sound) {
       console.log("Loading Sound");
       const { sound } = await Audio.Sound.createAsync(
-        require("../assets/sound/example.mp3")
+        require("../assets/sound/example.mp3"),
+        {
+          volume: 0.5,
+        }
       );
       setSound(sound);
       //setLength(sound._key.duration)
       setIsPlaying(true);
       console.log("Playing Sound");
+      
       await sound.playAsync();
     }
     //else if playing, pause
@@ -58,6 +62,14 @@ const PlayScreen = () => {
     }
   }
 
+  async function scrubVolume(value) {
+    //initial play
+    console.log(value);
+    if (sound) {
+      await sound.setVolumeAsync(value)
+    }
+  }
+
   function secondsToMs(d) {
     d = Number(d);
   
@@ -79,7 +91,9 @@ const PlayScreen = () => {
   useEffect(()=> {
      setTimeout(() => {
        if (sound) {
+         
         if (time != sound._key.currentTime) {
+          
           setTime(sound._key.currentTime);
         }
        }
@@ -137,10 +151,12 @@ const PlayScreen = () => {
             />
             <Slider
               style={{ width: "80%", height: 5, marginHorizontal: 15 }}
+              value ={0.5}
               minimumValue={0}
               maximumValue={1}
               minimumTrackTintColor="#AAAAAA"
               maximumTrackTintColor="#FFFFFF"
+              onValueChange={async (value) => await scrubVolume(value)}
             />
             <Icon
               type="font-awesome-5"

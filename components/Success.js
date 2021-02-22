@@ -1,12 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
 import { Icon } from "react-native-elements";
 import * as purpleHeart from "../purpleheart.jpeg";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-paper";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
+const Modal = ({showBack, setShowBack}) => {
+  return (
+    <>{showBack ? 
+    <View style={{
+      justifyContent: 'center', alignItems: 'center',
+      position: 'absolute', width: vw(100), height: vh(100), 
+      backgroundColor: 'rgba(0,0,0,0.5)', transparent: showBack, zIndex: 9000}}>
+        <View style={{backgroundColor: 'white', alignItems: 'center', height: 300, width: 300}}>
+          <View style={{marginTop: 50, justifyContent: 'space-evenly', marginBottom: 50}}>
+            <Text>Last Modified: {'Some variable'}</Text>
+            <Text>Date Created: {'Some variable'}</Text>
+            <Text>Shared With: {'Some variable'}</Text>
+          </View>
+          <TouchableOpacity onPress={()=> setShowBack(false)}>
+            <Text>Close</Text>
+          </TouchableOpacity>
+        </View>
+    </View>
+      : null}
+    </>
+
+    
+  )
+}
+
 const Success = ({ navigation }) => {
+  const [showBack, setShowBack] = useState(0);
   return (
     <LinearGradient
       // TouchableOpacity Linear Gradient
@@ -15,6 +41,8 @@ const Success = ({ navigation }) => {
       end={{ x: 0, y: 1 }}
       colors={["#841787", "#F6CC60"]}
     >
+      <Modal showBack={showBack} setShowBack={setShowBack}></Modal>
+
       <View style={styles.bigContainer}>
         <View style={styles.container}>
           <View style={styles.banner}>
@@ -89,9 +117,15 @@ const Success = ({ navigation }) => {
               this is the story of what he did...
             </Text>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Icon type="font-awesome-5" name="info-circle" color="#517fa4" />
+            
+                    
+              <TouchableOpacity onPress={()=> setShowBack(true)}>
+
+                <Icon type="font-awesome-5" name="info-circle" color="#517fa4" />
+
+              </TouchableOpacity>
               <Text style={{ fontWeight: "bold" }}>
-                This story has a 7 minute audio file, 4 images and 2 documents
+                {'  '} This story has a 7 minute audio file, 4 images and 2 documents
                 attached to it.
               </Text>
             </View>

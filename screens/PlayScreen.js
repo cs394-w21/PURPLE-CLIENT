@@ -12,7 +12,7 @@ const PlayScreen = () => {
   const [time, setTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [length, setLength] = useState(0);
-  
+  const [favorite, setFavorite] = useState(false);
 
   async function playPauseSound() {
     //initial play
@@ -179,7 +179,7 @@ const PlayScreen = () => {
                 Read Story
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ width: 100, justifyContent: "center", alignItems: "center"  }}>
+            {/* <TouchableOpacity style={{ width: 100, justifyContent: "center", alignItems: "center"  }}>
               <Icon
                 type="font-awesome-5"
                 name="share-square"
@@ -187,8 +187,8 @@ const PlayScreen = () => {
                 iconStyle={{ fontSize: 20 }}
               />
               <Text style={{ marginTop: 5, color: "white", fontSize: 12 }}>Share</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{ width: 100, justifyContent: "center", alignItems: "center"  }}>
+            </TouchableOpacity> */}
+            {/* <TouchableOpacity style={{ width: 100, justifyContent: "center", alignItems: "center"  }}>
               <Icon
                 type="font-awesome-5"
                 name="list"
@@ -196,6 +196,16 @@ const PlayScreen = () => {
                 iconStyle={{ fontSize: 20 }}
               />
               <Text style={{ marginTop: 5, color: "white", fontSize: 12 }}>History</Text>
+            </TouchableOpacity> */}
+            <TouchableOpacity onPress={() => setFavorite(!favorite)} style={{ width: 100, justifyContent: "center", alignItems: "center"  }}>
+              <Icon
+                type="font-awesome-5"
+                name="star"
+                color="white"
+                iconStyle={{ fontSize: 20 }}
+                solid = {favorite}
+              />
+              <Text style={{ marginTop: 5, color: "white", fontSize: 12 }}>Favorite</Text>
             </TouchableOpacity>
           </View>
           </View>

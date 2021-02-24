@@ -7,7 +7,7 @@ import { Audio } from "expo-av";
 
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
-const PlayScreen = () => {
+const PlayScreen = ({navigation}) => {
   const [sound, setSound] = useState(null);
   const [time, setTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -168,7 +168,7 @@ const PlayScreen = () => {
           <View
             style={styles.actionRow}
           >
-            <TouchableOpacity style={{ width: 100, justifyContent: "center", alignItems: "center" }}>
+            <TouchableOpacity onPress={() => navigation.navigate("ReadStoryScreen")} style={{ width: 100, justifyContent: "center", alignItems: "center" }}>
               <Icon
                 type="font-awesome-5"
                 name="book"

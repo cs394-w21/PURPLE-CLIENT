@@ -10,6 +10,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Provider as PaperProvider } from "react-native-paper";
 import PlayScreen from "./screens/PlayScreen";
+import ReadStoryScreen from "./screens/ReadStoryScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -125,10 +126,16 @@ const mainApp = () => {
       component={Success}
       options={{ headerShown: false, title: "" }}
     />
+    
     <Stack.Screen
       name="PlayScreen"
       component={PlayScreen}
       options={{ headerShown: false, title: "" }}
+    />
+    <Stack.Screen
+    name="ReadStoryScreen"
+    component={ReadStoryScreen}
+    options={{ headerShown: false, title: "" }}
     />
   </Stack.Navigator>)
 };

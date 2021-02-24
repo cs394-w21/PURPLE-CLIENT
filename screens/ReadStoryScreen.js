@@ -1,36 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, TextInput, ScrollView } from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
-import { LinearTextGradient } from "react-native-text-gradient";
+// import { LinearTextGradient } from "react-native-text-gradient";
 
 const ReadStoryScreen = (route) => {
   const [favorite, setFavorite] = useState(false);
   return (
-    <View>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <LinearTextGradient
-          style={{ fontWeight: "bold", fontSize: 72 }}
-          locations={[0, 1]}
-          colors={["red", "blue"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-        >
-          War Medals{/* <Text>War Medals</Text> */}
-        </LinearTextGradient>
-        ;
-        <TouchableOpacity
-          onPress={() => setFavorite(!favorite)}
-          style={{ width: 100, justifyContent: "center", alignItems: "center" }}
-        >
-          <Icon
-            type="font-awesome-5"
-            name="star"
-            color="white"
-            iconStyle={{ fontSize: 20 }}
-            solid={favorite}
-          />
-        </TouchableOpacity>
+        
+          <Text style={styles.title}>War medals</Text>
+        
+        
+          <TouchableOpacity
+            onPress={() => setFavorite(!favorite)}
+            style={{marginLeft: 10}}
+          >
+            <Icon
+              type="font-awesome-5"
+              name="star"
+              color="#AD00FF"
+              iconStyle={{ fontSize: 20 }}
+              solid={favorite}
+            />
+          </TouchableOpacity>
       </View>
 
       <Text>
@@ -39,7 +33,7 @@ const ReadStoryScreen = (route) => {
         Bombardier Officer for World War II (WWII). He cross-trained as a gunner
         allowing him to replace the flight engineer in the top turret after
         targeting the aerial bombs. Frank served from June 1944 to May 1945 as
-        part of the 485th Bomb Group stationed in Venosa, Italy. {"/n/n"}At the
+        part of the 485th Bomb Group stationed in Venosa, Italy. {"\n\n"} At the
         time, bomber crews had a 22% survival rate per mission and 78% of the
         crews were killed or shot down. Frank flew a total of 35 missions on the
         LIFE B-24 Liberator, even though he was required to serve 25. When asked
@@ -50,7 +44,7 @@ const ReadStoryScreen = (route) => {
         flew again on September 1st, 1944. In the latter missions, he and the
         tail gunner were credited with one kill of a German FW190, plus a
         probable kill of another. When confronted by his granddaughter regarding
-        this event, Frank responded, “He was going to kill us.” After completing
+        this event, Frank responded, “He was going to kill us.” {"\n\n"}After completing
         35 missions, he returned home to the United States for B-29 training;
         fortunately, WWII ended before he was deployed to the Pacific. For his
         service, Frank was awarded the Purple Heart as he was wounded in battle
@@ -61,7 +55,7 @@ const ReadStoryScreen = (route) => {
         1st Lieutenant Frank W. Hammett never returned to Europe, as “He never
         wanted to see first-hand what he and his crew were responsible for.”
       </Text>
-    </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
@@ -71,14 +65,30 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: "24px",
     lineHeight: "20px",
+    color: "#AD00FF"
     /* identical to box height, or 83% */
 
     /* Purple */
 
     // color: linear-gradient(191.88deg, #AD00FF 29.85%, #00B1FD 100%);
   },
+  body: {
+    fontFamily: "Roboto",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontWeight: 400,
+    lineHeight: "19px",
+    letterSpacing: "0em",
+    textAlign: "left"
+
+  },
   header: {
     flexDirection: "row",
+    marginBottom: 20
   },
+  container: {
+    padding: 20,
+
+  }
 });
 export default ReadStoryScreen;

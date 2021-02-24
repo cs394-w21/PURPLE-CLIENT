@@ -121,22 +121,23 @@ export default function App() {
 
 const mainApp = () => {
   return (<Stack.Navigator>
+    
     <Stack.Screen
       name="Success"
       component={Success}
       options={{ headerShown: false, title: "" }}
     />
-    
+    <Stack.Screen
+    name="ReadStoryScreen"
+    component={ReadStoryScreen}
+    options={{title: "Back" }}
+    />
     <Stack.Screen
       name="PlayScreen"
       component={PlayScreen}
       options={{ headerShown: false, title: "" }}
     />
-    <Stack.Screen
-    name="ReadStoryScreen"
-    component={ReadStoryScreen}
-    options={{ headerShown: false, title: "" }}
-    />
+    
   </Stack.Navigator>)
 };
 

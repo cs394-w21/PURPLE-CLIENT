@@ -13,6 +13,7 @@ import PlayScreen from "./screens/PlayScreen";
 import ReadStoryScreen from "./screens/ReadStoryScreen";
 import SummaryScreen from "./screens/SummaryScreen";
 import FilesScreen from "./screens/FilesScreen";
+import FilesFolderScreen from "./screens/FilesFolderScreen";
 
 
 const Tab = createBottomTabNavigator();
@@ -32,7 +33,7 @@ export default function App() {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="New Story" tabBarOptions={{
+        <Tab.Navigator initialRouteName="Home" tabBarOptions={{
     activeTintColor: '#0091EA',
     inactiveTintColor: 'gray',
     style: {paddingVertical:  5, height: 60},
@@ -71,7 +72,7 @@ export default function App() {
             }}
           />
           <Tab.Screen
-            component={mainApp}
+            component={Success}
             name="New Story"
             options={{
               title: "New Story",
@@ -124,16 +125,22 @@ export default function App() {
 }
 
 const mainApp = () => {
-  return (<Stack.Navigator>   
+  return (<Stack.Navigator>  
+    
   <Stack.Screen
     name="SummaryScreen"
     component={SummaryScreen}
-    options={{title: "Back" }}
+    options={{ headerShown: false, title: "" }}
     />
+    <Stack.Screen
+    name="FilesFolderScreen"
+    component={FilesFolderScreen}
+    options={{title: "Back" }}
+    /> 
   <Stack.Screen
     name="FilesScreen"
     component={FilesScreen}
-    options={{ headerShown: false, title: "" }}
+    options={{title: "Back" }}
   />
   <Stack.Screen
       name="Success"

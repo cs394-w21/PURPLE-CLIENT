@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet, ImageBackground } from "react-native";
 import { Icon } from "react-native-elements";
 
-const photos = [require("../purpleheart.jpeg"), require("../cross.jpeg"), require("../grandpaknife.jpeg")];
 
-const FilesScreen = () => {
-    const [count, setCount] = useState(0);
+const FilesScreen = ({route, navigation}) => {
+    const [count, setCount] = useState(route.params.index);
+    const [photos, setPhotos] = useState(route.params.photos);
     const [photo, setPhoto] = useState(photos[count]);
     
     useEffect(()=> {

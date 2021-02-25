@@ -14,6 +14,11 @@ const PlayScreen = ({navigation}) => {
   const [length, setLength] = useState(0);
   const [favorite, setFavorite] = useState(false);
 
+
+  useEffect(() => {
+    playPauseSound();
+  }, []);
+
   async function playPauseSound() {
     //initial play
     if (!sound) {
@@ -92,10 +97,12 @@ const PlayScreen = ({navigation}) => {
      setTimeout(() => {
        if (sound) {
          
+        if (sound._key) {
         if (time != sound._key.currentTime) {
           
           setTime(sound._key.currentTime);
         }
+      }
        }
     }, 1000); 
   },[sound, isPlaying, time, length])
@@ -103,7 +110,7 @@ const PlayScreen = ({navigation}) => {
   
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../purpleheart.jpeg")} />
+      <Image style={styles.image} source={require("../assets/img/purpleheart.jpeg")} />
       <LinearGradient
         // TouchableOpacity Linear Gradient
         // Diagonal :0

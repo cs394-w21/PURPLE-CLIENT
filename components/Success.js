@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
 import { Icon } from "react-native-elements";
-import * as purpleHeart from "../purpleheart.jpeg";
+import * as purpleHeart from "../assets/img/purpleheart.jpeg";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-paper";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
@@ -110,7 +110,7 @@ const Success = ({ navigation }) => {
           >
             <Image
               style={{ width: 200, height: 200, marginVertical: 10 }}
-              source={require("../purpleheart.jpeg")} /* need to fix import */
+              source={require("../assets/img/purpleheart.jpeg")} /* need to fix import */
             />
             <Text style={{ marginBottom: 20 }}>
               Your grandfather earned two medals of honor when he was in WWII,

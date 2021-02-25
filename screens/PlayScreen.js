@@ -23,7 +23,7 @@ const PlayScreen = ({navigation}) => {
     if (!sound) {
       console.log("Loading Sound");
       const { sound } = await Audio.Sound.createAsync(
-        require("../assets/sound/example.mp3"),
+        require("../assets/sound/ww2.m4a"),
         {
           volume: 0.5,
         }

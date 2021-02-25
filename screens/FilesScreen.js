@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, ImageBackground } from "react-native";
 import { Icon } from "react-native-elements";
 
-const photos = [require("../purpleheart.jpeg"), require("../test1.jpg"), require("../grandpaknife.jpeg")];
+const photos = [require("../purpleheart.jpeg"), require("../cross.jpeg"), require("../grandpaknife.jpeg")];
 
 const FilesScreen = () => {
     const [count, setCount] = useState(0);
@@ -12,27 +12,30 @@ const FilesScreen = () => {
         setPhoto(photos[count]);
     },[count]);
     return (
-        <View style={{flexDirection: "row", flex: 1}}>
-            {count > 0 ? <TouchableOpacity onPress={() => {setCount(count-1)}}>
-                <Icon
-                    type="font-awesome-5"
-                    name="chevron-left"
-                    color="black"
-                    iconStyle={{ fontSize: 20 }}
-                    
-                />
-            </TouchableOpacity> : null}
-            <Image style={{width: "80%", height: "100%"}} source={photo}></Image>
-            {count < photos.length - 1 ? <TouchableOpacity onPress={() => {setCount(count+1)}}>
-                <Icon
-                    type="font-awesome-5"
-                    name="chevron-right"
-                    color="black"
-                    iconStyle={{ fontSize: 20 }}
-                    
-                />
-            </TouchableOpacity> : null}
-        </View>
+        <ImageBackground source={photo} style={{flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
+
+                {count > 0 ? 
+                    <TouchableOpacity style={{justifyContent: 'center',  zIndex: 100, marginLeft: 14}} onPress={() => {setCount(count-1)}}>
+                        <Icon
+                            type="font-awesome-5"
+                            name="chevron-left"
+                            color="white"
+                            iconStyle={{ fontSize: 80 }}  
+                        />
+                    </TouchableOpacity> 
+                : <View></View>}
+            
+                {count < photos.length - 1 ? 
+                <TouchableOpacity style={{justifyContent: 'center', zIndex: 100, marginRight: 14 }} onPress={() => {setCount(count+1)}}>
+                    <Icon
+                        type="font-awesome-5"
+                        name="chevron-right"
+                        color="white"
+                        iconStyle={{ fontSize: 80 }}
+                        
+                    />
+                </TouchableOpacity> : <View></View>}
+        </ImageBackground>
     )
 }
 

@@ -125,16 +125,19 @@ export default function App() {
 
 const mainApp = () => {
   return (<Stack.Navigator>
-    <Stack.Screen
-    name="SummaryScreen"
-    component={SummaryScreen}
-    options={{title: "Back" }}
-    />
+
     <Stack.Screen
       name="FilesScreen"
       component={FilesScreen}
       options={{ headerShown: false, title: "" }}
     />
+    
+    <Stack.Screen
+    name="SummaryScreen"
+    component={SummaryScreen}
+    options={{title: "Back" }}
+    />
+  
 
     <Stack.Screen
       name="Success"

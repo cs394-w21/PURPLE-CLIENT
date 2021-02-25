@@ -12,6 +12,8 @@ import { Provider as PaperProvider } from "react-native-paper";
 import PlayScreen from "./screens/PlayScreen";
 import ReadStoryScreen from "./screens/ReadStoryScreen";
 import SummaryScreen from "./screens/SummaryScreen";
+import FilesScreen from "./screens/FilesScreen";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -36,6 +38,7 @@ export default function App() {
     style: {paddingVertical:  5, height: 60},
     labelStyle: {fontSize: 13, fontWeight: "500",  paddingBottom: 5, zIndex: 0},
 }}>
+          
           <Tab.Screen
             component={mainApp}
             name="Home"
@@ -127,6 +130,12 @@ const mainApp = () => {
     component={SummaryScreen}
     options={{title: "Back" }}
     />
+    <Stack.Screen
+      name="FilesScreen"
+      component={FilesScreen}
+      options={{ headerShown: false, title: "" }}
+    />
+
     <Stack.Screen
       name="Success"
       component={Success}

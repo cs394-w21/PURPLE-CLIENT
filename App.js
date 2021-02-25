@@ -126,11 +126,7 @@ export default function App() {
 
 const mainApp = () => {
   return (<Stack.Navigator>  
-    <Stack.Screen
-      name="PlayScreen"
-      component={PlayScreen}
-      options={{ headerShown: false, title: "" }}
-    />
+   
   <Stack.Screen
     name="SummaryScreen"
     component={SummaryScreen}
@@ -156,11 +152,11 @@ const mainApp = () => {
     component={ReadStoryScreen}
     options={{title: "Back" }}
     />
-    {/* <Stack.Screen
+     <Stack.Screen
       name="PlayScreen"
       component={PlayScreen}
       options={{ headerShown: false, title: "" }}
-    /> */}
+    /> 
     
   </Stack.Navigator>)
 };

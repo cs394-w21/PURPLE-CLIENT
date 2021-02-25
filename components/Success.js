@@ -9,9 +9,9 @@ import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 const Modal = ({showBack, setShowBack}) => {
   return (
     <>{showBack ? 
-    <View style={{
+    <View style={{flex: 1,
       justifyContent: 'center', alignItems: 'center',
-      position: 'absolute', width: vw(100), height: vh(100), 
+      position: 'absolute', width: '100%', height: '100%', 
       backgroundColor: 'rgba(0,0,0,0.5)', transparent: showBack, zIndex: 9000}}>
         <View style={{backgroundColor: 'white', alignItems: 'center', height: 300, width: 300}}>
           <View style={{marginTop: 50, justifyContent: 'space-evenly', marginBottom: 50}}>
@@ -37,6 +37,7 @@ const Success = ({ navigation }) => {
     <LinearGradient
       // TouchableOpacity Linear Gradient
       // Diagonal :0
+      style={{flex: 1, width: "100%", height: "100%"}}
       start={{ x: 1, y: 0 }}
       end={{ x: 0, y: 1 }}
       colors={["#841787", "#F6CC60"]}
@@ -182,10 +183,11 @@ const Success = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   bigContainer: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     color: "white",
-    height: vh(100),
+    height: '100%',
     paddingBottom: 40,
   },
   storycaption: {

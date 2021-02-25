@@ -5,7 +5,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Icon } from "react-native-elements";
 import { Audio } from "expo-av";
 
-import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
 const PlayScreen = ({navigation}) => {
   const [sound, setSound] = useState(null);
@@ -122,7 +121,7 @@ const PlayScreen = ({navigation}) => {
         <View style={styles.player}>
           <View style={styles.playerTop}>
           <View style={styles.scrub}>
-            <Text style={{ color: "white", fontSize: vh(2) }}>{secondsToMs(time)}</Text>
+            <Text style={{ color: "white", fontSize: 12 }}>{secondsToMs(time)}</Text>
             <Slider
               style={{width: '80%', height: 5, marginHorizontal: 10 }}
               minimumValue={0}
@@ -131,7 +130,7 @@ const PlayScreen = ({navigation}) => {
               maximumTrackTintColor="#FFFFFF"
               onValueChange={async (value) => await scrubSound(value)}
             />
-            <Text style={{ color: "white", fontSize: vh(2) }}> {sound ? ( !isNaN(sound._key.duration) ? secondsToMs(sound._key.duration) : '00:00' ) : '00:00'} </Text>
+            <Text style={{ color: "white", fontSize: 12 }}> {sound ? ( !isNaN(sound._key.duration) ? secondsToMs(sound._key.duration) : '00:00' ) : '00:00'} </Text>
           </View>
             <Text style={styles.caption}> War Medals </Text>
             <TouchableOpacity
@@ -228,12 +227,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    width: vw(100),
-    height: vh(100),
   },
   image: {
-    width: vw(100), //vw(100),
-    height: '60%', //vh(60),
+    width: '100%', 
+    height: '60%', 
   },
   playerWrapper: 
     {
@@ -243,17 +240,17 @@ const styles = StyleSheet.create({
       alignItems: "center",
     },
   player: {
-    width: "100%", //vw(100),
-    height: "100%", //vh(40),
+    width: "100%", 
+    height: "100%", 
     alignItems: "center",
-    paddingHorizontal: vh(3),
+    paddingHorizontal: 20,
   },
   playerTop: {
     width: "100%",
     height: "45%", 
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: vh(3),
+    paddingTop: 20,
   },
   playerBottom: {
     width: "100%", 
@@ -269,15 +266,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   caption: {
-    marginVertical: vh(0.25),
-    fontSize: vh(3),
+    marginVertical: 5,
+    fontSize: 20,
     color: "white",
     fontWeight: "bold",
-  },
-  pause: {
-    width: vw(50),
-    height: vh(50),
-    fontSize: 30,
   },
   actionRow: 
     {

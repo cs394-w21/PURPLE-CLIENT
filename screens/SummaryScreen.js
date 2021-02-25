@@ -12,22 +12,38 @@ import { Icon } from "react-native-elements";
 import Header from "../components/Header";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-paper";
-import * as purpleHeart from "../purpleheart.jpeg";
+import * as purpleHeart from "../assets/img/purpleheart.jpeg";
+import { BIconAlignMiddle } from "bootstrap-vue";
 
-const ReadStoryScreen = (route) => {
+const pictures = [
+  require("../assets/img/purpleheart.jpeg"),
+  require("../assets/img/cross.jpeg"),
+  require("../assets/img/grandpaknife.jpeg"),
+  require("../assets/img/stone-coin.jpeg"),
+  require("../assets/img/people.jpeg"),
+  require("../assets/img/person.jpeg"),
+  require("../assets/img/chart.jpeg"),
+];
+
+const ReadStoryScreen = ({ navigation, route }) => {
   const [favorite, setFavorite] = useState(false);
+  const [photos, setPhotos] = useState(pictures);
   return (
     <View style={styles.container}>
       <Header />
       <View style={styles.pictureGrid}>
-        {[0, 1, 2, 3, 4].map(() => (
+        {photos.slice(0, 5).map((photo) => (
           <Image
-            style={{ width: "31%", height: 100, margin: "1%", borderWidth: 2, borderColor: "grey" }}
-            source={require("../purpleheart.jpeg")} /* need to fix import */
+            style={styles.imgSquare}
+            source={photo} /* need to fix import */
           />
         ))}
-        <TouchableOpacity style={{ width: "33%", height: 100, justifyContent: "center", alignItems: "center" }}>
-          <Text style={{fontWeight: "bold", color: "grey"}}>View All</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("FilesFolderScreen", {photos})}
+          style={styles.imgSquare
+          }
+        >
+          <Text style={{ fontWeight: "bold", color: "grey" }}>View All</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.caption}>
@@ -38,12 +54,8 @@ const ReadStoryScreen = (route) => {
         </Text>
       </View>
       <View style={styles.contentDiv}>
-        <Text style={styles.text}>
-          Started: 02/28/2021
-          </Text>
-        <Text style={styles.text}>
-          Last edited: 03/03/2021
-        </Text>
+        <Text style={styles.text}>Started: 02/28/2021</Text>
+        <Text style={styles.text}>Last edited: 03/03/2021</Text>
       </View>
       <View style={styles.contentDiv}>
         <Text style={styles.contentsDivHeader}>This story contains</Text>
@@ -60,11 +72,12 @@ const ReadStoryScreen = (route) => {
       <LinearGradient
         // TouchableOpacity Linear Gradient
         // Diagonal :0
-        style={{ 
-          margin: 20, 
-          borderRadius: 5, 
-          shadowOffset:{ width: 2.5,  height: 2.5 },
-          shadowColor: 'black',
+        style={{
+          margin: 20,
+          marginTop: 40,
+          borderRadius: 5,
+          shadowOffset: { width: 2.5, height: 2.5 },
+          shadowColor: "black",
           shadowOpacity: 0.2,
           shadowRadius: 5,
         }}
@@ -76,10 +89,18 @@ const ReadStoryScreen = (route) => {
           style={{
             backgroundColor: "transparent",
             fontWeight: "bold",
+            height: 40,
+            justifyContent: "center",
+    alignItems: "center"
           }}
           mode="contained"
+          onPress={() => navigation.navigate("PlayScreen")}
         >
-          <Text>Play Story</Text>
+          <Text style={{
+            fontSize: 16,
+            fontWeight: "bold",
+          }}
+          mode>Play Story</Text>
         </Button>
       </LinearGradient>
     </View>
@@ -88,10 +109,19 @@ const ReadStoryScreen = (route) => {
 
 const textBase = {
   fontSize: 13,
-}
+};
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+  },
+  imgSquare: {
+    width: "31%",
+    height: 100,
+    margin: "1%",
+    borderWidth: 2,
+    borderColor: "grey",
+    justifyContent: "center",
+    alignItems: "center"
   },
   title: {
     fontFamily: "Roboto",
@@ -109,8 +139,8 @@ const styles = StyleSheet.create({
   },
   captionHeader: {
     fontSize: 18,
-    color: '#FF5C00',
-    fontWeight: 'bold',
+    color: "#FF5C00",
+    fontWeight: "bold",
     marginTop: 5,
   },
   captionBody: {
@@ -120,13 +150,12 @@ const styles = StyleSheet.create({
   contentDiv: {
     marginTop: 20,
   },
-   text: {
-     ...textBase,
-   },
-   contentsDivHeader: {
-     ...textBase,
-     fontWeight: "bold",
-   }
-  
+  text: {
+    ...textBase,
+  },
+  contentsDivHeader: {
+    ...textBase,
+    fontWeight: "bold",
+  },
 });
 export default ReadStoryScreen;

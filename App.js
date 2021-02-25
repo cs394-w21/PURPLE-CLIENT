@@ -125,6 +125,7 @@ export default function App() {
 
 const mainApp = () => {
   return (<Stack.Navigator>
+
     <Stack.Screen
     name="SummaryScreen"
     component={SummaryScreen}

@@ -13,7 +13,6 @@ import Header from "../components/Header";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-paper";
 import * as purpleHeart from "../assets/img/purpleheart.jpeg";
-import { BIconAlignMiddle } from "bootstrap-vue";
 
 const pictures = [
   require("../assets/img/purpleheart.jpeg"),

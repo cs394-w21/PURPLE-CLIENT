@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Provider as PaperProvider } from "react-native-paper";
 import PlayScreen from "./screens/PlayScreen";
 import ReadStoryScreen from "./screens/ReadStoryScreen";
+import SummaryScreen from "./screens/SummaryScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -121,7 +122,11 @@ export default function App() {
 
 const mainApp = () => {
   return (<Stack.Navigator>
-    
+    <Stack.Screen
+    name="SummaryScreen"
+    component={SummaryScreen}
+    options={{title: "Back" }}
+    />
     <Stack.Screen
       name="Success"
       component={Success}

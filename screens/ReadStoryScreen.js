@@ -1,32 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet, TextInput, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView } from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
-// import { LinearTextGradient } from "react-native-text-gradient";
+import Header from '../components/Header'
 
 const ReadStoryScreen = (route) => {
   const [favorite, setFavorite] = useState(false);
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        
-          <Text style={styles.title}>War medals</Text>
-        
-        
-          <TouchableOpacity
-            onPress={() => setFavorite(!favorite)}
-            style={{marginLeft: 10}}
-          >
-            <Icon
-              type="font-awesome-5"
-              name="star"
-              color="#AD00FF"
-              iconStyle={{ fontSize: 20 }}
-              solid={favorite}
-            />
-          </TouchableOpacity>
-      </View>
-
+      <Header />
       <Text>
         On April 8th, 1944, 1st Lieutenant Frank W. Hammett (ID # 0717786)
         graduated from Childress Army Base (Graduating Class #44-5) as a
@@ -59,19 +41,6 @@ const ReadStoryScreen = (route) => {
   );
 };
 const styles = StyleSheet.create({
-  title: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: "bold",
-    fontSize: "24px",
-    lineHeight: "20px",
-    color: "#AD00FF"
-    /* identical to box height, or 83% */
-
-    /* Purple */
-
-    // color: linear-gradient(191.88deg, #AD00FF 29.85%, #00B1FD 100%);
-  },
   body: {
     fontFamily: "Roboto",
     fontSize: "16px",

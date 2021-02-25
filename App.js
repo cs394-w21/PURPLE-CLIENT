@@ -124,30 +124,18 @@ export default function App() {
 }
 
 const mainApp = () => {
-  return (<Stack.Navigator>
-
-<<<<<<< HEAD
-    <Stack.Screen
+  return (<Stack.Navigator>   
+  <Stack.Screen
     name="SummaryScreen"
     component={SummaryScreen}
     options={{title: "Back" }}
     />
-=======
->>>>>>> 5e749285a8d0a4ac1f6cdbaeae233e144f5e078b
-    <Stack.Screen
-      name="FilesScreen"
-      component={FilesScreen}
-      options={{ headerShown: false, title: "" }}
-    />
-    
-    <Stack.Screen
-    name="SummaryScreen"
-    component={SummaryScreen}
-    options={{title: "Back" }}
-    />
-  
-
-    <Stack.Screen
+  <Stack.Screen
+    name="FilesScreen"
+    component={FilesScreen}
+    options={{ headerShown: false, title: "" }}
+  />
+  <Stack.Screen
       name="Success"
       component={Success}
       options={{ headerShown: false, title: "" }}

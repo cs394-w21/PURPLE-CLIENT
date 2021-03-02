@@ -17,13 +17,14 @@ const Header = () => {
             onPress={() => setFavorite(!favorite)}
             style={{marginLeft: 10}}
           >
-            <Icon
+            
+            {/* <Icon
               type="font-awesome-5"
               name="star"
               color="#AD00FF"
               iconStyle={{ fontSize: 20 }}
               solid={favorite}
-            />
+            /> */}
           </TouchableOpacity>
       </View>
 

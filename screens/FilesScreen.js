@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, StyleSheet, ImageBackground } from
 import { Icon } from "react-native-elements";
 
 
-const FilesScreen = ({route, navigation}) => {
+const FilesScreen = ({route, navigation }) => {
     const [count, setCount] = useState(route.params.index);
     const [photos, setPhotos] = useState(route.params.photos);
     const [photo, setPhoto] = useState(photos[count]);

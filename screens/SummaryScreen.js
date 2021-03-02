@@ -28,19 +28,20 @@ const ReadStoryScreen = ({ navigation, route }) => {
   const [favorite, setFavorite] = useState(false);
   const [photos, setPhotos] = useState(pictures);
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Header />
       <View style={styles.pictureGrid}>
-        {photos.slice(0, 5).map((photo) => (
-          <Image
-            style={styles.imgSquare}
-            source={photo} /* need to fix import */
-          />
+        {photos.slice(0, 5).map((photo, index) => (
+          <TouchableOpacity style={styles.imgButton} onPress={() => navigation.navigate("FilesScreen", {photos, index})}>
+            <Image
+              style={styles.imgSquare}
+              source={photo} /* need to fix import */
+            />
+          </TouchableOpacity>
         ))}
         <TouchableOpacity
           onPress={() => navigation.navigate("FilesFolderScreen", {photos})}
-          style={styles.imgSquare
-          }
+          style={styles.imgButton}
         >
           <Text style={{ fontWeight: "bold", color: "grey" }}>View All</Text>
         </TouchableOpacity>
@@ -102,7 +103,7 @@ const ReadStoryScreen = ({ navigation, route }) => {
           mode>Play Story</Text>
         </Button>
       </LinearGradient>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
   },
-  imgSquare: {
+  imgButton: {
     width: "31%",
     height: 100,
     margin: "1%",
@@ -121,6 +122,10 @@ const styles = StyleSheet.create({
     borderColor: "grey",
     justifyContent: "center",
     alignItems: "center"
+  },
+  imgSquare: {
+    width: "100%",
+    height: "100%",
   },
   title: {
     fontFamily: "Roboto",

@@ -36,16 +36,18 @@ export default function App() {
         <Tab.Navigator initialRouteName="Home" tabBarOptions={{
     activeTintColor: '#0091EA',
     inactiveTintColor: 'gray',
-    style: {paddingVertical:  5, height: 60},
-    labelStyle: {fontSize: 13, fontWeight: "500",  paddingBottom: 5, zIndex: 0},
+    style: {paddingVertical:  5, height: 60 },
+    labelStyle: {fontSize: 13, fontWeight: "500",  paddingBottom: 5, zIndex: 0 },
 }}>
           
           <Tab.Screen
+            
             component={mainApp}
             name="Home"
             options={{
               title: "Home",
               tabBarIcon: () => (
+                
                 <Icon
                   type="font-awesome-5"
                   name="home"
@@ -53,6 +55,7 @@ export default function App() {
                   iconStyle={{ fontSize: 20}}
                 />
               ),
+//              tabBarLabel: {focused: true, color: 'pink', position: 'beside-icon'} 
             }}
           />
           <Tab.Screen
@@ -66,7 +69,7 @@ export default function App() {
                   name="border-all"
                   color="#666"
                   style={{zIndex: 0}}
-                  iconStyle={{ fontSize: 20}}
+                  iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
                 />
               ),
             }}
@@ -82,7 +85,7 @@ export default function App() {
                   name="plus-circle"
                   color="#FC44A9"
                   style={{zIndex: 1, justifyContent:"flex-start", alignItems:"center", paddingTop: 15, borderRadius: 500, width: 75, height: 75, backgroundColor: "white"}}
-                  iconStyle={{ fontSize: 20}}
+                  iconStyle={{ fontSize: 20, }}
                 />
               ),
             }}
@@ -91,14 +94,14 @@ export default function App() {
             component={mainApp}
             name="Account"
             options={{
-              title: "Acccount",
+              title: "Account",
               tabBarIcon: () => (
                 <Icon
                   type="font-awesome-5"
                   name="user-cog"
                   color="#666"
                   style={{zIndex: 0}}
-                  iconStyle={{ fontSize: 20}}
+                  iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
                 />
               ),
             }}
@@ -106,14 +109,16 @@ export default function App() {
           <Tab.Screen
             component={mainApp}
             name="More"
+
             options={{
               title: "More",
+
               tabBarIcon: () => (
                 <Icon
                   type="font-awesome-5"
                   name="ellipsis-h"
                   color="#666"
-                  iconStyle={{ fontSize: 20}}
+                  iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
                 />
               ),
             }}

@@ -60,9 +60,11 @@ const PlayScreen = ({navigation}) => {
       setLength(sound._key.duration)
       //await sound.playAsync();
       await sound.setPositionAsync(curTime)
+      /*
       if (isPlaying) {
         await sound.playAsync();
       }
+      */
     }
   }
 
@@ -95,7 +97,6 @@ const PlayScreen = ({navigation}) => {
   useEffect(()=> {
      setTimeout(() => {
        if (sound) {
-         
         if (sound._key) {
         if (time != sound._key.currentTime) {
           
@@ -125,6 +126,7 @@ const PlayScreen = ({navigation}) => {
             <Slider
               style={{width: '80%', height: 5, marginHorizontal: 10 }}
               minimumValue={0}
+              value={time / length}
               maximumValue={1}
               minimumTrackTintColor="#AAAAAA"
               maximumTrackTintColor="#FFFFFF"

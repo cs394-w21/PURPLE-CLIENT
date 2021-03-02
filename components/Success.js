@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableHighlight, ScrollView } from "react-native";
 import { Icon } from "react-native-elements";
 import * as purpleHeart from "../assets/img/purpleheart.jpeg";
 import { LinearGradient } from "expo-linear-gradient";
@@ -34,9 +34,11 @@ const Modal = ({showBack, setShowBack}) => {
 const Success = ({ navigation }) => {
   const [showBack, setShowBack] = useState(0);
   return (
+    <ScrollView style={{flex: 1, height: '100%'}}>
     <LinearGradient
       // TouchableOpacity Linear Gradient
       // Diagonal :0
+      
       style={{flex: 1, width: "100%", height: "100%"}}
       start={{ x: 1, y: 0 }}
       end={{ x: 0, y: 1 }}
@@ -178,6 +180,7 @@ const Success = ({ navigation }) => {
         </View>
       </View>
     </LinearGradient>
+    </ScrollView>
   );
 };
 

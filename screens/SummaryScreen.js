@@ -100,7 +100,7 @@ const ReadStoryScreen = ({ navigation, route }) => {
             fontSize: 16,
             fontWeight: "bold",
           }}
-          mode>Play Story</Text>
+          >Play Story</Text>
         </Button>
       </LinearGradient>
     </ScrollView>

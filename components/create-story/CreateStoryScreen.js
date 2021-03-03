@@ -16,7 +16,7 @@ const CreateStoryScreen = ({ route, navigation }) => {
   const [summary, setSummary] = useState("")
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.title}>Create Your Story</Text>
       {/* Progress bar */}
       <View style={styles.barBackground}>
@@ -37,12 +37,26 @@ const CreateStoryScreen = ({ route, navigation }) => {
       </View>
       <View >
         <Text style={styles.textFieldTitle}>Story Name</Text>
-        <TextInput style={styles.textFieldContent}></TextInput>
+        <TextInput 
+          placeholder = "Give your story a cool name..."
+          style={styles.textFieldContent}>
+
+        </TextInput>
       </View>
 
-      <View >
+      <View>
         <Text style={styles.textFieldTitle}>Short Summary</Text>
-        <TextInput style={styles.textFieldContent}></TextInput>
+        <View styles={styles.textWrap}>
+
+        <TextInput 
+          placeholder = "In a few words, please tell me why this story is special to you..."
+          multiline = {true}
+          numberOfLines = {2}
+          style={styles.textFieldContent}>
+          
+        </TextInput>
+        </View>
+        
       </View>
       <GradientButton onPress={() => console.log("yerr")} title={"Continue"} />
     </View>
@@ -53,8 +67,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 20,
+
   },
   text1: {
     fontFamily: "Roboto",
@@ -63,6 +77,7 @@ const styles = StyleSheet.create({
     color: "#666666",
     fontSize:   12,
     lineHeight: 14,
+    marginBottom: 15,
   },
   text2: {
     fontFamily: "Roboto",
@@ -71,6 +86,7 @@ const styles = StyleSheet.create({
     color: "#666666",
     fontSize:   12,
     lineHeight: 14,
+    marginBottom: 15,
   },
   text3: {
     fontFamily: "Roboto",
@@ -79,6 +95,7 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontSize:   12,
     lineHeight: 14,
+    marginBottom: 50,
   },
   textFieldTitle: {
     fontFamily: "Roboto",
@@ -95,6 +112,7 @@ const styles = StyleSheet.create({
     color: "#666666",
     fontSize:   16,
     lineHeight: 20,
+
   },
   title: {
     fontFamily: "Roboto",
@@ -103,6 +121,13 @@ const styles = StyleSheet.create({
     color: "#FB37FF",
     fontSize:   24,
     lineHeight: 20,
+    marginTop: 55,
+    marginBottom: 50,
+  },
+  textWrap: {
+    borderColor: 'black',
+    borderWidth: 50,
+    height: 20,
   },
 });
 

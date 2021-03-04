@@ -1,28 +1,16 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  ImageBackground,
-  TextInput,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView } from "react-native";
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
-import GradientButton from "../GradientButton";
 
-const CreateStoryScreen = ({ route, navigation }) => {
-  const [name, setName] = useState("")
-  const [summary, setSummary] = useState("")
 
+const TitleFormComponent = ({story}) => {
+  
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Create Your Story</Text>
-      {/* Progress bar */}
-      <View style={styles.barBackground}>
-        <View style={styles.bar}></View>
-      </View>
+    
       <View>
+        
+        <View>
         <Text style={styles.text1}>Tell me your special story in 3 easy steps... </Text>
 
         <Text style={styles.text2}>
@@ -34,41 +22,57 @@ const CreateStoryScreen = ({ route, navigation }) => {
           Don't Worry. Each step is optional and can be edited later so you can
           tell your story your way.
         </Text>
-      </View>
-      <View >
-        <Text style={styles.textFieldTitle}>Story Name</Text>
-        <TextInput 
-          placeholder = "Give your story a cool name..."
-          style={styles.textFieldContentTitle}>
-
-        </TextInput>
-      </View>
-
-      <View>
-        <Text style={styles.textFieldTitle}>Short Summary</Text>
-        <View styles={styles.textWrap}>
-
-        <TextInput 
-          placeholder = "In a few words, please tell me why this story is special to you..."
-          multiline = {true}
-          numberOfLines = {2}
-          style={styles.textFieldContent}>
-          
-        </TextInput>
         </View>
-        
+        <View >
+          <Text style={styles.textFieldTitle}>Story Name</Text>
+          <TextInput 
+            placeholder = "Give your story a cool name..."
+            style={styles.textFieldContentTitle}>
+
+          </TextInput>
+        </View>
+
+        <View>
+          <Text style={styles.textFieldTitle}>Short Summary</Text>
+          <View styles={styles.textWrap}>
+
+          <TextInput 
+            placeholder = "In a few words, please tell me why this story is special to you..."
+            multiline = {true}
+            numberOfLines = {2}
+            style={styles.textFieldContent}>
+            
+          </TextInput>
+          </View>
+          
+        </View>
       </View>
-      <GradientButton onPress={() => console.log("yerr")} title={"Continue"} />
-    </View>
+
+      
   );
 };
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    padding: 20,
+  header: {
+    flexDirection: "row",
+    marginBottom: 20
+  },
+  title: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: "24px",
+    lineHeight: "20px",
+    color: "#AD00FF",
+    /* identical to box height, or 83% */
 
+    /* Purple */
+
+    // color: linear-gradient(191.88deg, #AD00FF 29.85%, #00B1FD 100%);
+  },
+  textWrap: {
+    borderColor: 'black',
+    borderWidth: 50,
+    height: 20,
   },
   text1: {
     fontFamily: "Roboto",
@@ -129,21 +133,5 @@ const styles = StyleSheet.create({
     height: 25,
 
   },
-  title: {
-    fontFamily: "Roboto",
-    fontStyle:  "normal",
-    fontWeight: "bold",
-    color: "#FB37FF",
-    fontSize:   24,
-    lineHeight: 20,
-    marginTop: 55,
-    marginBottom: 50,
-  },
-  textWrap: {
-    borderColor: 'black',
-    borderWidth: 50,
-    height: 20,
-  },
 });
-
-export default CreateStoryScreen;
+export default TitleFormComponent;

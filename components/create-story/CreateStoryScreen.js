@@ -39,7 +39,7 @@ const CreateStoryScreen = ({ route, navigation }) => {
         <Text style={styles.textFieldTitle}>Story Name</Text>
         <TextInput 
           placeholder = "Give your story a cool name..."
-          style={styles.textFieldContent}>
+          style={styles.textFieldContentTitle}>
 
         </TextInput>
       </View>
@@ -112,6 +112,21 @@ const styles = StyleSheet.create({
     color: "#666666",
     fontSize:   16,
     lineHeight: 20,
+    borderColor: 'grey',
+    borderWidth: 1,
+    height: 100,
+
+  },
+  textFieldContentTitle: {
+    fontFamily: "Roboto",
+    fontStyle:  "italic",
+    fontWeight: "Light",
+    color: "#666666",
+    fontSize:   16,
+    lineHeight: 20,
+    borderColor: 'grey',
+    borderWidth: 1,
+    height: 25,
 
   },
   title: {

@@ -51,7 +51,7 @@ const CreateStoryScreen = ({ route, navigation }) => {
       </View>
 
       {formComponents[formState]}
-
+      
 
       <GradientButton onPress={() => formContinue()} title={"Continue"} />
     </View>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     padding: 20,
-
+    height: '100%'
   },
 
   title: {

@@ -2,53 +2,47 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView } from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
+import { Audio } from "expo-av";
 
 
-const TitleFormComponent = ({story}) => {
-  
+const AtGlanceComponent = ({story}) => {
+  function msToHMS( ms ) {
+    // 1- Convert to seconds:
+    var seconds = ms / 1000;
+    // 2- Extract hours:
+    var hours = parseInt( seconds / 3600 ); // 3,600 seconds in 1 hour
+    seconds = seconds % 3600; // seconds remaining after extracting hours
+    // 3- Extract minutes:
+    var minutes = parseInt( seconds / 60 ); // 60 seconds in 1 minute
+    // 4- Keep only seconds not extracted to minutes:
+    seconds = seconds % 60;
+    return( hours+":"+minutes+":"+seconds);
+}
+
   return (
-    
-      <View>
-        
+      <View style={{flex:1}}>
         <View>
-        <Text style={styles.text1}>Tell me your special story in 3 easy steps... </Text>
-
-        <Text style={styles.text2}>
-          Tell your story through text, upload any photos or videos, and record
-          your story through audio.
-        </Text>
-
-        <Text style={styles.text3}>
-          Don't Worry. Each step is optional and can be edited later so you can
-          tell your story your way.
-        </Text>
-        </View>
-        <View >
-          <Text style={styles.textFieldTitle}>Story Name</Text>
-          <TextInput 
-            placeholder = "Give your story a cool name..."
-            style={styles.textFieldContentTitle}>
-
-          </TextInput>
-        </View>
-
-        <View>
-          <Text style={styles.textFieldTitle}>Short Summary</Text>
-          <View styles={styles.textWrap}>
-
-          <TextInput 
-            placeholder = "In a few words, please tell me why this story is special to you..."
-            multiline = {true}
-            numberOfLines = {2}
-            style={styles.textFieldContent}>
-            
-          </TextInput>
-          </View>
+        <Text style={styles.text1}>
           
-        </View>
-      </View>
+        Yay, great job! You have created an awesome story! Below is a quick summary of what you have completed so far. 
+        {"\n\n"}
+        Review and save it forever.
+        {"\n\n"}
+        Story Title: {story.title}
+        {"\n"}
+        Summary:{story.summary != "" ? "\n" + story.summary : " None"}
+        {"\n"}
+        Photos: {story.photos.length}
+        {"\n"}
+        Text: {story.story != "" ? "Yes" : "None" }
+        {"\n"}
+        {/* This line is the only one that will theoretically need testing once there are actual audio files */}
+        Audio: {story.audios.length > 0 ? msToHMS(story.audios.map(audio => {return audio.durationMillis})) : "None"}
+        
+        </Text>
 
-      
+          </View>
+      </View>
   );
 };
 const styles = StyleSheet.create({
@@ -79,8 +73,8 @@ const styles = StyleSheet.create({
     fontStyle:  "normal",
     fontWeight: "bold",
     color: "#666666",
-    fontSize:   12,
-    lineHeight: 14,
+    fontSize:   16,
+    lineHeight: 19,
     marginBottom: 15,
   },
   text2: {
@@ -134,4 +128,4 @@ const styles = StyleSheet.create({
 
   },
 });
-export default TitleFormComponent;
+export default AtGlanceComponent;

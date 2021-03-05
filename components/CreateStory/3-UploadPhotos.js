@@ -1,50 +1,69 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView, Platform } from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
+import GradientButton from '../GradientButton';
+import * as ImagePicker from 'expo-image-picker';
 
 
-const TitleFormComponent = ({story,setStory}) => {
+
+
+const UploadFormComponent = ({story}) => {
+
+  const [images, setImage] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(images.concat(result.uri));
+    }
+  };
   
   return (
     
       <View>
-        
-        <View>
-        <Text style={styles.text1}>Tell me your special story in 3 easy steps... </Text>
-
-        <Text style={styles.text2}>
-          Tell your story through text, upload any photos or videos, and record
-          your story through audio.
-        </Text>
-
-        <Text style={styles.text3}>
-          Don't Worry. Each step is optional and can be edited later so you can
-          tell your story your way.
-        </Text>
-        </View>
-        <View >
-          <Text style={styles.textFieldTitle}>Story Name</Text>
-          <TextInput 
-            placeholder = "Give your story a cool name..."
-            style={styles.textFieldContentTitle}>
-
-          </TextInput>
-        </View>
-
-        <View>
-          <Text style={styles.textFieldTitle}>Short Summary</Text>
-          <View styles={styles.textWrap}>
-
-          <TextInput 
-            placeholder = "In a few words, please tell me why this story is special to you..."
-            multiline = {true}
-            numberOfLines = {2}
-            style={styles.textFieldContent}>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Text>
+            Help me see the story through your eyes with visuals of keepsakes or loved ones...
+          </Text>
+          <Text>{'\n'}</Text>
+          <Text>{'\n'}</Text>
+          <View style={{flexDirection: 'column', justifyContent: 'space-evenly', textAlign: 'center'}}>
+            <Text>Select photos from your photo library.</Text>
+            <Text>{'\n'}</Text>
+            <Text>Please save existing files to your photo library or use your camera to capture new photos.</Text>
+            <GradientButton onPress={pickImage} title={"Upload Photos"}></GradientButton>
+            {images.length == 0 ? 
+            null : 
+            <View>
+              <Text>Congratulations! {images.length} image file{images.length == 1 ? ' was' : 's were'} uploaded.</Text>
+            </View>
+            }
             
-          </TextInput>
+            <Text>{"\n"}</Text>
+            <Text>{"\n"}</Text>
+            <Text>{"\n"}</Text>
+            <Text>If you don’t have the photos or videos ready now, don’t worry. You can upload these later.</Text>
           </View>
-          
         </View>
       </View>
 
@@ -134,4 +153,4 @@ const styles = StyleSheet.create({
 
   },
 });
-export default TitleFormComponent;
+export default UploadFormComponent;

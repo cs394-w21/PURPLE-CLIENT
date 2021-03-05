@@ -11,13 +11,15 @@ import {
 import { Icon } from "react-native-elements";
 import GradientButton from "../components/GradientButton";
 
-import TitleFormComponent from "../components/CreateStory/1-Title";
-import FullStoryFormComponent from "../components/CreateStory/2-FullStory";
-import UploadFormComponent from "../components/CreateStory/3-UploadPhotos";
-import VisualizeFormComponent from "../components/CreateStory/4-VisualizeSuccess";
-import AtGlanceComponent from "../components/CreateStory/6-AtGlance";
-import SuccessComponent from "../components/CreateStory/7-Success";
-import RecordFormComponent from "../components/CreateStory/5-RecordStory";
+import TitleFormComponent from "../components/CreateStory/1-Title"
+import FullStoryFormComponent from "../components/CreateStory/2-FullStory"
+import UploadFormComponent from "../components/CreateStory/3-UploadPhotos"
+import VisualizeFormComponent from "../components/CreateStory/4-VisualizeSuccess"
+import AtGlanceComponent from "../components/CreateStory/6-AtGlance"
+import SuccessComponent from "../components/CreateStory/7-Success"
+import RecordFormComponent from "../components/CreateStory/5-RecordStory"
+
+
 
 const data = {
   title: "",

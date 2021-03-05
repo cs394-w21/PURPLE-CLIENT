@@ -32,7 +32,7 @@ const CreateStoryScreen = ({ route, navigation }) => {
   const [formState, setFormState] = useState(0)
   const [story, setStory] = useState(data) 
 
-  const formComponents = [<TitleFormComponent story={story} />, <FullStoryFormComponent story={story} />, <UploadFormComponent story={story} />, <VisualizeFormComponent story={story} /> ]
+  const formComponents = [<FullStoryFormComponent story={story} />,<VisualizeFormComponent story={story} />,<TitleFormComponent story={story} />,  <UploadFormComponent story={story} />,  ]
   
   const formContinue = () => {
     if (formState < formComponents.length - 1){

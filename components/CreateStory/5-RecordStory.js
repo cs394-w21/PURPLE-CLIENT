@@ -11,14 +11,18 @@ import {
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { LinearGradient } from "expo-linear-gradient";
 import { Icon } from "react-native-elements";
+import { Audio } from "expo-av";
 
 const RecordFormComponent = ({ story }) => {
   const [audios, setAudios] = useState([1, 2]);
   const [isRecording, setIsRecording] = useState(false);
+  //const [recording, setRecording] = useState();
+
+  const [recording, setRecording] = React.useState();
 
   return (
     <View>
-      <View style={styles.textDivision}></View>
+      <View style={styles.textDivision}>
       <Text style={{ fontWeight: "bold", fontStyle: "italic" }}>
         Immerse your audience in the story from the storyteller’s point of view.{" "}
       </Text>
@@ -26,6 +30,8 @@ const RecordFormComponent = ({ story }) => {
         Recorded audio & uploaded visuals will be combined to create a
         one-of-a-kind glimpse into the story.
       </Text>
+      </View>
+      <ScrollView>
       {audios.map((index) => (
         <AudioElement
           length="00:00"
@@ -35,28 +41,34 @@ const RecordFormComponent = ({ story }) => {
           key={index}
         />
       ))}
-      <TouchableOpacity  style={{
-            //justifyContent: "center",
-            alignSelf: "center",
-  
-          }}
-          
-          onPress={() => setIsRecording(!isRecording)}>
+      </ScrollView>
+     
+      <TouchableOpacity
+        style={{
+          //justifyContent: "center",
+          alignSelf: "center",
+        }}
+        // onPress={recording ? stopRecording : startRecording}
+        //onPress={() => setIsRecording(!isRecording)}
+      >
         <View
           style={{
             width: 50,
             height: 50,
             borderColor: "#AD00FF",
-            borderWidth: 2,
+            borderWidth: 1,
             borderRadius: "50%",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-            <PlayPause type={isRecording ? "stop" : "record"}/>
-          
+          <PlayPause type={isRecording ? "stop" : "record"} />
         </View>
-        <Text style={{textAlign: "center"}}>{isRecording ? "Stop" : "Record"}</Text>
+        <Text style={{ textAlign: "center", marginTop: 15 }}>
+         
+           {isRecording ? "Stop" : "Record"} 
+        </Text>
+        
       </TouchableOpacity>
     </View>
   );
@@ -64,51 +76,57 @@ const RecordFormComponent = ({ story }) => {
 
 const AudioElement = ({ title, count, length }) => {
   return (
-    <View>
+    <View style={{ marginBottom: 30 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text>
           {title} {count}
         </Text>
         <Text>{length}</Text>
       </View>
-      <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-        <Icon
-          type="font-awesome-5"
-          name="play"
-          color="#666"
-          style={{ zIndex: 0 }}
-          iconStyle={{ fontSize: 20, color: "rgba(0,0,0,0.1)" }}
-        />
-        <Icon
-          type="font-awesome-5"
-          name="trash"
-          color="#666"
-          style={{ zIndex: 0 }}
-          iconStyle={{ fontSize: 20, color: "rgba(0,0,0,0.1)" }}
-        />
+      <View
+        style={{
+          marginTop: 10,
+          flexDirection: "row",
+          justifyContent: "flex-end",
+        }}
+      >
+        <TouchableOpacity>
+          <Icon
+            type="font-awesome-5"
+            name="play"
+            color="#FB37FF"
+            iconStyle={{ fontSize: 20 }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Icon
+            type="font-awesome-5"
+            name="trash"
+            color="#FF5C00"
+            iconStyle={{ fontSize: 20, marginLeft: 20 }}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-const PlayPause = ({type}) =>{
-  return (<LinearGradient
-    start={{ x: 1, y: 0 }}
-    end={{ x: 0, y: 1 }}
-    colors={type == "record" ? ["#AD00FF", "#00B1FD"]: ["#FF5C00", "#FB37FF"]}
-    style={type == "record" ? styles.recordButton : styles.stopButton}
-  >
-
-  </LinearGradient>)
-}
+const PlayPause = ({ type }) => {
+  return (
+    <LinearGradient
+      start={{ x: 1, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      colors={
+        type == "record" ? ["#AD00FF", "#00B1FD"] : ["#FF5C00", "#FB37FF"]
+      }
+      style={type == "record" ? styles.recordButton : styles.stopButton}
+    ></LinearGradient>
+  );
+};
 
 const styles = StyleSheet.create({
-  recordButton: {width: 40,
-    height: 40,
-    borderRadius: "50%"},
-  stopButton: {width: 20,
-    height: 20,
-    },
+  recordButton: { width: 40, height: 40, borderRadius: "50%" },
+  stopButton: { width: 20, height: 20 },
   header: {
     flexDirection: "row",
     marginBottom: 20,
@@ -126,7 +144,7 @@ const styles = StyleSheet.create({
 
     // color: linear-gradient(191.88deg, #AD00FF 29.85%, #00B1FD 100%);
   },
-  textDivision: {},
+  textDivision: {marginBottom: 30},
   textWrap: {
     borderColor: "black",
     borderWidth: 50,

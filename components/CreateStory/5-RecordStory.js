@@ -1,60 +1,135 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
+import { LinearGradient } from "expo-linear-gradient";
 import { Icon } from "react-native-elements";
+import { Audio } from "expo-av";
 
+const RecordFormComponent = ({ story }) => {
+  const [audios, setAudios] = useState([1, 2]);
+  const [isRecording, setIsRecording] = useState(false);
+  //const [recording, setRecording] = useState();
 
-const TitleFormComponent = ({story}) => {
-  
+  const [recording, setRecording] = React.useState();
+
   return (
-    
-      <View>
-        
-        <View>
-        <Text style={styles.text1}>Tell me your special story in 3 easy steps... </Text>
-
-        <Text style={styles.text2}>
-          Tell your story through text, upload any photos or videos, and record
-          your story through audio.
-        </Text>
-
-        <Text style={styles.text3}>
-          Don't Worry. Each step is optional and can be edited later so you can
-          tell your story your way.
-        </Text>
-        </View>
-        <View >
-          <Text style={styles.textFieldTitle}>Story Name</Text>
-          <TextInput 
-            placeholder = "Give your story a cool name..."
-            style={styles.textFieldContentTitle}>
-
-          </TextInput>
-        </View>
-
-        <View>
-          <Text style={styles.textFieldTitle}>Short Summary</Text>
-          <View styles={styles.textWrap}>
-
-          <TextInput 
-            placeholder = "In a few words, please tell me why this story is special to you..."
-            multiline = {true}
-            numberOfLines = {2}
-            style={styles.textFieldContent}>
-            
-          </TextInput>
-          </View>
-          
-        </View>
+    <View>
+      <View style={styles.textDivision}>
+      <Text style={{ fontWeight: "bold", fontStyle: "italic" }}>
+        Immerse your audience in the story from the storyteller’s point of view.{" "}
+      </Text>
+      <Text style={{ fontStyle: "italic", marginTop: 10 }}>
+        Recorded audio & uploaded visuals will be combined to create a
+        one-of-a-kind glimpse into the story.
+      </Text>
       </View>
-
-      
+      <ScrollView>
+      {audios.map((index) => (
+        <AudioElement
+          length="00:00"
+          title="yerr"
+          count={index + 1}
+          title="yerr"
+          key={index}
+        />
+      ))}
+      </ScrollView>
+     
+      <TouchableOpacity
+        style={{
+          //justifyContent: "center",
+          alignSelf: "center",
+        }}
+        // onPress={recording ? stopRecording : startRecording}
+        //onPress={() => setIsRecording(!isRecording)}
+      >
+        <View
+          style={{
+            width: 50,
+            height: 50,
+            borderColor: "#AD00FF",
+            borderWidth: 1,
+            borderRadius: "50%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <PlayPause type={isRecording ? "stop" : "record"} />
+        </View>
+        <Text style={{ textAlign: "center", marginTop: 15 }}>
+         
+           {isRecording ? "Stop" : "Record"} 
+        </Text>
+        
+      </TouchableOpacity>
+    </View>
   );
 };
+
+const AudioElement = ({ title, count, length }) => {
+  return (
+    <View style={{ marginBottom: 30 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text>
+          {title} {count}
+        </Text>
+        <Text>{length}</Text>
+      </View>
+      <View
+        style={{
+          marginTop: 10,
+          flexDirection: "row",
+          justifyContent: "flex-end",
+        }}
+      >
+        <TouchableOpacity>
+          <Icon
+            type="font-awesome-5"
+            name="play"
+            color="#FB37FF"
+            iconStyle={{ fontSize: 20 }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Icon
+            type="font-awesome-5"
+            name="trash"
+            color="#FF5C00"
+            iconStyle={{ fontSize: 20, marginLeft: 20 }}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+const PlayPause = ({ type }) => {
+  return (
+    <LinearGradient
+      start={{ x: 1, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      colors={
+        type == "record" ? ["#AD00FF", "#00B1FD"] : ["#FF5C00", "#FB37FF"]
+      }
+      style={type == "record" ? styles.recordButton : styles.stopButton}
+    ></LinearGradient>
+  );
+};
+
 const styles = StyleSheet.create({
+  recordButton: { width: 40, height: 40, borderRadius: "50%" },
+  stopButton: { width: 20, height: 20 },
   header: {
     flexDirection: "row",
-    marginBottom: 20
+    marginBottom: 20,
   },
   title: {
     fontFamily: "Roboto",
@@ -69,69 +144,68 @@ const styles = StyleSheet.create({
 
     // color: linear-gradient(191.88deg, #AD00FF 29.85%, #00B1FD 100%);
   },
+  textDivision: {marginBottom: 30},
   textWrap: {
-    borderColor: 'black',
+    borderColor: "black",
     borderWidth: 50,
     height: 20,
   },
   text1: {
     fontFamily: "Roboto",
-    fontStyle:  "normal",
+    fontStyle: "normal",
     fontWeight: "bold",
     color: "#666666",
-    fontSize:   12,
+    fontSize: 12,
     lineHeight: 14,
     marginBottom: 15,
   },
   text2: {
     fontFamily: "Roboto",
-    fontStyle:  "normal",
+    fontStyle: "normal",
     fontWeight: "normal",
     color: "#666666",
-    fontSize:   12,
+    fontSize: 12,
     lineHeight: 14,
     marginBottom: 15,
   },
   text3: {
     fontFamily: "Roboto",
-    fontStyle:  "italic",
+    fontStyle: "italic",
     fontWeight: "medium",
     color: "#000000",
-    fontSize:   12,
+    fontSize: 12,
     lineHeight: 14,
     marginBottom: 50,
   },
   textFieldTitle: {
     fontFamily: "Roboto",
-    fontStyle:  "normal",
+    fontStyle: "normal",
     fontWeight: "normal",
     color: "#666666",
-    fontSize:   16,
+    fontSize: 16,
     lineHeight: 20,
   },
   textFieldContent: {
     fontFamily: "Roboto",
-    fontStyle:  "italic",
+    fontStyle: "italic",
     fontWeight: "Light",
     color: "#666666",
-    fontSize:   16,
+    fontSize: 16,
     lineHeight: 20,
-    borderColor: 'grey',
+    borderColor: "grey",
     borderWidth: 1,
     height: 100,
-
   },
   textFieldContentTitle: {
     fontFamily: "Roboto",
-    fontStyle:  "italic",
+    fontStyle: "italic",
     fontWeight: "Light",
     color: "#666666",
-    fontSize:   16,
+    fontSize: 16,
     lineHeight: 20,
-    borderColor: 'grey',
+    borderColor: "grey",
     borderWidth: 1,
     height: 25,
-
   },
 });
-export default TitleFormComponent;
+export default RecordFormComponent;

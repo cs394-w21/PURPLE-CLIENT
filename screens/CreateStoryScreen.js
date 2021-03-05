@@ -46,12 +46,15 @@ const CreateStoryScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Create Your Story</Text>
       {/* Progress bar */}
+      <View style={styles.progressBar}>
       <View style={styles.barBackground}>
         <View style={styles.bar}></View>
       </View>
-
-      {formComponents[formState]}
+      <Text> Step </Text>
+      </View>
       
+      {formComponents[formState]}
+
 
       <GradientButton onPress={() => formContinue()} title={"Continue"} />
     </View>
@@ -67,17 +70,27 @@ const styles = StyleSheet.create({
     padding: 20,
     height: '100%'
   },
-
+  progressBar:{
+    marginBottom: 20
+  },
   title: {
     fontFamily: "Roboto",
     fontStyle:  "normal",
     fontWeight: "bold",
-    color: "#FB37FF",
+    color: "#FF5C00",
     fontSize:   24,
     lineHeight: 20,
     marginTop: 55,
-    marginBottom: 50,
+    marginBottom: 20,
   },
+  barBackground: {
+    backgroundColor: "#AD00FF44", 
+    height: 10,
+    borderRadius: 25,
+    width: '100%',
+
+  },
+  bar: {width: '20%', height: '100%', backgroundColor: "#AD00FF", borderRadius: 25}
   
 });
 

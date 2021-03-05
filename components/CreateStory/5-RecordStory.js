@@ -18,90 +18,18 @@ import * as Font from "expo-font";
 import * as Permissions from "expo-permissions";
 import { set } from "react-native-reanimated";
 
-const RecordFormComponent = ({ story, setStory }) => {
+
+  const RecordFormComponent = ({ story, setStory }) => {
   const [audios, setAudios] = useState([1, 2]);
   // const [permission, askPermission, getPermission] = usePermissions(Permissions.AUDIO_RECORDING);
   
+  
   const [isRecording, setIsRecording] = useState();
-  const [recording, setRecording] = useState();
-
-  async function getAudioAsync() {
-    // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
-    const { status, permissions } = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
-    if (status === 'granted') {
-      console.log("YEEEHAW")
-    } else {
-      // throw new Error('Location permission not granted');
-      console.log("No Permission!!!!!!!")
-    }
-  }
-
-  useEffect(()=> {
-    getAudioAsync();
-  },[])
-
-
-
-  async function startRecording () {
-    //const recording = new Audio.Recording();
-    const recording = new Audio.Recording();
-    try {
-      console.log("Recording: ", recording);
-      console.log(Audio.RecordingOptions);
-      await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY);
-      await recording.startAsync();
-      setIsRecording(true);
-      // You are now recording!
-      setRecording(recording);
-    } catch (error) {
-      console.log(error);
-      // An error occurred!
-    }
-  }
-
-  async function stopRecording() {
-    console.log('Stopping recording..');
-    setRecording(undefined);
-    await recording.stopAndUnloadAsync();
-    const uri = recording.getURI(); 
-    setIsRecording(false);
-    console.log('Recording stopped and stored at', uri);
-  }
   
 
-/*
- const [isRecording, setIsRecording] = useState(false);
- const [recording, setRecording] = useState();
+  
 
- async function startRecording() {
-   try {
-     console.log('Requesting permissions..');
-     await Audio.requestPermissionsAsync();
-     await Audio.setAudioModeAsync({
-       allowsRecordingIOS: true,
-       playsInSilentModeIOS: true,
-     }); 
-     console.log('Starting recording..');
-     const recording = new Audio.Recording();
-     await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
-     await recording.startAsync(); 
-     setRecording(recording);
-     console.log('Recording started');
-   } catch (err) {
-     console.error('Failed to start recording', err);
-   }
- }
 
- async function stopRecording() {
-   console.log('Stopping recording..');
-   setRecording(undefined);
-   await recording.stopAndUnloadAsync();
-   const uri = recording.getURI(); 
-   console.log('Recording stopped and stored at', uri);
- }
- */
-
-  //const [recording, setRecording] = React.useState();
 
   return (
     <View>
@@ -118,9 +46,9 @@ const RecordFormComponent = ({ story, setStory }) => {
       {audios.map((index) => (
         <AudioElement
           length="00:00"
-          title="yerr"
+
           count={index + 1}
-          title="yerr"
+          title="Story"
           key={index}
         />
       ))}
@@ -131,9 +59,9 @@ const RecordFormComponent = ({ story, setStory }) => {
           //justifyContent: "center",
           alignSelf: "center",
         }}
-        onPress={isRecording ? stopRecording : startRecording}
+        //onPress={isRecording ? stopRecording : startRecording}
         //onPress={recording ? stopRecording : startRecording}
-        //onPress={() => setIsRecording(!isRecording)}
+        onPress={() => setIsRecording(!isRecording)}
       >
         <View
           style={{

@@ -45,7 +45,7 @@ const CreateStoryScreen = ({ route, navigation }) => {
     <TitleFormComponent story={story} setStory={setStory} setFormData={setFormData}/>,
     <FullStoryFormComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
     <UploadFormComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
-    <VisualizeFormComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
+    <VisualizeFormComponent story={story} count={data.photos.length} setStory={setStory} setFormData={setFormData}/>,
     <RecordFormComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
     <AtGlanceComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
     <SuccessComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
@@ -56,19 +56,26 @@ const CreateStoryScreen = ({ route, navigation }) => {
       setFormState(formState + 1);
     }
     console.log(story)
-  };
+console.log(  ((formState/ (formComponents.length - 2))* 100).toString()+"%")  }; //toString((formState / (formComponents.length - 2)) * 100) + "%")
 
+  const formTitle = ["Create Your Story", "Write Your Story", "Visualize Your Story", "Visualize Your Story", "Tell Your Story", "At A Glance", ""  ]
+  const formStep = ["", "Step 1 of 3", "Step 2 of 3", "Step 2 of 3", "Step 3 of 3", "", ""  ]
 
 
   return (
     <View style={styles.container}>
-      {formState < formComponents.length - 1 ? <Text style={styles.title}>Create Your Story</Text> : null}
+      {formState < formComponents.length - 1 ? <Text style={styles.title}>{formTitle[formState]}</Text> : null}
       {/* Progress bar */}
       {formState < formComponents.length - 2 ? <View style={styles.progressBar}>
         <View style={styles.barBackground}>
-          <View style={styles.bar}></View>
+          <View style={{
+    width: ((formState/ (formComponents.length - 2))* 100).toString()+"%",
+    height: "100%",
+    backgroundColor: "#AD00FF",
+    borderRadius: 25,
+  }}></View>
         </View>
-        <Text> Step </Text>
+        { formTitle[formState].length > 1 ? <Text> {formStep[formState]} </Text>: null}
       </View> : null}
 
       {formComponents[formState]}
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   bar: {
-    width: "20%",
+    //width: toString(formState / (formComponents.length - 2) * 100)+"%",
     height: "100%",
     backgroundColor: "#AD00FF",
     borderRadius: 25,

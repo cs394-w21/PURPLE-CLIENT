@@ -5,7 +5,7 @@ import { Icon } from "react-native-elements";
 import GradientButton from "../GradientButton";
 
 
-const TitleFormComponent = ({story, setFormData}) => {
+const VisualizeFormComponent = ({story, setFormData, count}) => {
   
   return (
     
@@ -27,7 +27,7 @@ const TitleFormComponent = ({story, setFormData}) => {
 
         <View>
           <Text style={styles.text3}>
-            THIS MANY files were connected to your story.
+            {count} files were connected to your story.
           </Text>
         </View>
         </View>
@@ -144,4 +144,4 @@ const styles = StyleSheet.create({
 
   },
 });
-export default TitleFormComponent;
+export default VisualizeFormComponent;

@@ -16,6 +16,7 @@ import FilesScreen from "./screens/FilesScreen";
 import FilesFolderScreen from "./screens/FilesFolderScreen";
 import CreateStoryScreen from "./screens/CreateStoryScreen";
 import TitleFormComponent from "./components/CreateStory/4-VisualizeSuccess";
+import RecentStories from './screens/RecentStories';
 
 
 const Tab = createBottomTabNavigator();
@@ -44,7 +45,7 @@ export default function App() {
           
           <Tab.Screen
             
-            component={mainApp}
+            component={RecentStories}
             name="Home"
             options={{
               title: "Home",

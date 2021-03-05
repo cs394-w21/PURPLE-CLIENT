@@ -32,7 +32,7 @@ const ReadStoryScreen = ({ navigation, route }) => {
       <Header />
       <View style={styles.pictureGrid}>
         {photos.slice(0, 5).map((photo, index) => (
-          <TouchableOpacity style={styles.imgButton} onPress={() => navigation.navigate("FilesScreen", {photos, index})}>
+          <TouchableOpacity key={index} style={styles.imgButton} onPress={() => navigation.navigate("FilesScreen", {photos, index})}>
             <Image
               style={styles.imgSquare}
               source={photo} /* need to fix import */

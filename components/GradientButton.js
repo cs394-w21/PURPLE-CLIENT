@@ -14,9 +14,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-paper";
 import * as purpleHeart from "../assets/img/purpleheart.jpeg";
 
-const GradientButton = ({ onPress, title }) => {
+const GradientButton = ({ onPress, start, end, colors, title }) => {
   return (
-    <LinearGradient
+    <TouchableOpacity onPress={onPress}>
+<LinearGradient
       // TouchableOpacity Linear Gradient
       // Diagonal :0
       style={{
@@ -28,9 +29,10 @@ const GradientButton = ({ onPress, title }) => {
         shadowOpacity: 0.2,
         shadowRadius: 5,
       }}
-      start={{ x: 1, y: 0 }}
-      end={{ x: 0, y: 1 }}
-      colors={["#FF5C00", "#FB37FF"]}
+      start={start ? start : { x: 1, y: 0 }}
+      end={end ? end : { x: 0, y: 1 }}
+      colors={colors ? colors : ["#FF5C00", "#FB37FF"]}
+
     >
       <Button
         style={{
@@ -53,6 +55,8 @@ const GradientButton = ({ onPress, title }) => {
         </Text>
       </Button>
     </LinearGradient>
+    </TouchableOpacity>
+  
   );
 };
 

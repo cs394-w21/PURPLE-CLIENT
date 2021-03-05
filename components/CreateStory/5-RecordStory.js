@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useState, usePermissions } from "react";
 import {
   View,
   Text,
@@ -11,14 +12,96 @@ import {
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { LinearGradient } from "expo-linear-gradient";
 import { Icon } from "react-native-elements";
-import { Audio } from "expo-av";
+import { Audio, AVPlaybackStatus } from "expo-av";
+import * as FileSystem from "expo-file-system";
+import * as Font from "expo-font";
+import * as Permissions from "expo-permissions";
+import { set } from "react-native-reanimated";
 
 const RecordFormComponent = ({ story }) => {
   const [audios, setAudios] = useState([1, 2]);
-  const [isRecording, setIsRecording] = useState(false);
-  //const [recording, setRecording] = useState();
+  // const [permission, askPermission, getPermission] = usePermissions(Permissions.AUDIO_RECORDING);
+  
+  const [isRecording, setIsRecording] = useState();
+  const [recording, setRecording] = useState();
 
-  const [recording, setRecording] = React.useState();
+  async function getAudioAsync() {
+    // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
+    const { status, permissions } = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
+    if (status === 'granted') {
+      console.log("YEEEHAW")
+    } else {
+      // throw new Error('Location permission not granted');
+      console.log("No Permission!!!!!!!")
+    }
+  }
+
+  useEffect(()=> {
+    getAudioAsync();
+  },[])
+
+
+
+  async function startRecording () {
+    //const recording = new Audio.Recording();
+    const recording = new Audio.Recording();
+    try {
+      console.log("Recording: ", recording);
+      console.log(Audio.RecordingOptions);
+      await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY);
+      await recording.startAsync();
+      setIsRecording(true);
+      // You are now recording!
+      setRecording(recording);
+    } catch (error) {
+      console.log(error);
+      // An error occurred!
+    }
+  }
+
+  async function stopRecording() {
+    console.log('Stopping recording..');
+    setRecording(undefined);
+    await recording.stopAndUnloadAsync();
+    const uri = recording.getURI(); 
+    setIsRecording(false);
+    console.log('Recording stopped and stored at', uri);
+  }
+  
+
+/*
+ const [isRecording, setIsRecording] = useState(false);
+ const [recording, setRecording] = useState();
+
+ async function startRecording() {
+   try {
+     console.log('Requesting permissions..');
+     await Audio.requestPermissionsAsync();
+     await Audio.setAudioModeAsync({
+       allowsRecordingIOS: true,
+       playsInSilentModeIOS: true,
+     }); 
+     console.log('Starting recording..');
+     const recording = new Audio.Recording();
+     await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+     await recording.startAsync(); 
+     setRecording(recording);
+     console.log('Recording started');
+   } catch (err) {
+     console.error('Failed to start recording', err);
+   }
+ }
+
+ async function stopRecording() {
+   console.log('Stopping recording..');
+   setRecording(undefined);
+   await recording.stopAndUnloadAsync();
+   const uri = recording.getURI(); 
+   console.log('Recording stopped and stored at', uri);
+ }
+ */
+
+  //const [recording, setRecording] = React.useState();
 
   return (
     <View>
@@ -27,7 +110,7 @@ const RecordFormComponent = ({ story }) => {
         Immerse your audience in the story from the storyteller’s point of view.{" "}
       </Text>
       <Text style={{ fontStyle: "italic", marginTop: 10 }}>
-        Recorded audio & uploaded visuals will be combined to create a
+        Recorded audio {'&'} uploaded visuals will be combined to create a
         one-of-a-kind glimpse into the story.
       </Text>
       </View>
@@ -48,7 +131,8 @@ const RecordFormComponent = ({ story }) => {
           //justifyContent: "center",
           alignSelf: "center",
         }}
-        // onPress={recording ? stopRecording : startRecording}
+        onPress={isRecording ? stopRecording : startRecording}
+        //onPress={recording ? stopRecording : startRecording}
         //onPress={() => setIsRecording(!isRecording)}
       >
         <View

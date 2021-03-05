@@ -14,7 +14,7 @@ import GradientButton from "../components/GradientButton";
 import TitleFormComponent from "../components/CreateStory/1-Title"
 import FullStoryFormComponent from "../components/CreateStory/2-FullStory"
 import UploadFormComponent from "../components/CreateStory/3-UploadPhotos"
-import VisualizeFormComponent from "../components/CreateStory/4-VisualizeSuccess"
+import VisualizeFormComponent from "../components/CreateStory/4-VisualizeSuccess";
 
 
 
@@ -32,7 +32,7 @@ const CreateStoryScreen = ({ route, navigation }) => {
   const [formState, setFormState] = useState(0)
   const [story, setStory] = useState(data) 
 
-  const formComponents = [<TitleFormComponent story={story} />, <FullStoryFormComponent story={story} />, <UploadFormComponent story={story} />, <VisualizeFormComponent story={story} /> ]
+  const formComponents = [<UploadFormComponent story={story} />, <TitleFormComponent story={story} />, <FullStoryFormComponent story={story} />,  <VisualizeFormComponent story={story} /> ]
   
   const formContinue = () => {
     if (formState < formComponents.length - 1){

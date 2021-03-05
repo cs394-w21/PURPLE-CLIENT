@@ -9,7 +9,7 @@ import shit from "../../utils/utils"
 
 
 
-const UploadFormComponent = ({story}) => {
+const UploadFormComponent = ({story, setFormData}) => {
 
   const [images, setImage] = useState([]);
 
@@ -36,6 +36,7 @@ const UploadFormComponent = ({story}) => {
 
     if (!result.cancelled) {
       setImage(images.concat(result.uri));
+      setFormData("photos", images.concat(result.uri));
     }
     console.log(shit)
   };

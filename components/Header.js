@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: "24px",
     lineHeight: "20px",
-    color: "#AD00FF"
+    color: "#FF5C00"
     /* identical to box height, or 83% */
 
     /* Purple */

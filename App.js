@@ -14,7 +14,8 @@ import ReadStoryScreen from "./screens/ReadStoryScreen";
 import SummaryScreen from "./screens/SummaryScreen";
 import FilesScreen from "./screens/FilesScreen";
 import FilesFolderScreen from "./screens/FilesFolderScreen";
-import CreateStoryScreen from "./screens/CreateStoryScreen"
+import CreateStoryScreen from "./screens/CreateStoryScreen";
+import TitleFormComponent from "./components/CreateStory/4-VisualizeSuccess";
 
 
 const Tab = createBottomTabNavigator();

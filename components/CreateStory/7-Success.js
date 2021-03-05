@@ -4,48 +4,25 @@ import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
 
 
-const TitleFormComponent = ({story}) => {
+const SuccessComponent = ({story}) => {
   
   return (
     
-      <View>
-        <Text>Test End</Text>
-        <View>
-        <Text style={styles.text1}>Tell me your special story in 3 easy steps... </Text>
-
-        <Text style={styles.text2}>
-          Tell your story through text, upload any photos or videos, and record
-          your story through audio.
-        </Text>
-
-        <Text style={styles.text3}>
-          Don't Worry. Each step is optional and can be edited later so you can
-          tell your story your way.
+      <View style={{alignItems: 'center', flex: 1}}>
+        <View style={{flexDirection:"row", alignItems:"center"}}>
+        <Icon
+                  type="font-awesome-5"
+                  name="check-circle"
+                  color="#FC44A9"
+                  iconStyle={{ fontSize: 36 }}
+                />
+        <Text style={styles.successTitleText}>
+            Success
         </Text>
         </View>
-        <View >
-          <Text style={styles.textFieldTitle}>Story Name</Text>
-          <TextInput 
-            placeholder = "Give your story a cool name..."
-            style={styles.textFieldContentTitle}>
-
-          </TextInput>
-        </View>
-
-        <View>
-          <Text style={styles.textFieldTitle}>Short Summary</Text>
-          <View styles={styles.textWrap}>
-
-          <TextInput 
-            placeholder = "In a few words, please tell me why this story is special to you..."
-            multiline = {true}
-            numberOfLines = {2}
-            style={styles.textFieldContent}>
-            
-          </TextInput>
-          </View>
-          
-        </View>
+        <Text style={styles.successBodyText}>
+          Your story is now saved forever!
+        </Text>
       </View>
 
       
@@ -73,6 +50,25 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 50,
     height: 20,
+  },
+  successTitleText: {
+    fontFamily: "Roboto",
+    fontStyle:  "normal",
+    fontWeight: "bold",
+    color: "#FC44A9",
+    fontSize:   36,
+    lineHeight: 20,
+    marginLeft: 10
+  },
+  successBodyText: {
+    fontFamily: "Roboto",
+    fontStyle:  "normal",
+    fontWeight: "bold",
+    color: "#666666",
+    fontSize:   18,
+    lineHeight: 21,
+    marginBottom: 15,
+    marginTop: 30
   },
   text1: {
     fontFamily: "Roboto",
@@ -134,4 +130,4 @@ const styles = StyleSheet.create({
 
   },
 });
-export default TitleFormComponent;
+export default SuccessComponent;

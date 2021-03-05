@@ -116,23 +116,23 @@ const PlayScreen = ({navigation}) => {
         // Diagonal :0
         start={{ x: 1, y: 0 }}
         end={{ x: 0, y: 1 }}
-        colors={["#AD31FF", "#2E75E9"]}
+        colors={["#FFFFFF", "#FFFFFF"]}
         style={styles.playerWrapper}
       >
         <View style={styles.player}>
           <View style={styles.playerTop}>
           <View style={styles.scrub}>
-            <Text style={{ color: "white", fontSize: 12 }}>{secondsToMs(time)}</Text>
+            <Text style={{ color: "9900CC", fontSize: 12 }}>{secondsToMs(time)}</Text>
             <Slider
               style={{width: '80%', height: 5, marginHorizontal: 10 }}
               minimumValue={0}
               value={time / length}
               maximumValue={1}
-              minimumTrackTintColor="#AAAAAA"
-              maximumTrackTintColor="#FFFFFF"
+              minimumTrackTintColor="#DF80FF"
+              maximumTrackTintColor="#9900CC"
               onValueChange={async (value) => await scrubSound(value)}
             />
-            <Text style={{ color: "white", fontSize: 12 }}> {sound ? ( !isNaN(sound._key.duration) ? secondsToMs(sound._key.duration) : '00:00' ) : '00:00'} </Text>
+            <Text style={{ color: "9900CC", fontSize: 12 }}> {sound ? ( !isNaN(sound._key.duration) ? secondsToMs(sound._key.duration) : '00:00' ) : '00:00'} </Text>
           </View>
             <Text style={styles.caption}> War Medals </Text>
             <TouchableOpacity
@@ -143,7 +143,7 @@ const PlayScreen = ({navigation}) => {
               <Icon
                 type="font-awesome-5"
                 name={isPlaying ? "pause" : "play"}
-                color="white"
+                color="#9900CC"
                 iconStyle={{ fontSize: 35 }}
               />
             </TouchableOpacity>
@@ -154,7 +154,7 @@ const PlayScreen = ({navigation}) => {
             <Icon
               type="font-awesome-5"
               name='volume-off'
-              color="white"
+              color="#9900CC"
               iconStyle={{ fontSize: 20 }}
             />
             <Slider
@@ -162,14 +162,14 @@ const PlayScreen = ({navigation}) => {
               value ={0.5}
               minimumValue={0}
               maximumValue={1}
-              minimumTrackTintColor="#AAAAAA"
-              maximumTrackTintColor="#FFFFFF"
+              minimumTrackTintColor="#9900CC"
+              maximumTrackTintColor="#DF80FF"
               onValueChange={async (value) => await scrubVolume(value)}
             />
             <Icon
               type="font-awesome-5"
               name='volume-up'
-              color="white"
+              color="#9900CC"
               iconStyle={{ fontSize: 20 }}
             />
           </View>
@@ -180,10 +180,10 @@ const PlayScreen = ({navigation}) => {
               <Icon
                 type="font-awesome-5"
                 name="book"
-                color="white"
+                color="#9900CC"
                 iconStyle={{ fontSize: 20 }}
               />
-              <Text style={{ marginTop: 5, color: "white", fontSize: 12 }}>
+              <Text style={{ marginTop: 5, color: "9900CC", fontSize: 12 }}>
                 Read Story
               </Text>
             </TouchableOpacity>
@@ -209,11 +209,11 @@ const PlayScreen = ({navigation}) => {
               <Icon
                 type="font-awesome-5"
                 name="star"
-                color="white"
+                color="#9900CC"
                 iconStyle={{ fontSize: 20 }}
                 solid = {favorite}
               />
-              <Text style={{ marginTop: 5, color: "white", fontSize: 12 }}>Favorite</Text>
+              <Text style={{ marginTop: 5, color: "9900CC", fontSize: 12 }}>Favorite</Text>
             </TouchableOpacity>
           </View>
           </View>
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   scrub: {
     flexDirection: "row",
     width: "100%",
-    color: "white",
+    color: "9900CC",
     justifyContent: 'center',
     alignItems: 'center',
   },

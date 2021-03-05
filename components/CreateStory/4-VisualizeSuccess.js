@@ -2,51 +2,41 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView } from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
+import GradientButton from "../GradientButton";
 
 
 const TitleFormComponent = ({story, setFormData}) => {
   
   return (
     
-      <View>
-        <Text>Test End</Text>
-        <View>
-        <Text style={styles.text1}>Tell me your special story in 3 easy steps... </Text>
-
-        <Text style={styles.text2}>
-          Tell your story through text, upload any photos or videos, and record
-          your story through audio.
+      <ScrollView>
+      
+        <Text style={styles.text1}>
+          Help me see the story through your eyes with visuals of keepsakes or loved ones...
         </Text>
-
-        <Text style={styles.text3}>
-          Don't Worry. Each step is optional and can be edited later so you can
-          tell your story your way.
-        </Text>
-        </View>
-        <View >
-          <Text style={styles.textFieldTitle}>Story Name</Text>
-          <TextInput 
-            placeholder = "Give your story a cool name..."
-            style={styles.textFieldContentTitle}>
-
-          </TextInput>
+      <View >
+        <View style={styles.textWrap}>
+          <Icon
+                type="font-awesome-5"
+                name="check-circle"
+                color ="#666666"
+                iconStyle={{ fontSize: 20 }}
+          />
+          <Text style={styles.text2}>Success</Text>
         </View>
 
         <View>
-          <Text style={styles.textFieldTitle}>Short Summary</Text>
-          <View styles={styles.textWrap}>
-
-          <TextInput 
-            placeholder = "In a few words, please tell me why this story is special to you..."
-            multiline = {true}
-            numberOfLines = {2}
-            style={styles.textFieldContent}>
-            
-          </TextInput>
-          </View>
-          
+          <Text style={styles.text3}>
+            THIS MANY files were connected to your story.
+          </Text>
         </View>
-      </View>
+        </View>
+
+        <Text style={styles.text4}>
+          If you don’t have the photos or videos ready now, don’t worry. You can upload these later.
+        </Text>
+      
+      </ScrollView>
 
       
   );
@@ -57,6 +47,11 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     marginBottom: 20
+  },
+  div: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "60%",
   },
   title: {
     fontFamily: "Roboto",
@@ -72,36 +67,49 @@ const styles = StyleSheet.create({
     // color: linear-gradient(191.88deg, #AD00FF 29.85%, #00B1FD 100%);
   },
   textWrap: {
-    borderColor: 'black',
-    borderWidth: 50,
-    height: 20,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 15,
   },
   text1: {
+    marginTop: 40,
     fontFamily: "Roboto",
-    fontStyle:  "normal",
+    fontStyle:  "italic",
     fontWeight: "bold",
     color: "#666666",
-    fontSize:   12,
-    lineHeight: 14,
-    marginBottom: 15,
+    fontSize:   16,
+    lineHeight: 19,
+    marginBottom: 100,
   },
   text2: {
-    fontFamily: "Roboto",
-    fontStyle:  "normal",
-    fontWeight: "normal",
+    fontFamily: "Font Awesome 5 Pro",
+    fontStyle:  "italic",
+    fontWeight: "bold",
     color: "#666666",
-    fontSize:   12,
-    lineHeight: 14,
-    marginBottom: 15,
+    fontSize:   18,
+    lineHeight: 18,
   },
   text3: {
     fontFamily: "Roboto",
     fontStyle:  "italic",
+    fontWeight: "bold",
+    color: "#666666",
+    fontSize:   14,
+    lineHeight: 16,
+    marginBottom: 150,
+    alignSelf: "center",
+    
+    
+  },
+  text4: {
+    fontFamily: "Roboto",
+    fontStyle:  "italic",
     fontWeight: "medium",
-    color: "#000000",
-    fontSize:   12,
-    lineHeight: 14,
-    marginBottom: 50,
+    color: "#666666",
+    fontSize:   14,
+    lineHeight: 16,
   },
   textFieldTitle: {
     fontFamily: "Roboto",

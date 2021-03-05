@@ -9,43 +9,27 @@ const TitleFormComponent = ({story, setFormData}) => {
   return (
     
       <View>
-        
+        {/* status bar here  */}
         <View>
-        <Text style={styles.text1}>Tell me your special story in 3 easy steps... </Text>
-
-        <Text style={styles.text2}>
-          Tell your story through text, upload any photos or videos, and record
-          your story through audio.
-        </Text>
-
-        <Text style={styles.text3}>
-          Don't Worry. Each step is optional and can be edited later so you can
-          tell your story your way.
-        </Text>
+        <Text style={styles.text1}>Channel your inner Hemingway and type out your story.</Text>
         </View>
-        <View >
-          <Text style={styles.textFieldTitle}>Story Name</Text>
-          <TextInput 
-            placeholder = "Give your story a cool name..."
-            style={styles.textFieldContentTitle}>
-
-          </TextInput>
+        <View style={styles.textFieldWrap}>
+          <Text style={styles.textFieldTitle1}>Full Story </Text>
+          <Text style={styles.textFieldTitle2}> {'('}Optional{')'}</Text>
+          
         </View>
 
-        <View>
-          <Text style={styles.textFieldTitle}>Short Summary</Text>
-          <View styles={styles.textWrap}>
-
-          <TextInput 
-            placeholder = "In a few words, please tell me why this story is special to you..."
+        <TextInput 
+            placeholder = "If you already have captured this masterpiece, Copy/Paste from a different document."
             multiline = {true}
             numberOfLines = {2}
             style={styles.textFieldContent}
             onChangeText={(text) => setFormData("story", text)} >
           </TextInput>
-          </View>
-          
-        </View>
+
+        <Text>
+          If writing isn’t your thing, don’t worry. You can voice record your story in a later step.
+        </Text>
       </View>
 
       
@@ -69,44 +53,33 @@ const styles = StyleSheet.create({
 
     // color: linear-gradient(191.88deg, #AD00FF 29.85%, #00B1FD 100%);
   },
-  textWrap: {
-    borderColor: 'black',
-    borderWidth: 50,
-    height: 20,
+  textFieldWrap: {
+    flex: 1,
+    flexDirection: "row"
   },
   text1: {
+    maginTop: 77,
     fontFamily: "Roboto",
-    fontStyle:  "normal",
-    fontWeight: "bold",
-    color: "#666666",
-    fontSize:   12,
-    lineHeight: 14,
-    marginBottom: 15,
-  },
-  text2: {
-    fontFamily: "Roboto",
-    fontStyle:  "normal",
-    fontWeight: "normal",
-    color: "#666666",
-    fontSize:   12,
-    lineHeight: 14,
-    marginBottom: 15,
-  },
-  text3: {
-    fontFamily: "Roboto",
-    fontStyle:  "italic",
+    fontStyle: "italic",
     fontWeight: "medium",
-    color: "#000000",
-    fontSize:   12,
-    lineHeight: 14,
-    marginBottom: 50,
+    fontSize: 16,
+    lineHeight: 19,
+    marginBottom: 32,
   },
-  textFieldTitle: {
+  textFieldTitle1: {
     fontFamily: "Roboto",
     fontStyle:  "normal",
     fontWeight: "normal",
     color: "#666666",
     fontSize:   16,
+    lineHeight: 20,
+  },
+  textFieldTitle2: {
+    fontFamily: "Roboto",
+    fontStyle:  "italic",
+    fontWeight: "normal",
+    color: "#AD00FF",
+    fontSize:   14,
     lineHeight: 20,
   },
   textFieldContent: {
@@ -119,6 +92,8 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderWidth: 1,
     height: 100,
+    borderRadius: 5,
+    marginBottom: 67,
 
   },
   textFieldContentTitle: {

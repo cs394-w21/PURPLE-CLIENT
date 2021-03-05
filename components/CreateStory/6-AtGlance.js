@@ -5,7 +5,7 @@ import { Icon } from "react-native-elements";
 import { Audio } from "expo-av";
 
 
-const AtGlanceComponent = ({story}) => {
+const AtGlanceComponent = ({story, setFormData}) => {
   function msToHMS( ms ) {
     // 1- Convert to seconds:
     var seconds = ms / 1000;

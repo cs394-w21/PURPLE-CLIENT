@@ -4,7 +4,7 @@ import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
 
 
-const TitleFormComponent = ({story}) => {
+const TitleFormComponent = ({story,setStory}) => {
   
   return (
     

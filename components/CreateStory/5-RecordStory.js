@@ -13,7 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Icon } from "react-native-elements";
 import { Audio } from "expo-av";
 
-const RecordFormComponent = ({ story }) => {
+const RecordFormComponent = ({ story, setStory }) => {
   const [audios, setAudios] = useState([1, 2]);
   const [isRecording, setIsRecording] = useState(false);
   //const [recording, setRecording] = useState();

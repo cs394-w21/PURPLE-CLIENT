@@ -4,12 +4,14 @@ import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
 
 
-const TitleFormComponent = ({story}) => {
+const TitleFormComponent = ({story, setFormData}) => {
+
   
+
+
   return (
     
       <View>
-        <Text>Testing that form navigation works, delete later</Text>
         <View>
         <Text style={styles.text1}>Tell me your special story in 3 easy steps... </Text>
 
@@ -27,8 +29,10 @@ const TitleFormComponent = ({story}) => {
           <Text style={styles.textFieldTitle}>Story Name</Text>
           <TextInput 
             placeholder = "Give your story a cool name..."
-            style={styles.textFieldContentTitle}>
-
+            style={styles.textFieldContentTitle}
+            onChangeText={(text) => setFormData("title", text)}
+            >
+            
           </TextInput>
         </View>
 
@@ -40,8 +44,9 @@ const TitleFormComponent = ({story}) => {
             placeholder = "In a few words, please tell me why this story is special to you..."
             multiline = {true}
             numberOfLines = {2}
-            style={styles.textFieldContent}>
-            
+            style={styles.textFieldContent}
+            onChangeText={(text) => setFormData("summary", text)} >
+
           </TextInput>
           </View>
           

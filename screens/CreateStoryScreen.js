@@ -11,91 +11,103 @@ import {
 import { Icon } from "react-native-elements";
 import GradientButton from "../components/GradientButton";
 
-import TitleFormComponent from "../components/CreateStory/1-Title"
-import FullStoryFormComponent from "../components/CreateStory/2-FullStory"
-import UploadFormComponent from "../components/CreateStory/3-UploadPhotos"
-import VisualizeFormComponent from "../components/CreateStory/4-VisualizeSuccess"
-import AtGlanceComponent from "../components/CreateStory/6-AtGlance"
-import SuccessComponent from "../components/CreateStory/7-Success"
-import RecordFormComponent from "../components/CreateStory/5-RecordStory"
-
-
-
+import TitleFormComponent from "../components/CreateStory/1-Title";
+import FullStoryFormComponent from "../components/CreateStory/2-FullStory";
+import UploadFormComponent from "../components/CreateStory/3-UploadPhotos";
+import VisualizeFormComponent from "../components/CreateStory/4-VisualizeSuccess";
+import AtGlanceComponent from "../components/CreateStory/6-AtGlance";
+import SuccessComponent from "../components/CreateStory/7-Success";
+import RecordFormComponent from "../components/CreateStory/5-RecordStory";
 
 const data = {
   title: "",
-  summar: "",
+  summary: "",
   story: "",
   photos: [],
-  audios: []
-}
+  audios: [],
+};
 
 const CreateStoryScreen = ({ route, navigation }) => {
-  const [name, setName] = useState("")
-  const [summary, setSummary] = useState("")
-  const [formState, setFormState] = useState(0)
-  const [story, setStory] = useState(data) 
+  const [name, setName] = useState("");
+  const [summary, setSummary] = useState("");
+  const [formState, setFormState] = useState(0);
+  const [story, setStory] = useState(data);
 
-
-  const formComponents = [<RecordFormComponent story={story} />, <TitleFormComponent story={story} />, <FullStoryFormComponent story={story} />, <UploadFormComponent story={story} />, <VisualizeFormComponent story={story} /> ]
-
-                          
-  const formContinue = () => {
-    if (formState < formComponents.length - 1){
-      setFormState(formState+1)
-    }
+  const setFormData = (field, text) => {
+    let newData = {...story}
+    newData[field] = text
+    setStory(newData)
   }
+  
+  const formComponents = [
+    <TitleFormComponent story={story} setStory={setStory} setFormData={setFormData}/>,
+    <FullStoryFormComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
+    <UploadFormComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
+    <VisualizeFormComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
+    <RecordFormComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
+    <AtGlanceComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
+    <SuccessComponent story={story}  setStory={setStory} setFormData={setFormData}/>,
+  ];
+
+  const formContinue = () => {
+    if (formState < formComponents.length - 1) {
+      setFormState(formState + 1);
+    }
+    console.log(story)
+  };
+
+
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create Your Story</Text>
+      {formState < formComponents.length - 1 ? <Text style={styles.title}>Create Your Story</Text> : null}
       {/* Progress bar */}
-      <View style={styles.progressBar}>
-      <View style={styles.barBackground}>
-        <View style={styles.bar}></View>
-      </View>
-      <Text> Step </Text>
-      </View>
-      
-      {formComponents[formState]}
+      {formState < formComponents.length - 2 ? <View style={styles.progressBar}>
+        <View style={styles.barBackground}>
+          <View style={styles.bar}></View>
+        </View>
+        <Text> Step </Text>
+      </View> : null}
 
+      {formComponents[formState]}
 
       <GradientButton onPress={() => formContinue()} title={"Continue"} />
     </View>
   );
 };
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
     padding: 20,
-    height: '100%'
+    height: "100%",
   },
-  progressBar:{
-    marginBottom: 20
+  progressBar: {
+    marginBottom: 20,
   },
   title: {
     fontFamily: "Roboto",
-    fontStyle:  "normal",
+    fontStyle: "normal",
     fontWeight: "bold",
     color: "#FF5C00",
-    fontSize:   24,
+    fontSize: 24,
     lineHeight: 20,
     marginTop: 55,
     marginBottom: 20,
   },
   barBackground: {
-    backgroundColor: "#AD00FF44", 
+    backgroundColor: "#AD00FF44",
     height: 10,
     borderRadius: 25,
-    width: '100%',
-
+    width: "100%",
   },
-  bar: {width: '20%', height: '100%', backgroundColor: "#AD00FF", borderRadius: 25}
-  
+  bar: {
+    width: "20%",
+    height: "100%",
+    backgroundColor: "#AD00FF",
+    borderRadius: 25,
+  },
 });
 
 export default CreateStoryScreen;

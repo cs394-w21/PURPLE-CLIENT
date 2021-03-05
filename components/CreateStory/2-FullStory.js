@@ -4,7 +4,7 @@ import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
 
 
-const TitleFormComponent = ({story}) => {
+const TitleFormComponent = ({story, setFormData}) => {
   
   return (
     
@@ -40,8 +40,8 @@ const TitleFormComponent = ({story}) => {
             placeholder = "In a few words, please tell me why this story is special to you..."
             multiline = {true}
             numberOfLines = {2}
-            style={styles.textFieldContent}>
-            
+            style={styles.textFieldContent}
+            onChangeText={(text) => setFormData("story", text)} >
           </TextInput>
           </View>
           

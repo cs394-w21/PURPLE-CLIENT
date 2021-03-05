@@ -21,7 +21,6 @@ import RecordFormComponent from "../components/CreateStory/5-RecordStory"
 
 
 
-
 const data = {
   title: "",
   summar: "",
@@ -35,6 +34,9 @@ const CreateStoryScreen = ({ route, navigation }) => {
   const [summary, setSummary] = useState("")
   const [formState, setFormState] = useState(0)
   const [story, setStory] = useState(data) 
+
+
+  
 
 
   const formComponents = [<RecordFormComponent story={story} />, <TitleFormComponent story={story} />, <FullStoryFormComponent story={story} />, <UploadFormComponent story={story} />, <VisualizeFormComponent story={story} /> ]

@@ -43,6 +43,11 @@ const CreateStoryScreen = ({ route, navigation }) => {
   };
 
   const formComponents = [
+    <RecordFormComponent
+    story={story}
+    setStory={setStory}
+    setFormData={setFormData}
+  />,
     <TitleFormComponent
       story={story}
       setStory={setStory}
@@ -64,11 +69,7 @@ const CreateStoryScreen = ({ route, navigation }) => {
       setStory={setStory}
       setFormData={setFormData}
     />,
-    <RecordFormComponent
-      story={story}
-      setStory={setStory}
-      setFormData={setFormData}
-    />,
+   
     <AtGlanceComponent
       story={story}
       setStory={setStory}

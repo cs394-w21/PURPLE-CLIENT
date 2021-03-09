@@ -8,6 +8,7 @@ import {
   Image,
   StyleSheet,
   ScrollView,
+  Platform
 } from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { LinearGradient } from "expo-linear-gradient";
@@ -17,19 +18,21 @@ import * as FileSystem from "expo-file-system";
 import * as Font from "expo-font";
 import * as Permissions from "expo-permissions";
 import { set } from "react-native-reanimated";
+import * as DocumentPicker from 'expo-document-picker';
 
 
   const RecordFormComponent = ({ story, setStory }) => {
-  const [audios, setAudios] = useState([1, 2]);
-  // const [permission, askPermission, getPermission] = usePermissions(Permissions.AUDIO_RECORDING);
+  const [audios, setAudios] = useState([]);
   
-  
-  const [isRecording, setIsRecording] = useState();
-  
-
-  
-
-
+  async function PickAudio () {
+    let result = await DocumentPicker.getDocumentAsync({
+      type: "audio/*"
+    })
+    if (!result.cancelled) {
+      setAudios(audios.concat(result.uri))
+      setFormData(audios.concat(result.uri))
+    }
+  }
 
   return (
     <View>
@@ -59,9 +62,7 @@ import { set } from "react-native-reanimated";
           //justifyContent: "center",
           alignSelf: "center",
         }}
-        //onPress={isRecording ? stopRecording : startRecording}
-        //onPress={recording ? stopRecording : startRecording}
-        onPress={() => setIsRecording(!isRecording)}
+        onPress={PickAudio}
       >
         <View
           style={{
@@ -74,11 +75,9 @@ import { set } from "react-native-reanimated";
             alignItems: "center",
           }}
         >
-          <PlayPause type={isRecording ? "stop" : "record"} />
+
         </View>
         <Text style={{ textAlign: "center", marginTop: 15 }}>
-         
-           {isRecording ? "Stop" : "Record"} 
         </Text>
         
       </TouchableOpacity>

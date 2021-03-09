@@ -35,6 +35,9 @@ const CreateStoryScreen = ({ route, navigation }) => {
   const [formState, setFormState] = useState(0);
   const [story, setStory] = useState(data);
   const [submitError, setSubmitError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const db = firebase.database().ref("/stories");
 
   const setFormData = (field, text) => {
     let newData = { ...story };
@@ -109,52 +112,57 @@ const CreateStoryScreen = ({ route, navigation }) => {
     newData["id"] = id;
     setStory(newData);
 
-    const path = `story_files/${id}/.jpeg`;
-    const metadata = {
-      contentType: "image/jpeg",
-    };
+    db.push(newData).catch((error) => {
+      setSubmitError(error.message);
+    });
 
-    db.push(newData);
+    console.log(submitError);
 
     setSuccess(true);
 
-    return new Promise(async (res, rej) => {
-      const response = await fetch(image);
-      const file = await response.blob();
-      const upload = firebase.storage().ref(path).put(file, metadata);
-      upload.on(
-        "state_changed",
-        (snapshot) => {},
-        (err) => {
-          rej(err);
-        },
-        async () => {
-          const url = await upload.snapshot.ref.getDownloadURL();
-          res(url);
-        }
-      );
+    let promiseArray = newData.photos.map((image, index) => {
+      const path = `story_files/${id}/image-${index}.jpeg`;
+      const metadata = {
+        contentType: "image/jpeg",
+      };
+
+      return new Promise(async (res, rej) => {
+        const response = await fetch(image);
+        const file = await response.blob();
+        const upload = firebase.storage().ref(path).put(file, metadata);
+        upload.on(
+          "state_changed",
+          (snapshot) => {},
+          (err) => {
+            rej(err);
+          },
+          async () => {
+            const url = await upload.snapshot.ref.getDownloadURL();
+            res(url);
+          }
+        );
+      });
     });
+
+    return Promise.allSettled(promiseArray);
   };
 
   const formContinue = () => {
+    if (formState == formComponents.length - 2) {
+      handleSumbit().then((result) => console.log(result));
+    }
+
     if (formState < formComponents.length - 1 && !submitError) {
       setFormState(formState + 1);
-      console.log(story);
-    console.log(
-      ((formState / (formComponents.length - 2)) * 100).toString() + "%"
-    );
     }
-    // } else if (formState == formComponents.length - 2) {
-    //   firebase
-    //     .database()
-    //     .ref("stories")
-    //     .push(story)
-    //     .catch((error) => {
-    //       setSubmitError(error.message);
-    //     });
-    // }
-    
-  }; //toString((formState / (formComponents.length - 2)) * 100) + "%")
+  };
+
+  const formBack = () => {
+    if (formState > 0) {
+      setFormState(formState - 1);
+      console.log(story);
+    }
+  };
 
   const formTitle = [
     "Create Your Story",
@@ -203,7 +211,18 @@ const CreateStoryScreen = ({ route, navigation }) => {
 
       {formComponents[formState]}
       {submitError ? <Text> {submitError}</Text> : null}
-      <GradientButton onPress={() => formContinue()} title={"Continue"} />
+      <View style={{ flex: 1, flexDirection: "row", width: "100%" }}>
+        <GradientButton
+          style={{ flex: 1, width: "50%" }}
+          onPress={() => formBack()}
+          title={"Back"}
+        />
+        <GradientButton
+          style={{ flex: 1, width: "50%" }}
+          onPress={() => formContinue()}
+          title={"Continue"}
+        />
+      </View>
     </View>
   );
 };
@@ -214,6 +233,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 20,
     height: "100%",
+    width: "100%"
   },
   progressBar: {
     marginBottom: 20,

@@ -10,16 +10,30 @@ import {
 } from "react-native";
 import { Icon } from "react-native-elements";
 import GradientButton from "../components/GradientButton";
-
+import { firebase } from "../utils/firebase";
 import Header from "../components/Header"
 
 const RecentStories = ({ route, navigation }) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [formState, setFormState] = useState(0);
+  const [data, setData] = useState([])
+
+  const db = firebase.database().ref("/stories");
 
 
-
+useEffect(() => {
+        const handleData = snap => {
+          if (snap.val())
+            {
+                setData(snap.val().data);
+                console.log(snap.val());
+                //setCart(snap.val().data)
+            }
+        }
+        db.on('value', handleData, error => alert(error));
+        return () => { db.off('value', handleData); };
+    }, []);
 
 
   return (

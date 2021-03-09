@@ -38,15 +38,29 @@ useEffect(() => {
 
   return (
     <View style={styles.container}>
-      <Header title="Recent Stories" />
-
+      <Text style={styles.title}>Hello Storyteller</Text>
       <View style={{}}>
-        <Text>War Medals</Text>
-        <View style={{flexDirection: "row"}}>
-          <Image />
-          <Text>Your grandfather earned two medals of honor when he was in WWII, this is the story of what he did...</Text>
-          <Text>Last edited on March 3rd, 2021</Text>
-        </View>
+        <Text style={styles.text1}>Sharing your stories now ensures they are captured for future generations.</Text>
+      </View>
+      <View style={styles.buttonStyle}>
+        <GradientButton title={"Create a Story"} />
+      </View>
+      <View style={styles.title2}>
+        <Text style={styles.text2}>Recent Stories</Text>
+      </View>
+      <View>
+        <Text style={styles.text3}>New Story Title</Text>
+      </View>
+      <View style={styles.wrap1}>
+        <Text style={styles.text4}>New Story Photo</Text>
+        <Text style={styles.text5}>New Story Summary</Text>
+      </View>
+      <Text style={styles.text3}>War Medals</Text>
+      <View style={styles.wrap1}>
+        <Image style={styles.image} source={require("../assets/img/purpleheart.jpeg")} />
+        <Text style={styles.text5}>
+          Your grandfather earned two medals of honor when he was in WWII, this is the story of what he did...
+        </Text>
       </View>
     </View>
   );
@@ -84,6 +98,69 @@ const styles = StyleSheet.create({
     backgroundColor: "#AD00FF",
     borderRadius: 25,
   },
+  buttonStyle: {
+    marginTop: 35,
+  },
+  title2: {
+    marginTop: 45,
+  },
+  text1:{
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 14,
+    lineHeight: 16,
+    display: "flex",
+    alignItems: "center",
+    color: "#666666",
+  },
+  text2: {
+    color: "#9900CC",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 22,
+    lineHeight: 20,
+    marginBottom: 15,
+  },
+  text3: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 15,
+    lineHeight: 20,
+    color: "#666666",
+  },
+  wrap1: {
+    flex: 1,
+    flexDirection: "row",
+  },
+  text4: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 18,
+    lineHeight: 20,
+    backgroundColor: "#C4C4C4",
+    width: 75,
+    height: 71,
+    marginTop: 10,
+    marginRight: 20,
+    borderRadius: 5,
+  },
+  text5: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 14,
+    lineHeight: 19,
+    marginTop: 10,
+  },
+  image:{
+    width: 75, 
+    height: 71,
+    borderRadius: 5,
+  }
 });
 
 export default RecentStories;

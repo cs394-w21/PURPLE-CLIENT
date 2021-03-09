@@ -6,9 +6,6 @@ import GradientButton from '../GradientButton';
 import * as ImagePicker from 'expo-image-picker';
 import shit from "../../utils/utils"
 
-
-
-
 const UploadFormComponent = ({story, setFormData}) => {
 
   const [images, setImage] = useState([]);

@@ -18,25 +18,31 @@ const RecentStories = ({ route, navigation }) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [formState, setFormState] = useState(0);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   const db = firebase.database().ref("/stories");
 
   useEffect(() => {
     const handleData = (snap) => {
       if (snap.val()) {
-        setData(Object.values(snap.val()));
-        console.log(snap.val());
+        setData(snap.val());
+
         //setCart(snap.val().data)
       }
     };
-    
-    db.once("value", handleData, (error) => alert(error));
+
+    db.on("value", handleData, (error) => alert(error));
 
     return () => {
       db.off("value", handleData);
     };
   }, []);
+
+
+  useEffect(() => {
+    console.log("Data: " , data)
+  }, [data]);
+
 
   return (
     <View style={styles.container}>
@@ -53,9 +59,9 @@ const RecentStories = ({ route, navigation }) => {
       <View style={styles.title2}>
         <Text style={styles.text2}>Recent Stories</Text>
       </View>
-      {data.length > 1
-        ? data.map((story, index) => <RecentStory data={story} key={index} />)
-        : null}
+      {data != null
+        ? Object.values(data).map((story, index) => <RecentStory data={story} key={index} />)
+        : <Text> nurr </Text>}  
     </View>
   );
 };

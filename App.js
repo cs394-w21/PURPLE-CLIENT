@@ -36,7 +36,7 @@ export default function App() {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="New Story" tabBarOptions={{
+        <Tab.Navigator initialRouteName="Home" tabBarOptions={{
     activeTintColor: '#0091EA',
     inactiveTintColor: 'gray',
     style: {paddingVertical:  5, height: 60 },

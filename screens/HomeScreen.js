@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ImageBackground,
   TextInput,
+  ScrollView
 } from "react-native";
 import { Icon } from "react-native-elements";
 import GradientButton from "../components/GradientButton";
@@ -14,7 +15,7 @@ import { firebase } from "../utils/firebase";
 import Header from "../components/Header";
 import RecentStory from "../components/RecentStory";
 
-const RecentStories = ({ route, navigation }) => {
+const HomeScreen = ({ route, navigation }) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [formState, setFormState] = useState(0);
@@ -54,15 +55,16 @@ const RecentStories = ({ route, navigation }) => {
         </Text>
       </View>
       <View style={styles.buttonStyle}>
-        <GradientButton title={"Create a Story"} onPress={() => navigation.navigate("New Story")}/>
+        <GradientButton style={{flex: 1, width: "100%"}} title={"Create a Story"} onPress={() => navigation.navigate("New Story")}/>
       </View>
       <View style={styles.title2}>
         <Text style={styles.text2}>Recent Stories</Text>
       </View>
+      <ScrollView>
       {data != null
         ? Object.values(data).map((story, index) => <RecentStory data={story} key={index} />)
-        : <Text> nurr </Text>}  
-    
+        : <Text> Loading Stories </Text>}  
+      </ScrollView>
     </View>
   );
 };
@@ -164,4 +166,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RecentStories;
+export default HomeScreen;

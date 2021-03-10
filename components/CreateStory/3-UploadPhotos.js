@@ -4,7 +4,8 @@ import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
 import GradientButton from '../GradientButton';
 import * as ImagePicker from 'expo-image-picker';
-import shit from "../../utils/utils"
+import colors from '../../utils/utils';
+
 
 const UploadFormComponent = ({story, setFormData}) => {
 
@@ -35,7 +36,7 @@ const UploadFormComponent = ({story, setFormData}) => {
       setImage(images.concat(result.uri));
       setFormData("photos", images.concat(result.uri));
     }
-    console.log(shit)
+    console.log(colors)
   };
   
   return (
@@ -51,7 +52,7 @@ const UploadFormComponent = ({story, setFormData}) => {
             <Text>Select photos from your photo library.</Text>
             <Text>{'\n'}</Text>
             <Text>Please save existing files to your photo library or use your camera to capture new photos.</Text>
-            <GradientButton onPress={pickImage} start={{ x: 0.5, y: 0}} end={{ x: 0.5, y: 1}} colors={shit.blurple} title={"Upload Photos"}></GradientButton>
+            <GradientButton onPress={pickImage} start={{ x: 0.5, y: 0}} end={{ x: 0.5, y: 1}} colors={colors.blurple} title={"Upload Photos"}></GradientButton>
 
             {images.length == 0 ? 
             null : 

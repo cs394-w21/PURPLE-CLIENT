@@ -9,6 +9,7 @@ import {
   TextInput,
 } from "react-native";
 import { Icon } from "react-native-elements";
+import { LinearGradient } from "expo-linear-gradient";
 import GradientButton from "../components/GradientButton";
 
 import TitleFormComponent from "../components/CreateStory/1-Title";
@@ -19,6 +20,7 @@ import AtGlanceComponent from "../components/CreateStory/6-AtGlance";
 import SuccessComponent from "../components/CreateStory/7-Success";
 import RecordFormComponent from "../components/CreateStory/5-RecordStory";
 import { firebase } from "../utils/firebase";
+
 
 const data = {
   id: "",
@@ -211,7 +213,7 @@ const CreateStoryScreen = ({ route, navigation }) => {
 
       {formComponents[formState]}
       {submitError ? <Text> {submitError}</Text> : null}
-      <View style={{ flex: 1, flexDirection: "row", width: "100%" }}>
+      <View style={{ justifySelf: "flex-end", flexDirection: "row", width: "100%" }}>
         <GradientButton
           style={{ flex: 1, width: "50%" }}
           onPress={() => formBack()}

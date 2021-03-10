@@ -9,59 +9,28 @@ import {
   TextInput,
 } from "react-native";
 import { Icon } from "react-native-elements";
-import GradientButton from "../components/GradientButton";
+import GradientButton from "./GradientButton";
 import { firebase } from "../utils/firebase";
-import Header from "../components/Header";
-import RecentStory from "../components/RecentStory";
+import Header from "./Header"
 
-const RecentStories = ({ route, navigation }) => {
+const RecentStory = ({ data }) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [formState, setFormState] = useState(0);
-  const [data, setData] = useState(null);
-
-  const db = firebase.database().ref("/stories");
-
-  useEffect(() => {
-    const handleData = (snap) => {
-      if (snap.val()) {
-        setData(snap.val());
-
-        //setCart(snap.val().data)
-      }
-    };
-
-    db.on("value", handleData, (error) => alert(error));
-
-    return () => {
-      db.off("value", handleData);
-    };
-  }, []);
-
-
-  useEffect(() => {
-    console.log("Data: " , data)
-  }, [data]);
 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hello Storyteller</Text>
-      <View style={{}}>
-        <Text style={styles.text1}>
-          Sharing your stories now ensures they are captured for future
-          generations.
+  
+
+      <View> <Text style={styles.text3}>{data.title}</Text> </View>
+      <View style={styles.wrap1}>
+        { data.photos.length > 0 ?
+          <Image style={styles.image} source={require(`${data.photos[0]}`)} /> : null}
+        <Text style={styles.text5}>
+          {data.summary.slice(0, 50)}
         </Text>
       </View>
-      <View style={styles.buttonStyle}>
-        <GradientButton title={"Create a Story"} />
-      </View>
-      <View style={styles.title2}>
-        <Text style={styles.text2}>Recent Stories</Text>
-      </View>
-      {data != null
-        ? Object.values(data).map((story, index) => <RecentStory data={story} key={index} />)
-        : <Text> nurr </Text>}  
     </View>
   );
 };
@@ -104,7 +73,7 @@ const styles = StyleSheet.create({
   title2: {
     marginTop: 45,
   },
-  text1: {
+  text1:{
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -156,11 +125,11 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     marginTop: 10,
   },
-  image: {
-    width: 75,
+  image:{
+    width: 75, 
     height: 71,
     borderRadius: 5,
-  },
+  }
 });
 
-export default RecentStories;
+export default RecentStory;

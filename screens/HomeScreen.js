@@ -47,6 +47,9 @@ const HomeScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.imageDiv}>
+      <Image style={styles.image} source={require("../assets/img/GLIMPZ_logo.png")} />
+      </View>
       <Text style={styles.title}>Hello Storyteller</Text>
       <View style={{}}>
         <Text style={styles.text1}>
@@ -160,10 +163,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   image: {
-    width: 75,
-    height: 71,
+    width: 64,
+    height: 50,
     borderRadius: 5,
+    alignSelf: "flex-end",
   },
+  imageDiv: {
+    
+   flex: 1,
+  }
 });
 
 export default HomeScreen;

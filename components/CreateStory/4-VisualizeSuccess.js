@@ -10,7 +10,6 @@ const VisualizeFormComponent = ({story, setFormData, count}) => {
   return (
     
       <ScrollView>
-      
         <Text style={styles.text1}>
           Help me see the story through your eyes with visuals of keepsakes or loved ones...
         </Text>
@@ -24,7 +23,6 @@ const VisualizeFormComponent = ({story, setFormData, count}) => {
           />
           <Text style={styles.text2}>Success</Text>
         </View>
-
         <View>
           <Text style={styles.text3}>
             {count} files were connected to your story.

@@ -9,48 +9,28 @@ import {
   TextInput,
 } from "react-native";
 import { Icon } from "react-native-elements";
-import GradientButton from "../components/GradientButton";
+import GradientButton from "./GradientButton";
 import { firebase } from "../utils/firebase";
-import Header from "../components/Header"
-import RecentStory from "../components/RecentStory"
+import Header from "./Header"
 
-const RecentStories = ({ route, navigation }) => {
+const RecentStory = ({ data }) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [formState, setFormState] = useState(0);
   const [data, setData] = useState([])
 
-  const db = firebase.database().ref("/stories");
-
-
-useEffect(() => {
-        const handleData = snap => {
-          if (snap.val())
-            {
-                setData(snap.val().data);
-                console.log(snap.val());
-                //setCart(snap.val().data)
-            }
-        }
-        db.on('value', handleData, error => alert(error));
-        return () => { db.off('value', handleData); };
-    }, []);
-
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hello Storyteller</Text>
-      <View style={{}}>
-        <Text style={styles.text1}>Sharing your stories now ensures they are captured for future generations.</Text>
-      </View>
-      <View style={styles.buttonStyle}>
-        <GradientButton title={"Create a Story"} />
-      </View>
-      <View style={styles.title2}>
-        <Text style={styles.text2}>Recent Stories</Text>
-      </View>
-{ Object.values(data).map((story) => <RecentStories data={story} key={index} />)}
+  
 
+      <View> <Text style={styles.text3}>{data.title}</Text> </View>
+      <View style={styles.wrap1}>
+        <Image style={styles.image} source={require(`${data.photos[0]}`)} />
+        <Text style={styles.text5}>
+          {data.summary.slice(0, 50)}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -152,4 +132,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RecentStories;
+export default RecentStory;

@@ -40,7 +40,7 @@ const RecentStories = ({ route, navigation }) => {
 
 
   useEffect(() => {
-    console.log("Data: " , data)
+    if (data) console.log("Data: " , Object.values(data)[0])
   }, [data]);
 
 
@@ -62,6 +62,7 @@ const RecentStories = ({ route, navigation }) => {
       {data != null
         ? Object.values(data).map((story, index) => <RecentStory data={story} key={index} />)
         : <Text> nurr </Text>}  
+    
     </View>
   );
 };

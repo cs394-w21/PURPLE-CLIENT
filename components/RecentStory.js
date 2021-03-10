@@ -11,25 +11,32 @@ import {
 import { Icon } from "react-native-elements";
 import GradientButton from "./GradientButton";
 import { firebase } from "../utils/firebase";
-import Header from "./Header"
+import Header from "./Header";
+
+const story = {
+  id: "yerr",
+  title: "yerr",
+  summary: "yerr",
+  story: "",
+  photos: [],
+  audios: [],
+};
 
 const RecentStory = ({ data }) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
-  const [formState, setFormState] = useState(0);
-
+  const [formState, setFormState] = useState();
 
   return (
     <View style={styles.container}>
-  
-
-      <View> <Text style={styles.text3}>{data.title}</Text> </View>
+      <View>
+        
+        <Text style={styles.text3}>{data.title}</Text>
+      </View>
       <View style={styles.wrap1}>
-        { data.photos.length > 0 ?
-          <Image style={styles.image} source={require(`${data.photos[0]}`)} /> : null}
-        <Text style={styles.text5}>
-          {data.summary.slice(0, 50)}
-        </Text>
+        {/* { data.photos.length > 0 ?
+          <Image style={styles.image} source={require(`${story.photos[0]}`)} /> : null} */}
+        <Text style={styles.text5}>{data.summary.slice(0, 50)}</Text>
       </View>
     </View>
   );
@@ -73,7 +80,7 @@ const styles = StyleSheet.create({
   title2: {
     marginTop: 45,
   },
-  text1:{
+  text1: {
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -125,11 +132,11 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     marginTop: 10,
   },
-  image:{
-    width: 75, 
+  image: {
+    width: 75,
     height: 71,
     borderRadius: 5,
-  }
+  },
 });
 
 export default RecentStory;

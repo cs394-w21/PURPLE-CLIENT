@@ -23,7 +23,8 @@ import * as DocumentPicker from 'expo-document-picker';
 
   const RecordFormComponent = ({ story, setFormData }) => {
   const [audios, setAudios] = useState([]);
-  
+  const [message, setMessage] = useState(null);
+
   async function PickAudio () {
     let result = await DocumentPicker.getDocumentAsync({
       type: "audio/*", copyToCacheDirectory: true
@@ -32,6 +33,7 @@ import * as DocumentPicker from 'expo-document-picker';
       setAudios(audios.concat(result))
       setFormData(audios.concat(result.uri))
     }
+
   }
 
   return (
@@ -60,8 +62,9 @@ import * as DocumentPicker from 'expo-document-picker';
       <TouchableOpacity
         style={{
           alignSelf: "center",
+          justifyContent: "center"
         }}
-        onPress={PickAudio}
+        onPress={audios.length == 0 ? PickAudio : () => alert("You have already uploaded an audio file. Remove the existing one to re-upload.")}
       >
         <View
           style={{
@@ -76,6 +79,7 @@ import * as DocumentPicker from 'expo-document-picker';
         >
         </View>
         <Text style={{ textAlign: "center", marginTop: 15 }}>
+          {audios.length == 0 ? "Upload" : "Success!"}
         </Text>
         
       </TouchableOpacity>
@@ -86,7 +90,6 @@ import * as DocumentPicker from 'expo-document-picker';
 const AudioElement = ({ title, length, my_uri, setAudios }) => {
   const [sound, setSound] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [success, setSuccess] = useState(false);
   const audiouri = my_uri;
   const sound_obj = new Audio.Sound();
 
@@ -119,12 +122,21 @@ const AudioElement = ({ title, length, my_uri, setAudios }) => {
         }}
       >
         <TouchableOpacity onPress={() => playAudio()}>
+          {isPlaying ? 
+            <Icon
+            type="font-awesome-5"
+            name="stop"
+            color="#FB37FF"
+            iconStyle={{ fontSize: 20 }}
+          />
+          :
           <Icon
             type="font-awesome-5"
             name="play"
             color="#FB37FF"
             iconStyle={{ fontSize: 20 }}
           />
+          }
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setAudios([])}>
           <Icon
@@ -136,19 +148,6 @@ const AudioElement = ({ title, length, my_uri, setAudios }) => {
         </TouchableOpacity>
       </View>
     </View>
-  );
-};
-
-const PlayPause = ({ type }) => {
-  return (
-    <LinearGradient
-      start={{ x: 1, y: 0 }}
-      end={{ x: 0, y: 1 }}
-      colors={
-        type == "record" ? ["#AD00FF", "#00B1FD"] : ["#FF5C00", "#FB37FF"]
-      }
-      style={type == "record" ? styles.recordButton : styles.stopButton}
-    ></LinearGradient>
   );
 };
 
@@ -166,11 +165,6 @@ const styles = StyleSheet.create({
     fontSize: "24px",
     lineHeight: "20px",
     color: "#AD00FF",
-    /* identical to box height, or 83% */
-
-    /* Purple */
-
-    // color: linear-gradient(191.88deg, #AD00FF 29.85%, #00B1FD 100%);
   },
   textDivision: {marginBottom: 30},
   textWrap: {

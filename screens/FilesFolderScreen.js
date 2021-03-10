@@ -17,6 +17,10 @@ import * as purpleHeart from "../assets/img/purpleheart.jpeg";
 const FilesFolderScreen = ({navigation, route}) => {
   const [photos, setPhotos] = useState(route.params.photos);
   const [favorite, setFavorite] = useState(false);
+
+  // useEffect(() => {
+  //   setCurrentComp(FilesFolderScreen);
+  // }, []); 
   return (
     <View style={styles.container}>
       <Header />

@@ -4,11 +4,9 @@ import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
 
 
+
+
 const TitleFormComponent = ({story, setFormData}) => {
-
-  
-
-
   return (
     
       <View>
@@ -124,7 +122,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderWidth: 1,
     height: 100,
-
+    borderRadius: 5,
   },
   textFieldContentTitle: {
     fontFamily: "Roboto",
@@ -136,6 +134,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderWidth: 1,
     height: 25,
+    borderRadius: 5,
 
   },
 });

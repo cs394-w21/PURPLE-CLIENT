@@ -21,15 +21,15 @@ import { set } from "react-native-reanimated";
 import * as DocumentPicker from 'expo-document-picker';
 
 
-  const RecordFormComponent = ({ story, setStory }) => {
+  const RecordFormComponent = ({ story, setFormData }) => {
   const [audios, setAudios] = useState([]);
   
   async function PickAudio () {
     let result = await DocumentPicker.getDocumentAsync({
-      type: "audio/*"
+      type: "audio/*", copyToCacheDirectory: true
     })
     if (!result.cancelled) {
-      setAudios(audios.concat(result.uri))
+      setAudios(audios.concat(result))
       setFormData(audios.concat(result.uri))
     }
   }
@@ -46,20 +46,18 @@ import * as DocumentPicker from 'expo-document-picker';
       </Text>
       </View>
       <ScrollView>
-      {audios.map((index) => (
+      {audios.map((value, index) => (
         <AudioElement
-          length="00:00"
-
-          count={index + 1}
-          title="Story"
+          length={value.size}
+          title={value.name}
           key={index}
+          my_uri={value.uri}
         />
       ))}
       </ScrollView>
      
       <TouchableOpacity
         style={{
-          //justifyContent: "center",
           alignSelf: "center",
         }}
         onPress={PickAudio}
@@ -75,7 +73,6 @@ import * as DocumentPicker from 'expo-document-picker';
             alignItems: "center",
           }}
         >
-
         </View>
         <Text style={{ textAlign: "center", marginTop: 15 }}>
         </Text>
@@ -85,12 +82,31 @@ import * as DocumentPicker from 'expo-document-picker';
   );
 };
 
-const AudioElement = ({ title, count, length }) => {
+const AudioElement = ({ title, length, my_uri }) => {
+  const [sound, setSound] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const audiouri = my_uri;
+  const sound_obj = new Audio.Sound();
+
+  async function playAudio() {
+    if (! isPlaying) {
+      sound_obj.setOnPlaybackStatusUpdate();
+      await sound_obj.loadAsync({uri: audiouri});
+      await sound_obj.playAsync();
+      setSound(sound_obj);
+      setIsPlaying(true);
+    } else {
+      await sound.pauseAsync();
+      setIsPlaying(false);
+    }
+  }
+
   return (
     <View style={{ marginBottom: 30 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text>
-          {title} {count}
+          {title}
         </Text>
         <Text>{length}</Text>
       </View>
@@ -101,7 +117,7 @@ const AudioElement = ({ title, count, length }) => {
           justifyContent: "flex-end",
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => playAudio()}>
           <Icon
             type="font-awesome-5"
             name="play"
@@ -109,7 +125,7 @@ const AudioElement = ({ title, count, length }) => {
             iconStyle={{ fontSize: 20 }}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setAudios()}>
           <Icon
             type="font-awesome-5"
             name="trash"

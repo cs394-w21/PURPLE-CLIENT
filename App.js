@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, View } from "react-native";
 //import Story from './components/Story';
 import Success from "./components/Success";
@@ -24,6 +24,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 export default function App() {
+  
   const story = {
     title: "testtest",
     image: "../test1.jpg",
@@ -37,14 +38,12 @@ export default function App() {
     <PaperProvider>
       <NavigationContainer>
         <Tab.Navigator initialRouteName="Home" tabBarOptions={{
-    activeTintColor: '#0091EA',
-    inactiveTintColor: 'gray',
-    style: {paddingVertical:  5, height: 60 },
-    labelStyle: {fontSize: 13, fontWeight: "500",  paddingBottom: 5, zIndex: 0 },
-}}>
-          
+          activeTintColor: '#0091EA',
+          inactiveTintColor: 'gray',
+          style: {paddingVertical:  5, height: 60 },
+          labelStyle: {fontSize: 13, fontWeight: "500",  paddingBottom: 5, zIndex: 0 },
+        }}>
           <Tab.Screen
-            
             component={HomeScreen}
             name="Home"
             options={{
@@ -64,35 +63,26 @@ export default function App() {
           <Tab.Screen
             component={mainApp}
             name="Browse"
+            listeners={{
+              tabPress: e => {
+                // Prevent default action
+                e.preventDefault();
+              },
+            }}
             options={{
-              title: "Browse",
+              title: "",
               tabBarIcon: () => (
-                <Icon
-                  type="font-awesome-5"
-                  name="border-all"
-                  color="#666"
-                  style={{zIndex: 0}}
-                  iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
-                />
+                // <Icon
+                //   type="font-awesome-5"
+                //   name="border-all"
+                //   color="#666"
+                //   style={{zIndex: 0}}
+                //   iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
+                // />
+                <View></View>
               ),
             }}
           />
-          {/* <Tab.Screen
-            component={Success}
-            name="New Story"
-            options={{
-              title: "New Story",
-              tabBarIcon: () => (
-                <Icon
-                  type="font-awesome-5"
-                  name="plus-circle"
-                  color="#FC44A9"
-                  style={{zIndex: 1, justifyContent:"flex-start", alignItems:"center", paddingTop: 15, borderRadius: 500, width: 75, height: 75, backgroundColor: "white"}}
-                  iconStyle={{ fontSize: 20, }}
-                />
-              ),
-            }}
-          /> */}
           <Tab.Screen
             component={CreateStoryScreen}
             name="New Story"
@@ -112,33 +102,45 @@ export default function App() {
           <Tab.Screen
             component={mainApp}
             name="Account"
+            listeners={{
+              tabPress: e => {
+                // Prevent default action
+                e.preventDefault();
+              },
+            }}
             options={{
-              title: "Account",
+              title: "",
               tabBarIcon: () => (
-                <Icon
-                  type="font-awesome-5"
-                  name="user-cog"
-                  color="#666"
-                  style={{zIndex: 0}}
-                  iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
-                />
+                // <Icon
+                //   type="font-awesome-5"
+                //   name="user-cog"
+                //   color="#666"
+                //   style={{zIndex: 0}}
+                //   iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
+                // />
+                <View></View>
               ),
             }}
           />
           <Tab.Screen
             component={mainApp}
             name="More"
-
+            listeners={{
+              tabPress: e => {
+                // Prevent default action
+                e.preventDefault();
+              },
+            }}
             options={{
-              title: "More",
-
+              title: "",
               tabBarIcon: () => (
-                <Icon
-                  type="font-awesome-5"
-                  name="ellipsis-h"
-                  color="#666"
-                  iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
-                />
+                // <Icon
+                //   type="font-awesome-5"
+                //   name="ellipsis-h"
+                //   color="#666"
+                //   iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
+                // />
+                <View></View>
               ),
             }}
           />
@@ -148,9 +150,39 @@ export default function App() {
   );
 }
 
-const mainApp = () => {
+
+const mainApp = ({navigation}) => {
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('tabPress', e => {
+  //     // Prevent default behavior
+  //     if (e.target.includes("More")) e.preventDefault();
+
+  //     alert('Default behavior prevented');
+  //     // Do something manually
+  //     // ...
+  //   });
+
+  //   return unsubscribe;
+  // }, []);
+
+  // const unsubscribe = navigation.addListener('tabPress', e => {
+  //   // Prevent default behavior
+  //   if (e.target.includes("More")) e.preventDefault();
+
+  //   alert('Default behavior prevented');
+  //   // Do something manually
+  //   // ...
+  // });
+
+
+
   return (<Stack.Navigator>  
    
+   {/* <Stack.Screen
+    name="RecentStories"
+    component={RecentStories}
+    options={{ headerShown: false, title: "" }}
+    /> */}
   <Stack.Screen
     name="SummaryScreen"
     component={SummaryScreen}

@@ -153,16 +153,24 @@ const CreateStoryScreen = ({ route, navigation }) => {
     if (formState == formComponents.length - 2) {
       handleSumbit().then((result) => console.log(result));
     }
-
+    if (formState == formComponents.length - 1) {
+      
+      setFormState(0);
+      navigation.navigate("Home")
+      return
+    }
     if (formState < formComponents.length - 1 && !submitError) {
       setFormState(formState + 1);
     }
+    
   };
 
   const formBack = () => {
     if (formState > 0) {
       setFormState(formState - 1);
       console.log(story);
+    } else if (formState == 0) {
+      navigation.navigate("Home")
     }
   };
 

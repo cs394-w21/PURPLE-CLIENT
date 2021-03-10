@@ -17,7 +17,6 @@ const RecentStory = ({ data }) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [formState, setFormState] = useState(0);
-  const [data, setData] = useState([])
 
 
   return (
@@ -26,7 +25,8 @@ const RecentStory = ({ data }) => {
 
       <View> <Text style={styles.text3}>{data.title}</Text> </View>
       <View style={styles.wrap1}>
-        <Image style={styles.image} source={require(`${data.photos[0]}`)} />
+        { data.photos.length > 0 ?
+          <Image style={styles.image} source={require(`${data.photos[0]}`)} /> : null}
         <Text style={styles.text5}>
           {data.summary.slice(0, 50)}
         </Text>

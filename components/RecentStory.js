@@ -12,6 +12,8 @@ import { Icon } from "react-native-elements";
 import GradientButton from "./GradientButton";
 import { firebase } from "../utils/firebase";
 import Header from "./Header";
+import { database } from "firebase";
+import { _DEFAULT_INITIAL_PLAYBACK_STATUS } from "expo-av/build/AV";
 
 const story = {
   id: "yerr",
@@ -26,6 +28,18 @@ const RecentStory = ({ data }) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [formState, setFormState] = useState();
+  const [images, setImages] = useState([])
+
+  useEffect(() => {
+    console.log(data.photos)
+    data.photos.map((item, index) => {firebase.storage()
+      .ref(`story_files/${data.id}/image-${index}.jpeg`) //name in storage in firebase console
+      .getDownloadURL()
+      .then((url) => {
+          setImages([...images, url]);
+      })
+      .catch((e) => console.log('Errors while downloading => ', e));})
+}, []);
 
   return (
     <View style={styles.container}>
@@ -34,8 +48,8 @@ const RecentStory = ({ data }) => {
         <Text style={styles.text3}>{data.title}</Text>
       </View>
       <View style={styles.wrap1}>
-        {/* { data.photos.length > 0 ?
-          <Image style={styles.image} source={require(`${story.photos[0]}`)} /> : null} */}
+        { images.length > 0 ?
+          <Image style={styles.image} source={{uri: images[0]}} /> : null}
         <Text style={styles.text5}>{data.summary.slice(0, 50)}</Text>
       </View>
     </View>

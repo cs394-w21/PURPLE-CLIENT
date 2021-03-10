@@ -54,7 +54,7 @@ const RecentStories = ({ route, navigation }) => {
         </Text>
       </View>
       <View style={styles.buttonStyle}>
-        <GradientButton title={"Create a Story"} />
+        <GradientButton title={"Create a Story"} onPress={() => navigation.navigate("New Story")}/>
       </View>
       <View style={styles.title2}>
         <Text style={styles.text2}>Recent Stories</Text>

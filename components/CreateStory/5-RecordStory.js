@@ -52,6 +52,7 @@ import * as DocumentPicker from 'expo-document-picker';
           title={value.name}
           key={index}
           my_uri={value.uri}
+          setAudios={setAudios}
         />
       ))}
       </ScrollView>
@@ -82,7 +83,7 @@ import * as DocumentPicker from 'expo-document-picker';
   );
 };
 
-const AudioElement = ({ title, length, my_uri }) => {
+const AudioElement = ({ title, length, my_uri, setAudios }) => {
   const [sound, setSound] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -125,7 +126,7 @@ const AudioElement = ({ title, length, my_uri }) => {
             iconStyle={{ fontSize: 20 }}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAudios()}>
+        <TouchableOpacity onPress={() => setAudios([])}>
           <Icon
             type="font-awesome-5"
             name="trash"

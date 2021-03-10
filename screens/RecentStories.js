@@ -11,37 +11,41 @@ import {
 import { Icon } from "react-native-elements";
 import GradientButton from "../components/GradientButton";
 import { firebase } from "../utils/firebase";
-import Header from "../components/Header"
-import RecentStory from "../components/RecentStory"
+import Header from "../components/Header";
+import RecentStory from "../components/RecentStory";
 
 const RecentStories = ({ route, navigation }) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [formState, setFormState] = useState(0);
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   const db = firebase.database().ref("/stories");
 
+  useEffect(() => {
+    const handleData = (snap) => {
+      if (snap.val()) {
+        setData(Object.values(snap.val()));
+        console.log(snap.val());
+        //setCart(snap.val().data)
+      }
+    };
+    
+    db.once("value", handleData, (error) => alert(error));
 
-useEffect(() => {
-        const handleData = snap => {
-          if (snap.val())
-            {
-                setData(snap.val().data);
-                console.log(snap.val());
-                //setCart(snap.val().data)
-            }
-        }
-        db.on('value', handleData, error => alert(error));
-        return () => { db.off('value', handleData); };
-    }, []);
-
+    return () => {
+      db.off("value", handleData);
+    };
+  }, []);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Hello Storyteller</Text>
       <View style={{}}>
-        <Text style={styles.text1}>Sharing your stories now ensures they are captured for future generations.</Text>
+        <Text style={styles.text1}>
+          Sharing your stories now ensures they are captured for future
+          generations.
+        </Text>
       </View>
       <View style={styles.buttonStyle}>
         <GradientButton title={"Create a Story"} />
@@ -49,8 +53,9 @@ useEffect(() => {
       <View style={styles.title2}>
         <Text style={styles.text2}>Recent Stories</Text>
       </View>
-{ Object.values(data).map((story) => <RecentStories data={story} key={index} />)}
-
+      {data.length > 1
+        ? data.map((story, index) => <RecentStory data={story} key={index} />)
+        : null}
     </View>
   );
 };
@@ -93,7 +98,7 @@ const styles = StyleSheet.create({
   title2: {
     marginTop: 45,
   },
-  text1:{
+  text1: {
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -145,11 +150,11 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     marginTop: 10,
   },
-  image:{
-    width: 75, 
+  image: {
+    width: 75,
     height: 71,
     borderRadius: 5,
-  }
+  },
 });
 
 export default RecentStories;

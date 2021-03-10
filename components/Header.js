@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   title: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: "24px",

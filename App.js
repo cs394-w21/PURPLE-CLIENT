@@ -20,13 +20,6 @@ import HomeScreen from './screens/HomeScreen';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
-// const fetchFonts = () => {
-//   return Font.loadAsync({
-//   'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf'),
-//   'roboto-italic': require('./assets/fonts/Roboto-Italic.ttf'),
-//   'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf')
-//   });
-//   };
 
 
 const Tab = createBottomTabNavigator();
@@ -34,16 +27,14 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 export default function App() {
-  // const [dataLoaded, setDataLoaded ] = useState(false);
-
-  // if(!dataLoaded){
-  //   return (
-  //     <AppLoading
-  //       startAsync={fetchFonts}
-  //       onFinish={()=>  setDataLoaded(true)}
-  //     />
-  //   );
-  // }
+  
+  useEffect(() => {
+    Font.loadAsync({
+      'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf'),
+      'roboto-italic': require('./assets/fonts/Roboto-Italic.ttf'),
+      'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf')
+      });
+  }, [])
 
   const story = {
     title: "testtest",

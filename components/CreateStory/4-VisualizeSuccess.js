@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     width: "60%",
   },
   title: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: "24px",
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     marginTop: 40,
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle:  "italic",
     fontWeight: "bold",
     color: "#666666",
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   text3: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle:  "italic",
     fontWeight: "bold",
     color: "#666666",
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     
   },
   text4: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle:  "italic",
     fontWeight: "medium",
     color: "#666666",
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   textFieldTitle: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle:  "normal",
     fontWeight: "normal",
     color: "#666666",
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   textFieldContent: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle:  "italic",
     fontWeight: "Light",
     color: "#666666",
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
 
   },
   textFieldContentTitle: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle:  "italic",
     fontWeight: "Light",
     color: "#666666",

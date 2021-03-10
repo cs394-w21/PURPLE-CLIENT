@@ -42,7 +42,7 @@ const ReadStoryScreen = (route) => {
 };
 const styles = StyleSheet.create({
   body: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontSize: "16px",
     fontStyle: "normal",
     fontWeight: 400,

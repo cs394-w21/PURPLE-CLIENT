@@ -27,13 +27,12 @@ const RecordFormComponent = ({ story, setFormData }) => {
   const [message, setMessage] = useState(null);
 
   async function PickAudio() {
-    let result = await DocumentPicker.getDocumentAsync({
-      type: "audio/*",
-      copyToCacheDirectory: true,
-    });
+   let result = await DocumentPicker.getDocumentAsync({
+      type: "audio/mp3", copyToCacheDirectory: true
+    })
     if (!result.cancelled) {
-      setAudios(audios.concat(result));
-      setFormData(audios.concat(result.uri));
+      setAudios(audios.concat(result))
+      setFormData("audios", [result.uri])
     }
   }
 
@@ -134,7 +133,10 @@ const AudioElement = ({ title, length, my_uri, setAudios }) => {
             />
           )}
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAudios([])}>
+        <TouchableOpacity onPress={() => {
+          setAudios([])
+          setFormData("audios", [])
+        }}>
           <Icon
             type="font-awesome-5"
             name="trash"

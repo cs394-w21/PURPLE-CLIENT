@@ -48,6 +48,7 @@ const CreateStoryScreen = ({ route, navigation }) => {
   };
 
   const formComponents = [
+  
     <TitleFormComponent
       story={story}
       setStory={setStory}
@@ -63,12 +64,12 @@ const CreateStoryScreen = ({ route, navigation }) => {
       setStory={setStory}
       setFormData={setFormData}
     />,
-    <VisualizeFormComponent
-      story={story}
-      count={story.photos.length}
-      setStory={setStory}
-      setFormData={setFormData}
-    />,
+    // <VisualizeFormComponent
+    //   story={story}
+    //   count={story.photos.length}
+    //   setStory={setStory}
+    //   setFormData={setFormData}
+    // />,
     <RecordFormComponent
     story={story}
     setStory={setStory}
@@ -178,7 +179,6 @@ const CreateStoryScreen = ({ route, navigation }) => {
     "Create Your Story",
     "Write Your Story",
     "Visualize Your Story",
-    "Visualize Your Story",
     "Tell Your Story",
     "At A Glance",
     "",
@@ -186,7 +186,6 @@ const CreateStoryScreen = ({ route, navigation }) => {
   const formStep = [
     "",
     "Step 1 of 3",
-    "Step 2 of 3",
     "Step 2 of 3",
     "Step 3 of 3",
     "",
@@ -230,7 +229,7 @@ const CreateStoryScreen = ({ route, navigation }) => {
         <GradientButton
           style={{ flex: 1, width: "50%" }}
           onPress={() => formContinue()}
-          title={"Continue"}
+          title={formState == formComponents.length - 2 ? "Save" : formState == formComponents.length - 1 ? "View Stories" : "Continue"}
         />
       </View>
     </View>

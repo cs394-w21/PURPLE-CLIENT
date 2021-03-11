@@ -27,13 +27,12 @@ import * as DocumentPicker from 'expo-document-picker';
 
   async function PickAudio () {
     let result = await DocumentPicker.getDocumentAsync({
-      type: "audio/*", copyToCacheDirectory: true
+      type: "audio/mp3", copyToCacheDirectory: true
     })
     if (!result.cancelled) {
       setAudios(audios.concat(result))
-      setFormData(audios.concat(result.uri))
+      setFormData("audios", [result.uri])
     }
-
   }
 
   return (
@@ -138,7 +137,10 @@ const AudioElement = ({ title, length, my_uri, setAudios }) => {
           />
           }
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAudios([])}>
+        <TouchableOpacity onPress={() => {
+          setAudios([])
+          setFormData("audios", [])
+        }}>
           <Icon
             type="font-awesome-5"
             name="trash"

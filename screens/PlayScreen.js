@@ -12,20 +12,28 @@ const PlayScreen = ({route, navigation}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [length, setLength] = useState(0);
   const [favorite, setFavorite] = useState(false);
+  const [source, setSource] = useState(true);
   const story = route.params.story
   const photos = route.params.photos
 
-
+  // old require : "../assets/sound/ww2.m4a"
   useEffect(() => {
     playPauseSound();
   }, []);
 
+
+  
+
   async function playPauseSound() {
     //initial play
+    if (story.audios.length == 0) {
+      setSource(false);
+      return;
+    }
     if (!sound) {
       console.log("Loading Sound");
       const { sound } = await Audio.Sound.createAsync(
-        require("../assets/sound/ww2.m4a"),
+        story.audios[0],
         {
           volume: 0.5,
         }
@@ -88,7 +96,7 @@ const PlayScreen = ({route, navigation}) => {
   }
 
   useEffect(() => {
-    return sound
+    return sound && source
       ? () => {
           console.log("Unloading Sound");
           sound.unloadAsync();

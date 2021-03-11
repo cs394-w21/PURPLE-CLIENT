@@ -58,6 +58,9 @@ const HomeScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.imageDiv}>
+      <Image style={styles.image} source={require("../assets/img/GLIMPZ_logo.png")} />
+      </View>
       <Text style={styles.title}>Hello Storyteller</Text>
       <View style={{}}>
         <Text style={styles.text1}>
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     color: "#FF5C00",
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
     marginTop: 45,
   },
   text1: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 14,
@@ -130,7 +133,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     color: "#9900CC",
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 22,
@@ -138,7 +141,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   text3: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 15,
@@ -150,7 +153,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   text4: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 18,
@@ -163,7 +166,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   text5: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 14,
@@ -171,10 +174,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   image: {
-    width: 75,
-    height: 71,
+    width: 64,
+    height: 50,
     borderRadius: 5,
+    alignSelf: "flex-end",
   },
+  imageDiv: {
+    
+   flex: 1,
+  }
 });
 
 export default HomeScreen;

@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   title: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 24,

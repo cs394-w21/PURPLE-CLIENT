@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     { width: "31%", height: 100, margin: "1%", borderWidth: 2, borderColor: "grey" }
   ,
   title: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 24,

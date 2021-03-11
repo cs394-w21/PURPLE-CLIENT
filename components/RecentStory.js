@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     color: "#FF5C00",
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     marginTop: 45,
   },
   text1: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 14,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     color: "#9900CC",
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 22,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   text3: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 15,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   text4: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 18,
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   text5: {
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 14,

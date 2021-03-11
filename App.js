@@ -17,6 +17,9 @@ import FilesFolderScreen from "./screens/FilesFolderScreen";
 import CreateStoryScreen from "./screens/CreateStoryScreen";
 import TitleFormComponent from "./components/CreateStory/4-VisualizeSuccess";
 import HomeScreen from './screens/HomeScreen';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -25,6 +28,14 @@ const Stack = createStackNavigator();
 
 export default function App() {
   
+  useEffect(() => {
+    Font.loadAsync({
+      'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf'),
+      'roboto-italic': require('./assets/fonts/Roboto-Italic.ttf'),
+      'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf')
+      });
+  }, [])
+
   const story = {
     title: "testtest",
     image: "../test1.jpg",

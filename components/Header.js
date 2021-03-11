@@ -4,13 +4,13 @@ import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { Icon } from "react-native-elements";
 
 
-const Header = () => {
+const Header = ({title}) => {
   const [favorite, setFavorite] = useState(false);
   return (
     
       <View style={styles.header}>
         
-          <Text style={styles.title}>War medals</Text>
+          <Text style={styles.title}>{title}</Text>
         
         
           <TouchableOpacity

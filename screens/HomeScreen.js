@@ -20,6 +20,7 @@ const HomeScreen = ({ route, navigation }) => {
   const [summary, setSummary] = useState("");
   const [formState, setFormState] = useState(0);
   const [data, setData] = useState(null);
+  const [lofImages, setLofImages] = useState([])
 
   const db = firebase.database().ref("/stories");
 
@@ -27,7 +28,10 @@ const HomeScreen = ({ route, navigation }) => {
     const handleData = (snap) => {
       if (snap.val()) {
         setData(snap.val());
-
+        console.log(Object.values(snap.val()).length)
+       
+        let arr = Object.values(snap.val()).map(() => [])
+        setLofImages(arr)
         //setCart(snap.val().data)
       }
     };
@@ -41,7 +45,14 @@ const HomeScreen = ({ route, navigation }) => {
 
 
   useEffect(() => {
-    if (data) console.log("Data: " , Object.values(data)[0])
+    if (data) {
+      console.log("lof", lofImages)
+      console.log("Data: " , Object.values(data)[0])
+
+     
+
+
+    }
   }, [data]);
 
 
@@ -62,7 +73,7 @@ const HomeScreen = ({ route, navigation }) => {
       </View>
       <ScrollView>
       {data != null
-        ? Object.values(data).map((story, index) => <RecentStory data={story} key={index} />)
+        ? Object.values(data).map((story, index) => { const images = lofImages[index]; console.log("lof", lofImages); return <TouchableOpacity onPress={() => navigation.navigate("SummaryScreen", {story, images})}><RecentStory lofImages={lofImages} setLofImages={setLofImages} data={story} key={index} index={index}/></TouchableOpacity> })
         : <Text> Loading Stories </Text>}  
       </ScrollView>
     </View>

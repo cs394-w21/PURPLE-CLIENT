@@ -24,23 +24,36 @@ const pictures = [
   require("../assets/img/chart.jpeg"),
 ];
 
-const ReadStoryScreen = ({ navigation, route }) => {
+
+const SummaryScreen = ({ navigation, route }) => {
   const [favorite, setFavorite] = useState(false);
-  const [photos, setPhotos] = useState(pictures);
+  const [photos, setPhotos] = useState(route.params.images);
+  const story = route.params.story
+
+console.log(photos)
+    if (!story.title) story.title = "";
+    if (!story.summary) story.summary = "";
+    if (!story.story) story.story = "";
+    if (!story.photos) story.photos = [];
+    if (!story.audios) story.audios = [];
+
+
+
+
   return (
     <ScrollView style={styles.container}>
-      <Header />
+      <Header title={story.title}/>
       <View style={styles.pictureGrid}>
-        {photos.slice(0, 5).map((photo, index) => (
-          <TouchableOpacity key={index} style={styles.imgButton} onPress={() => navigation.navigate("FilesScreen", {photos, index})}>
+        {photos ? photos.slice(0, 5).map((photo, index) => (
+          <TouchableOpacity key={index} style={styles.imgButton} onPress={() => navigation.navigate("FilesScreen", {photos, index, story})}>
             <Image
               style={styles.imgSquare}
               source={photo} /* need to fix import */
             />
           </TouchableOpacity>
-        ))}
+        )) : null}
         <TouchableOpacity
-          onPress={() => navigation.navigate("FilesFolderScreen", {photos})}
+          onPress={() => navigation.navigate("FilesFolderScreen", {photos, story})}
           style={styles.imgButton}
         >
           <Text style={{ fontWeight: "bold", color: "grey" }}>View All</Text>
@@ -49,8 +62,7 @@ const ReadStoryScreen = ({ navigation, route }) => {
       <View style={styles.caption}>
         <Text style={styles.captionHeader}>Summary</Text>
         <Text style={styles.captionBody}>
-          Your grandfather earned two medals of honor when he was in WWII, this
-          is the story of what he did...
+          {story.summary.slice(0,100) + "..."}
         </Text>
       </View>
       <View style={styles.contentDiv}>
@@ -60,8 +72,8 @@ const ReadStoryScreen = ({ navigation, route }) => {
       <View style={styles.contentDiv}>
         <Text style={styles.contentsDivHeader}>This story contains</Text>
         <Text style={styles.text}>Audio: 7 minutes</Text>
-        <Text style={styles.text}>Photos: 6</Text>
-        <Text style={styles.text}>Documents: 1</Text>
+        <Text style={styles.text}>Photos: {story.photos.length}</Text>
+        <Text style={styles.text}>Documents: {story.photos.length+story.audios.length}</Text>
         <Text style={styles.text}>Writen portion: 1 minute read</Text>
       </View>
       <View style={styles.contentDiv}>
@@ -94,7 +106,7 @@ const ReadStoryScreen = ({ navigation, route }) => {
     alignItems: "center"
           }}
           mode="contained"
-          onPress={() => navigation.navigate("PlayScreen")}
+          onPress={() => navigation.navigate("PlayScreen", {story, photos})}
         >
           <Text style={{
             fontSize: 16,
@@ -162,4 +174,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-export default ReadStoryScreen;
+export default SummaryScreen;

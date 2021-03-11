@@ -6,12 +6,14 @@ import { Icon } from "react-native-elements";
 import { Audio } from "expo-av";
 
 
-const PlayScreen = ({navigation}) => {
+const PlayScreen = ({route, navigation}) => {
   const [sound, setSound] = useState(null);
   const [time, setTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [length, setLength] = useState(0);
   const [favorite, setFavorite] = useState(false);
+  const story = route.params.story
+  const photos = route.params.photos
 
 
   useEffect(() => {
@@ -110,7 +112,7 @@ const PlayScreen = ({navigation}) => {
   
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../assets/img/purpleheart.jpeg")} />
+      <Image style={styles.image} source={photos[0]} />
       <LinearGradient
         // TouchableOpacity Linear Gradient
         // Diagonal :0
@@ -134,7 +136,7 @@ const PlayScreen = ({navigation}) => {
             />
             <Text style={{ color: "9900CC", fontSize: 12 }}> {sound ? ( !isNaN(sound._key.duration) ? secondsToMs(sound._key.duration) : '00:00' ) : '00:00'} </Text>
           </View>
-            <Text style={styles.caption}> War Medals </Text>
+            <Text style={styles.caption}> {story.title} </Text>
             <TouchableOpacity
               color="primary"
               variant="contained"
@@ -176,7 +178,7 @@ const PlayScreen = ({navigation}) => {
           <View
             style={styles.actionRow}
           >
-            <TouchableOpacity onPress={() => navigation.navigate("ReadStoryScreen")} style={{ width: 100, justifyContent: "center", alignItems: "center" }}>
+            <TouchableOpacity onPress={() => navigation.navigate("ReadStoryScreen", {story})} style={{ width: 100, justifyContent: "center", alignItems: "center" }}>
               <Icon
                 type="font-awesome-5"
                 name="book"

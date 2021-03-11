@@ -24,13 +24,15 @@ const story = {
   audios: [],
 };
 
-const RecentStory = ({ data }) => {
+const RecentStory = ({ data, lofImages, setLofImages, index }) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [formState, setFormState] = useState();
   const [images, setImages] = useState([])
 
   useEffect(() => {
+    console.log("data in recent sstory is:", data)
+    if (data && data.photos) {
     console.log(data.photos)
     data.photos.map((item, index) => {firebase.storage()
       .ref(`story_files/${data.id}/image-${index}.jpeg`) //name in storage in firebase console
@@ -39,7 +41,23 @@ const RecentStory = ({ data }) => {
           setImages([...images, url]);
       })
       .catch((e) => console.log('Errors while downloading => ', e));})
+
+    }
+
+  
 }, []);
+
+
+useEffect(() => {
+  
+
+  const newLofImages = [...lofImages]
+  console.log(newLofImages, "pre in rec")
+  newLofImages[index] = images
+  console.log(newLofImages, "in rec")
+  setLofImages(newLofImages)
+
+}, [images]);
 
   return (
     <View style={styles.container}>

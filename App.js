@@ -44,7 +44,7 @@ export default function App() {
           labelStyle: {fontSize: 13, fontWeight: "500",  paddingBottom: 5, zIndex: 0 },
         }}>
           <Tab.Screen
-            component={HomeScreen}
+            component={mainApp}
             name="Home"
             options={{
               title: "Home",
@@ -93,7 +93,8 @@ export default function App() {
                   type="font-awesome-5"
                   name="plus-circle"
                   color="#FC44A9"
-                  style={{zIndex: 1, justifyContent:"flex-start", alignItems:"center", paddingTop: 15, borderRadius: 500, width: 75, height: 75, backgroundColor: "white"}}
+                  style={{zIndex: 1, borderTopColor: "#d8d8d8",
+                    borderTopWidth: 1, justifyContent:"flex-start", alignItems:"center", paddingTop: 15, borderRadius: 500, width: 75, height: 75, backgroundColor: "white"}}
                   iconStyle={{ fontSize: 20, }}
                 />
               ),
@@ -178,11 +179,11 @@ const mainApp = ({navigation}) => {
 
   return (<Stack.Navigator>  
    
-   {/* <Stack.Screen
-    name="RecentStories"
-    component={RecentStories}
+   <Stack.Screen
+    name="HomeScreen"
+    component={HomeScreen}
     options={{ headerShown: false, title: "" }}
-    /> */}
+    />
   <Stack.Screen
     name="SummaryScreen"
     component={SummaryScreen}

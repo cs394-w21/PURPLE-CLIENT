@@ -31,6 +31,7 @@ const HomeScreen = ({ route, navigation }) => {
         console.log(Object.values(snap.val()).length)
        
         let arr = Object.values(snap.val()).map(() => [])
+        console.log("This is arr: ", arr)
         setLofImages(arr)
         //setCart(snap.val().data)
       }
@@ -48,12 +49,12 @@ const HomeScreen = ({ route, navigation }) => {
     if (data) {
       console.log("lof", lofImages)
       console.log("Data: " , Object.values(data)[0])
-
-     
-
-
     }
   }, [data]);
+
+  useEffect(()=> {
+    console.log("This is lofImages:" , lofImages)
+  },[lofImages])
 
 
   return (

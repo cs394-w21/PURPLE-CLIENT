@@ -26,19 +26,30 @@ const pictures = [
 
 
 const SummaryScreen = ({ navigation, route }) => {
+  let story = route.params.story;
   const [favorite, setFavorite] = useState(false);
-  const [photos, setPhotos] = useState(route.params.images);
-  const story = route.params.story
+  const [photos, setPhotos] = useState([]);
+  const [audios, setAudios] = useState([]);
 
-console.log(photos)
+
+  useEffect(()=>{
+    console.log(photos)
     if (!story.title) story.title = "";
     if (!story.summary) story.summary = "";
     if (!story.story) story.story = "";
-    if (!story.photos) story.photos = [];
-    if (!story.audios) story.audios = [];
 
-
-
+    if (!story.photos) {
+      setPhotos([]);
+    } else {
+      setPhotos(story.photos);
+    }
+    if (!story.audios) {
+      setAudios([]);
+    } else {
+      setAudios(story.audios);
+    }
+  },[])
+    
 
   return (
     <ScrollView style={styles.container}>
@@ -72,8 +83,8 @@ console.log(photos)
       <View style={styles.contentDiv}>
         <Text style={styles.contentsDivHeader}>This story contains</Text>
         <Text style={styles.text}>Audio: 7 minutes</Text>
-        <Text style={styles.text}>Photos: {story.photos.length}</Text>
-        <Text style={styles.text}>Documents: {story.photos.length+story.audios.length}</Text>
+        <Text style={styles.text}>Photos: {photos.length}</Text>
+        <Text style={styles.text}>Documents: {photos.length + audios.length}</Text>
         <Text style={styles.text}>Writen portion: 1 minute read</Text>
       </View>
       <View style={styles.contentDiv}>

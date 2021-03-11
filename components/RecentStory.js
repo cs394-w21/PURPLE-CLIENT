@@ -49,12 +49,16 @@ const RecentStory = ({ data, lofImages, setLofImages, index }) => {
 
 
 useEffect(() => {
-  
-
-  const newLofImages = [...lofImages]
-  console.log(newLofImages, "pre in rec")
-  newLofImages[index] = images
-  console.log(newLofImages, "in rec")
+  // console.log(lofImages, "pre in rec")
+  let newLofImages = lofImages.map((thing, i) => {
+    if (i == index) {
+      return images
+    } else {
+      return lofImages[i]
+    }
+  })
+  // newLofImages[index] = images
+  // console.log(newLofImages, "in rec")
   setLofImages(newLofImages)
 
 }, [images]);

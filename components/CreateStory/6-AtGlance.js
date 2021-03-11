@@ -26,6 +26,8 @@ const AtGlanceComponent = ({story, setFormData}) => {
           
         Yay, great job! You have created an awesome story! Below is a quick summary of what you have completed so far. 
         {"\n\n"}
+        </Text>
+        <Text style={styles.text2}>
         Review and save it forever.
         {"\n\n"}
         Story Title: {story.title}
@@ -70,20 +72,19 @@ const styles = StyleSheet.create({
   },
   text1: {
     fontFamily: "roboto-regular",
-    fontStyle:  "normal",
+    fontStyle: "italic",
     fontWeight: "bold",
-    color: "#666666",
-    fontSize:   16,
+    fontSize: 16,
     lineHeight: 19,
-    marginBottom: 15,
+    color: "#666666",
   },
   text2: {
     fontFamily: "roboto-regular",
     fontStyle:  "normal",
     fontWeight: "normal",
     color: "#666666",
-    fontSize:   12,
-    lineHeight: 14,
+    fontSize:   16,
+    lineHeight: 20,
     marginBottom: 15,
   },
   text3: {

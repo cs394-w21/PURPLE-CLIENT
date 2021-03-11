@@ -27,21 +27,12 @@ const RecordFormComponent = ({ story, setFormData }) => {
   const [message, setMessage] = useState(null);
 
   async function PickAudio() {
-    let result = await DocumentPicker.getDocumentAsync({
-<<<<<<< HEAD
+   let result = await DocumentPicker.getDocumentAsync({
       type: "audio/mp3", copyToCacheDirectory: true
     })
     if (!result.cancelled) {
       setAudios(audios.concat(result))
       setFormData("audios", [result.uri])
-=======
-      type: "audio/*",
-      copyToCacheDirectory: true,
-    });
-    if (!result.cancelled) {
-      setAudios(audios.concat(result));
-      setFormData(audios.concat(result.uri));
->>>>>>> afd03caaf57f2a3b463d35d395f81764d46d22c3
     }
   }
 

@@ -136,6 +136,7 @@ const textBase = {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    backgroundColor: "#FFFFFF"
   },
   imgButton: {
     width: "31%",

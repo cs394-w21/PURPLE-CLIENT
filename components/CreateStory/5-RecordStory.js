@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, usePermissions } from "react";
 import {
   View,
@@ -8,7 +7,7 @@ import {
   Image,
   StyleSheet,
   ScrollView,
-  Platform
+  Platform,
 } from "react-native";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import { LinearGradient } from "expo-linear-gradient";
@@ -18,71 +17,70 @@ import * as FileSystem from "expo-file-system";
 import * as Font from "expo-font";
 import * as Permissions from "expo-permissions";
 import { set } from "react-native-reanimated";
-import * as DocumentPicker from 'expo-document-picker';
+import * as DocumentPicker from "expo-document-picker";
+import GradientButton from '../GradientButton';
+import colors from '../../utils/utils';
 
 
-  const RecordFormComponent = ({ story, setFormData }) => {
+const RecordFormComponent = ({ story, setFormData }) => {
   const [audios, setAudios] = useState([]);
   const [message, setMessage] = useState(null);
 
-  async function PickAudio () {
+  async function PickAudio() {
     let result = await DocumentPicker.getDocumentAsync({
-      type: "audio/*", copyToCacheDirectory: true
-    })
+      type: "audio/*",
+      copyToCacheDirectory: true,
+    });
     if (!result.cancelled) {
-      setAudios(audios.concat(result))
-      setFormData(audios.concat(result.uri))
+      setAudios(audios.concat(result));
+      setFormData(audios.concat(result.uri));
     }
-
   }
 
   return (
     <View>
       <View style={styles.textDivision}>
-      <Text style={{ fontWeight: "bold", fontStyle: "italic" }}>
-        Immerse your audience in the story from the storyteller’s point of view.{" "}
-      </Text>
-      <Text style={{ fontStyle: "italic", marginTop: 10 }}>
-        Recorded audio {'&'} uploaded visuals will be combined to create a
-        one-of-a-kind glimpse into the story.
-      </Text>
+        <Text style={{ fontWeight: "bold", fontStyle: "italic" }}>
+          Immerse your audience in the story from the storyteller’s point of
+          view.{" "}
+        </Text>
+        <Text style={{ fontStyle: "italic", marginTop: 10 }}>
+          Recorded audio {"&"} uploaded visuals will be combined to create a
+          one-of-a-kind glimpse into the story.
+        </Text>
       </View>
       <ScrollView>
-      {audios.map((value, index) => (
-        <AudioElement
-          length={value.size}
-          title={value.name}
-          key={index}
-          my_uri={value.uri}
-          setAudios={setAudios}
-        />
-      ))}
+        {audios.map((value, index) => (
+          <AudioElement
+            length={value.size}
+            title={value.name}
+            key={index}
+            my_uri={value.uri}
+            setAudios={setAudios}
+          />
+        ))}
       </ScrollView>
-     
-      <TouchableOpacity
-        style={{
-          alignSelf: "center",
-          justifyContent: "center"
-        }}
-        onPress={audios.length == 0 ? PickAudio : () => alert("You have already uploaded an audio file. Remove the existing one to re-upload.")}
-      >
-        <View
-          style={{
-            width: 50,
-            height: 50,
-            borderColor: "#AD00FF",
-            borderWidth: 1,
-            borderRadius: "50%",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-        </View>
+
+      <View>
+        <GradientButton
+          onPress={
+            audios.length == 0
+              ? PickAudio
+              : () =>
+                  alert(
+                    "You have already uploaded an audio file. Remove the existing one to re-upload."
+                  )
+          }
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
+          colors={colors.blurple}
+          title={"Upload Audio"}
+        ></GradientButton>
+
         <Text style={{ textAlign: "center", marginTop: 15 }}>
           {audios.length == 0 ? "Upload" : "Success!"}
         </Text>
-        
-      </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -94,9 +92,9 @@ const AudioElement = ({ title, length, my_uri, setAudios }) => {
   const sound_obj = new Audio.Sound();
 
   async function playAudio() {
-    if (! isPlaying) {
+    if (!isPlaying) {
       sound_obj.setOnPlaybackStatusUpdate();
-      await sound_obj.loadAsync({uri: audiouri});
+      await sound_obj.loadAsync({ uri: audiouri });
       await sound_obj.playAsync();
       setSound(sound_obj);
       setIsPlaying(true);
@@ -109,9 +107,7 @@ const AudioElement = ({ title, length, my_uri, setAudios }) => {
   return (
     <View style={{ marginBottom: 30 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text>
-          {title}
-        </Text>
+        <Text>{title}</Text>
         <Text>{length}</Text>
       </View>
       <View
@@ -122,21 +118,21 @@ const AudioElement = ({ title, length, my_uri, setAudios }) => {
         }}
       >
         <TouchableOpacity onPress={() => playAudio()}>
-          {isPlaying ? 
+          {isPlaying ? (
             <Icon
-            type="font-awesome-5"
-            name="stop"
-            color="#FB37FF"
-            iconStyle={{ fontSize: 20 }}
-          />
-          :
-          <Icon
-            type="font-awesome-5"
-            name="play"
-            color="#FB37FF"
-            iconStyle={{ fontSize: 20 }}
-          />
-          }
+              type="font-awesome-5"
+              name="stop"
+              color="#FB37FF"
+              iconStyle={{ fontSize: 20 }}
+            />
+          ) : (
+            <Icon
+              type="font-awesome-5"
+              name="play"
+              color="#FB37FF"
+              iconStyle={{ fontSize: 20 }}
+            />
+          )}
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setAudios([])}>
           <Icon
@@ -166,7 +162,7 @@ const styles = StyleSheet.create({
     lineHeight: "20px",
     color: "#AD00FF",
   },
-  textDivision: {marginBottom: 30},
+  textDivision: { marginBottom: 30 },
   textWrap: {
     borderColor: "black",
     borderWidth: 50,

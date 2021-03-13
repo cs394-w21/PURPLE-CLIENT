@@ -2,32 +2,13 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
   Image,
   StyleSheet,
-  ImageBackground,
-  TextInput,
 } from "react-native";
-import { Icon } from "react-native-elements";
-import GradientButton from "./GradientButton";
 import { firebase } from "../utils/firebase";
-import Header from "./Header";
-import { database } from "firebase";
 import { _DEFAULT_INITIAL_PLAYBACK_STATUS } from "expo-av/build/AV";
 
-const story = {
-  id: "yerr",
-  title: "yerr",
-  summary: "yerr",
-  story: "",
-  photos: [],
-  audios: [],
-};
-
 const RecentStory = ({ data, lofImages, setLofImages, index }) => {
-  const [name, setName] = useState("");
-  const [summary, setSummary] = useState("");
-  const [formState, setFormState] = useState();
   const [images, setImages] = useState([])
 
   useEffect(() => {
@@ -35,21 +16,16 @@ const RecentStory = ({ data, lofImages, setLofImages, index }) => {
     if (data && data.photos) {
     console.log(data.photos)
     data.photos.map((item, index) => {firebase.storage()
-      .ref(`story_files/${data.id}/image-${index}.jpeg`) //name in storage in firebase console
+      .ref(`story_files/${data.id}/image-${index}.jpeg`) 
       .getDownloadURL()
       .then((url) => {
           setImages([...images, url]);
       })
       .catch((e) => console.log('Errors while downloading => ', e));})
-
     }
-
-  
 }, []);
 
-
 useEffect(() => {
-  // console.log(lofImages, "pre in rec")
   let newLofImages = lofImages.map((thing, i) => {
     if (i == index) {
       return images
@@ -57,16 +33,12 @@ useEffect(() => {
       return lofImages[i]
     }
   })
-  // newLofImages[index] = images
-  // console.log(newLofImages, "in rec")
   setLofImages(newLofImages)
-
 }, [images]);
 
   return (
     <View style={styles.container}>
       <View>
-        
         <Text style={styles.text3}>{data.title}</Text>
       </View>
       <View style={styles.wrap1}>
@@ -77,8 +49,6 @@ useEffect(() => {
     </View>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   container: {

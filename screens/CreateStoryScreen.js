@@ -64,12 +64,6 @@ const CreateStoryScreen = ({ route, navigation }) => {
       setStory={setStory}
       setFormData={setFormData}
     />,
-    // <VisualizeFormComponent
-    //   story={story}
-    //   count={story.photos.length}
-    //   setStory={setStory}
-    //   setFormData={setFormData}
-    // />,
     <RecordFormComponent
     story={story}
     setStory={setStory}
@@ -197,7 +191,6 @@ const CreateStoryScreen = ({ route, navigation }) => {
       {formState < formComponents.length - 1 ? (
         <Text style={styles.title}>{formTitle[formState]}</Text>
       ) : null}
-      {/* Progress bar */}
       {formState < formComponents.length - 2 ? (
         <View style={styles.progressBar}>
           <View style={styles.barBackground}>
@@ -264,7 +257,6 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   bar: {
-    //width: toString(formState / (formComponents.length - 2) * 100)+"%",
     height: "100%",
     backgroundColor: "#AD00FF",
     borderRadius: 25,

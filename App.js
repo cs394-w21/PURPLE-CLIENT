@@ -18,7 +18,6 @@ import CreateStoryScreen from "./screens/CreateStoryScreen";
 import TitleFormComponent from "./components/CreateStory/4-VisualizeSuccess";
 import HomeScreen from './screens/HomeScreen';
 import * as Font from 'expo-font';
-import { AppLoading } from 'expo';
 
 
 
@@ -35,15 +34,6 @@ export default function App() {
       'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf')
       });
   }, [])
-
-  const story = {
-    title: "testtest",
-    image: "../test1.jpg",
-  };
-  // <Success></Success>
-  //       <StatusBar style="auto" />
-
-  //      {/*<Story story={story} />*/}
 
   return (
     <PaperProvider>
@@ -68,7 +58,6 @@ export default function App() {
                   iconStyle={{ fontSize: 20}}
                 />
               ),
-//              tabBarLabel: {focused: true, color: 'pink', position: 'beside-icon'} 
             }}
           />
           <Tab.Screen
@@ -76,20 +65,12 @@ export default function App() {
             name="Browse"
             listeners={{
               tabPress: e => {
-                // Prevent default action
                 e.preventDefault();
               },
             }}
             options={{
               title: "",
               tabBarIcon: () => (
-                // <Icon
-                //   type="font-awesome-5"
-                //   name="border-all"
-                //   color="#666"
-                //   style={{zIndex: 0}}
-                //   iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
-                // />
                 <View></View>
               ),
             }}
@@ -116,20 +97,12 @@ export default function App() {
             name="Account"
             listeners={{
               tabPress: e => {
-                // Prevent default action
                 e.preventDefault();
               },
             }}
             options={{
               title: "",
               tabBarIcon: () => (
-                // <Icon
-                //   type="font-awesome-5"
-                //   name="user-cog"
-                //   color="#666"
-                //   style={{zIndex: 0}}
-                //   iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
-                // />
                 <View></View>
               ),
             }}
@@ -139,19 +112,12 @@ export default function App() {
             name="More"
             listeners={{
               tabPress: e => {
-                // Prevent default action
                 e.preventDefault();
               },
             }}
             options={{
               title: "",
               tabBarIcon: () => (
-                // <Icon
-                //   type="font-awesome-5"
-                //   name="ellipsis-h"
-                //   color="#666"
-                //   iconStyle={{ fontSize: 20, color: 'rgba(0,0,0,0.1)'}}
-                // />
                 <View></View>
               ),
             }}
@@ -164,30 +130,7 @@ export default function App() {
 
 
 const mainApp = ({navigation}) => {
-  // useEffect(() => {
-  //   const unsubscribe = navigation.addListener('tabPress', e => {
-  //     // Prevent default behavior
-  //     if (e.target.includes("More")) e.preventDefault();
-
-  //     alert('Default behavior prevented');
-  //     // Do something manually
-  //     // ...
-  //   });
-
-  //   return unsubscribe;
-  // }, []);
-
-  // const unsubscribe = navigation.addListener('tabPress', e => {
-  //   // Prevent default behavior
-  //   if (e.target.includes("More")) e.preventDefault();
-
-  //   alert('Default behavior prevented');
-  //   // Do something manually
-  //   // ...
-  // });
-
-
-
+  
   return (<Stack.Navigator>  
    
    <Stack.Screen

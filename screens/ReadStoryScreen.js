@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView } from "react-native";
-import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
-import { Icon } from "react-native-elements";
+import React from "react";
+import { Text, StyleSheet, ScrollView } from "react-native";
 import Header from '../components/Header'
 
-const ReadStoryScreen = (route) => {
-  const [favorite, setFavorite] = useState(false);
+const ReadStoryScreen = ({route}) => {
   return (
     <ScrollView style={styles.container}>
       <Header />
@@ -32,7 +29,6 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
-
   }
 });
 export default ReadStoryScreen;

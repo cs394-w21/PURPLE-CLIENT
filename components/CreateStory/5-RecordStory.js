@@ -9,14 +9,8 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
-import { LinearGradient } from "expo-linear-gradient";
 import { Icon } from "react-native-elements";
 import { Audio, AVPlaybackStatus } from "expo-av";
-import * as FileSystem from "expo-file-system";
-import * as Font from "expo-font";
-import * as Permissions from "expo-permissions";
-import { set } from "react-native-reanimated";
 import * as DocumentPicker from "expo-document-picker";
 import GradientButton from '../GradientButton';
 import colors from '../../utils/utils';
@@ -24,7 +18,6 @@ import colors from '../../utils/utils';
 
 const RecordFormComponent = ({ story, setFormData }) => {
   const [audios, setAudios] = useState([]);
-  const [message, setMessage] = useState(null);
 
   async function PickAudio() {
    let result = await DocumentPicker.getDocumentAsync({

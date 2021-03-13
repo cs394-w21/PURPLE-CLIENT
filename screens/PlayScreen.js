@@ -5,7 +5,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Icon } from "react-native-elements";
 import { Audio } from "expo-av";
 
-
 const PlayScreen = ({route, navigation}) => {
   const [sound, setSound] = useState(null);
   const [time, setTime] = useState(0);
@@ -16,16 +15,11 @@ const PlayScreen = ({route, navigation}) => {
   const story = route.params.story
   const photos = route.params.photos
 
-  // old require : "../assets/sound/ww2.m4a"
   useEffect(() => {
     playPauseSound();
   }, []);
 
-
-  
-
   async function playPauseSound() {
-    //initial play
     if (story.audios.length == 0) {
       setSource(false);
       return;
@@ -39,19 +33,16 @@ const PlayScreen = ({route, navigation}) => {
         }
       );
       setSound(sound);
-      //setLength(sound._key.duration)
       setIsPlaying(true);
       console.log("Playing Sound");
       
       await sound.playAsync();
     }
-    //else if playing, pause
     else if (isPlaying) {
       setIsPlaying(false);
       console.log("Stopping Sound");
       await sound.pauseAsync();
     }
-    //else its paused, play
     else {
       setIsPlaying(true);
       console.log("Playing Sound");
@@ -60,7 +51,6 @@ const PlayScreen = ({route, navigation}) => {
   }
 
   async function scrubSound(seconds) {
-    //initial play
     if (sound) {
       console.log(seconds);
       console.log(sound._key.duration);
@@ -68,18 +58,11 @@ const PlayScreen = ({route, navigation}) => {
       console.log(sound)
       let curTime = seconds * sound._key.duration * 1000
       setLength(sound._key.duration)
-      //await sound.playAsync();
       await sound.setPositionAsync(curTime)
-      /*
-      if (isPlaying) {
-        await sound.playAsync();
-      }
-      */
     }
   }
 
   async function scrubVolume(value) {
-    //initial play
     console.log(value);
     if (sound) {
       await sound.setVolumeAsync(value)
@@ -88,10 +71,8 @@ const PlayScreen = ({route, navigation}) => {
 
   function secondsToMs(d) {
     d = Number(d);
-  
     var min = Math.floor(d / 60);
     var sec = Math.floor(d % 60);
-  
     return `0${min}`.slice(-1) + ":" + `00${sec}`.slice(-2);
   }
 
@@ -109,21 +90,17 @@ const PlayScreen = ({route, navigation}) => {
        if (sound) {
         if (sound._key) {
         if (time != sound._key.currentTime) {
-          
           setTime(sound._key.currentTime);
         }
       }
        }
     }, 1000); 
   },[sound, isPlaying, time, length])
-
   
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={photos[0]} />
       <LinearGradient
-        // TouchableOpacity Linear Gradient
-        // Diagonal :0
         start={{ x: 1, y: 0 }}
         end={{ x: 0, y: 1 }}
         colors={["#FFFFFF", "#FFFFFF"]}
@@ -186,6 +163,7 @@ const PlayScreen = ({route, navigation}) => {
           <View
             style={styles.actionRow}
           >
+
             <TouchableOpacity onPress={() => navigation.navigate("ReadStoryScreen", {story})} style={{ width: 100, justifyContent: "center", alignItems: "center" }}>
               <Icon
                 type="font-awesome-5"
@@ -197,24 +175,6 @@ const PlayScreen = ({route, navigation}) => {
                 Read Story
               </Text>
             </TouchableOpacity>
-            {/* <TouchableOpacity style={{ width: 100, justifyContent: "center", alignItems: "center"  }}>
-              <Icon
-                type="font-awesome-5"
-                name="share-square"
-                color="white"
-                iconStyle={{ fontSize: 20 }}
-              />
-              <Text style={{ marginTop: 5, color: "white", fontSize: 12 }}>Share</Text>
-            </TouchableOpacity> */}
-            {/* <TouchableOpacity style={{ width: 100, justifyContent: "center", alignItems: "center"  }}>
-              <Icon
-                type="font-awesome-5"
-                name="list"
-                color="white"
-                iconStyle={{ fontSize: 20 }}
-              />
-              <Text style={{ marginTop: 5, color: "white", fontSize: 12 }}>History</Text>
-            </TouchableOpacity> */}
             <TouchableOpacity onPress={() => setFavorite(!favorite)} style={{ width: 100, justifyContent: "center", alignItems: "center"  }}>
               <Icon
                 type="font-awesome-5"
@@ -226,8 +186,7 @@ const PlayScreen = ({route, navigation}) => {
               <Text style={{ marginTop: 5, color: "9900CC", fontSize: 12 }}>Favorite</Text>
             </TouchableOpacity>
           </View>
-          </View>
-          
+          </View> 
         </View>
       </LinearGradient>
     </View>

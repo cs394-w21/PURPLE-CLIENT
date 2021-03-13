@@ -7,20 +7,11 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
-import { Icon } from "react-native-elements";
 import Header from "../components/Header";
-import { LinearGradient } from "expo-linear-gradient";
-import { Button } from "react-native-paper";
-import * as purpleHeart from "../assets/img/purpleheart.jpeg";
 
 const FilesFolderScreen = ({navigation, route}) => {
   const [photos, setPhotos] = useState(route.params.photos);
-  const [favorite, setFavorite] = useState(false);
-
-  // useEffect(() => {
-  //   setCurrentComp(FilesFolderScreen);
-  // }, []); 
+  
   return (
     <View style={styles.container}>
       <Header />
@@ -29,7 +20,7 @@ const FilesFolderScreen = ({navigation, route}) => {
           <TouchableOpacity style={styles.imgSquare} onPress={() => navigation.navigate('FilesScreen', {photos, index})}>
             <Image
           style={{width: '100%', height: '100%'}}
-          source={photo} /* need to fix import */
+          source={photo}
 
         />
           </TouchableOpacity>

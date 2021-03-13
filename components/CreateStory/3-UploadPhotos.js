@@ -84,11 +84,6 @@ const styles = StyleSheet.create({
     fontSize: "24px",
     lineHeight: "20px",
     color: "#AD00FF",
-    /* identical to box height, or 83% */
-
-    /* Purple */
-
-    // color: linear-gradient(191.88deg, #AD00FF 29.85%, #00B1FD 100%);
   },
   textWrap: {
     borderColor: 'black',
@@ -152,7 +147,6 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderWidth: 1,
     height: 25,
-
   },
 });
 export default UploadFormComponent;

@@ -5,23 +5,15 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
-  ImageBackground,
-  TextInput,
   ScrollView
 } from "react-native";
-import { Icon } from "react-native-elements";
 import GradientButton from "../components/GradientButton";
 import { firebase } from "../utils/firebase";
-import Header from "../components/Header";
 import RecentStory from "../components/RecentStory";
 
 const HomeScreen = ({ route, navigation }) => {
-  const [name, setName] = useState("");
-  const [summary, setSummary] = useState("");
-  const [formState, setFormState] = useState(0);
   const [data, setData] = useState(null);
   const [lofImages, setLofImages] = useState([])
-
   const db = firebase.database().ref("/stories");
 
   useEffect(() => {
@@ -29,21 +21,16 @@ const HomeScreen = ({ route, navigation }) => {
       if (snap.val()) {
         setData(snap.val());
         console.log(Object.values(snap.val()).length)
-       
         let arr = Object.values(snap.val()).map(() => [])
         console.log("This is arr: ", arr)
         setLofImages(arr)
-        //setCart(snap.val().data)
       }
     };
-
     db.on("value", handleData, (error) => alert(error));
-
     return () => {
       db.off("value", handleData);
     };
   }, []);
-
 
   useEffect(() => {
     if (data) {
@@ -51,11 +38,6 @@ const HomeScreen = ({ route, navigation }) => {
       console.log("Data: " , Object.values(data)[0])
     }
   }, [data]);
-
-  useEffect(()=> {
-    console.log("This is lofImages:" , lofImages)
-  },[lofImages])
-
 
   return (
     <View style={styles.container}>
@@ -180,8 +162,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignSelf: "flex-end",
   },
-  imageDiv: {
-    
+  imageDiv: { 
    flex: 1,
   }
 });

@@ -26,8 +26,6 @@ const Modal = ({showBack, setShowBack}) => {
     </View>
       : null}
     </>
-
-    
   )
 }
 
@@ -36,16 +34,12 @@ const Success = ({ navigation }) => {
   return (
     <ScrollView style={{flex: 1, height: '100%'}}>
     <LinearGradient
-      // TouchableOpacity Linear Gradient
-      // Diagonal :0
-      
       style={{flex: 1, width: "100%", height: "100%"}}
       start={{ x: 1, y: 0 }}
       end={{ x: 0, y: 1 }}
       colors={["#841787", "#F6CC60"]}
     >
       <Modal showBack={showBack} setShowBack={setShowBack}></Modal>
-
       <View style={styles.bigContainer}>
         <View style={styles.container}>
           <View style={styles.banner}>
@@ -57,7 +51,6 @@ const Success = ({ navigation }) => {
                 alignItems: "center",
               }}
             >
-              {/*Wrong Icon - we need the white thing in the background*/}
               <Icon
                 containerStyle={{
                   justifyContent: "center",
@@ -205,7 +198,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flexWrap: "nowrap",
     justifyContent: "center",
-    //alignItems: "center",
     color: "white",
     padding: 20,
   },

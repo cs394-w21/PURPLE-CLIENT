@@ -7,37 +7,20 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
-import { Icon } from "react-native-elements";
 import Header from "../components/Header";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-paper";
-import * as purpleHeart from "../assets/img/purpleheart.jpeg";
-
-const pictures = [
-  require("../assets/img/purpleheart.jpeg"),
-  require("../assets/img/cross.jpeg"),
-  require("../assets/img/grandpaknife.jpeg"),
-  require("../assets/img/stone-coin.jpeg"),
-  require("../assets/img/people.jpeg"),
-  require("../assets/img/person.jpeg"),
-  require("../assets/img/chart.jpeg"),
-];
-
 
 const SummaryScreen = ({ navigation, route }) => {
   let story = route.params.story;
-  const [favorite, setFavorite] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [audios, setAudios] = useState([]);
-
 
   useEffect(()=>{
     console.log(photos)
     if (!story.title) story.title = "";
     if (!story.summary) story.summary = "";
     if (!story.story) story.story = "";
-
     if (!story.photos) {
       setPhotos([]);
     } else {
@@ -49,7 +32,6 @@ const SummaryScreen = ({ navigation, route }) => {
       setAudios(story.audios);
     }
   },[])
-    
 
   return (
     <ScrollView style={styles.container}>
@@ -59,7 +41,7 @@ const SummaryScreen = ({ navigation, route }) => {
           <TouchableOpacity key={index} style={styles.imgButton} onPress={() => navigation.navigate("FilesScreen", {photos, index, story})}>
             <Image
               style={styles.imgSquare}
-              source={photo} /* need to fix import */
+              source={photo}
             />
           </TouchableOpacity>
         )) : null}
@@ -93,8 +75,6 @@ const SummaryScreen = ({ navigation, route }) => {
       </View>
 
       <LinearGradient
-        // TouchableOpacity Linear Gradient
-        // Diagonal :0
         style={{
           margin: 20,
           marginTop: 40,

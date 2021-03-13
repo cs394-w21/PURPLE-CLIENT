@@ -58,11 +58,6 @@ const styles = StyleSheet.create({
     fontSize: "24px",
     lineHeight: "20px",
     color: "#AD00FF",
-    /* identical to box height, or 83% */
-
-    /* Purple */
-
-    // color: linear-gradient(191.88deg, #AD00FF 29.85%, #00B1FD 100%);
   },
   textWrap: {
     flex: 1,
@@ -97,9 +92,7 @@ const styles = StyleSheet.create({
     fontSize:   14,
     lineHeight: 16,
     marginBottom: 150,
-    alignSelf: "center",
-    
-    
+    alignSelf: "center",  
   },
   text4: {
     fontFamily: "roboto-regular",

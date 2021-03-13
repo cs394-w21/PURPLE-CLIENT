@@ -14,7 +14,7 @@ After registering your app, copy the firebase config shown on screen into **fire
 
 ## Run Instructions
 Run ```expo start``` on your terminal to launches the metro-bundler. Press ``Run in web browser`` to launch app in the web.
-## Known bugs
+## Bugs
 1. The audio scrubber echos. 
 2. The favorites button is non-functional.
 3. Audio files must be .MP3 and image files must be .JPG.

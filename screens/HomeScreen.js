@@ -44,7 +44,7 @@ const HomeScreen = ({ route, navigation }) => {
       <View style={styles.imageDiv}>
       <Image style={styles.image} source={require("../assets/img/GLIMPZ_logo.png")} />
       </View>
-      <Text style={styles.title}>Hello Storyteller</Text>
+      <Text testID="welcome-banner" style={styles.title}>Hello Storyteller</Text>
       <View style={{}}>
         <Text style={styles.text1}>
           Sharing your stories now ensures they are captured for future

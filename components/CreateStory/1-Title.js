@@ -26,6 +26,8 @@ const TitleFormComponent = ({story, setFormData}) => {
         <View >
           <Text style={styles.textFieldTitle}>Story Name</Text>
           <TextInput 
+            data-cy="title-input"
+            
             placeholder = "Give your story a cool name..."
             style={styles.textFieldContentTitle}
             onChangeText={(text) => setFormData("title", text)}

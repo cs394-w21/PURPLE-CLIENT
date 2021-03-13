@@ -214,13 +214,13 @@ const CreateStoryScreen = ({ route, navigation }) => {
       {formComponents[formState]}
       {submitError ? <Text> {submitError}</Text> : null}
       <View style={{ justifySelf: "flex-end", flexDirection: "row", width: "100%" }}>
-        <GradientButton
+        { formState < formComponents.length - 1 ?<GradientButton
           style={{ flex: 1, width: "50%" }}
           onPress={() => formBack()}
           title={"Back"}
-        />
+        /> : null}
         <GradientButton
-          style={{ flex: 1, width: "50%" }}
+          style={{ flex: 1, width: formState < formComponents.length - 1 ? "50%" :"100%" }}
           onPress={() => formContinue()}
           title={formState == formComponents.length - 2 ? "Save" : formState == formComponents.length - 1 ? "View Stories" : "Continue"}
         />
